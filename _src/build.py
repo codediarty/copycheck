@@ -731,6 +731,8 @@ def build_seo():
     open(os.path.join(OUT, "site.webmanifest"), "w", encoding="utf-8").write(json.dumps({"name": BRAND + " AI 작성률 검사 · AI 휴머나이저", "short_name": BRAND, "start_url": "/", "display": "standalone", "background_color": "#ffffff", "theme_color": "#0b0f14", "lang": "ko",
                                                                                          "icons": [{"src": "/assets/img/logo-192.png?v=" + VER, "sizes": "192x192", "type": "image/png"}, {"src": "/assets/img/logo-512.png?v=" + VER, "sizes": "512x512", "type": "image/png"}]}, ensure_ascii=False))
     open(os.path.join(OUT, INDEXNOW_KEY + ".txt"), "w").write(INDEXNOW_KEY)
+    if BING_VERIFY2:   # 2026.11.25 빙 XML 파일 확인(메타 태그와 같은 계정 코드)
+        open(os.path.join(OUT, "BingSiteAuth.xml"), "w").write('<?xml version="1.0"?>\n<users>\n\t<user>%s</user>\n</users>' % BING_VERIFY2)
     for gf in GOOGLE_FILES:
         open(os.path.join(OUT, gf), "w").write("google-site-verification: %s" % gf)
     open(os.path.join(OUT, "CNAME"), "w").write(HOST + "\n")
