@@ -1,0 +1,2 @@
+/* 카피체크 상품(빌드가 만듦: _src/build.py SHOP_IDX · PACKS) */
+window.AMP = {"shop": "https://skkc.co.kr/shop_view?idx=%s&kaiec_buy=1", "idx": {"lt": "170", "pl": "171", "pr": "172", "mx": "173"}, "items": {"lt": {"name": "라이트", "tok": 100, "price": 9900}, "pl": {"name": "플러스", "tok": 350, "price": 19900}, "pr": {"name": "프로", "tok": 1000, "price": 39900}, "mx": {"name": "맥스", "tok": 2000, "price": 69900}}};

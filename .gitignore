@@ -1,0 +1,10 @@
+__pycache__/
+_src/server/
+_src/shop/out/
+_src/shop/pretendard/
+_src/shop/*.woff2
+_src/shop/pretendard.css
+_src/shop/_t_*.html
+_src/demo_raw_*.json
+_src/brand/_*.html
+.DS_Store
