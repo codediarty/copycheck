@@ -46,6 +46,7 @@ NAVER_VERIFY = ""   # 네이버 서치어드바이저 HTML 태그(등록하면 �
 NAVER_VERIFY2 = ""
 GOOGLE_VERIFY = ""
 BING_VERIFY = "6CFE39150A28BBBB4694B507E2E689C0"   # Bing 웹마스터 도구(형제 사이트와 같은 계정의 메타 태그)
+BING_VERIFY2 = "B673011129D1A8E10FC5977377C8BBBC"   # 2026.11.25 Bing 웹마스터 도구에 copycheck.skkc.co.kr 추가할 때 받은 메타 태그(위 것은 그대로 둠)
 INDEXNOW_KEY = "0e96c841cd5c8ab919a5b65f1e2d453f"
 GOOGLE_FILES = ["google67694027f26c117c.html"]   # 구글 서치 콘솔 URL 접두어 확인용(moistener22 계정 파일, 형제 사이트와 같음). 지우지 말 것
 BIZ = {"name": "성균관컨설팅", "ceo": "이채연", "no": "272-32-01885", "ecom": "제2026-경기송탄-0622",
@@ -222,6 +223,8 @@ def page(path, title, desc, body, *, ld=None, tool=False, og=None, ptype="websit
         head.append('<meta name="google-site-verification" content="%s">' % GOOGLE_VERIFY)
     if BING_VERIFY:
         head.append('<meta name="msvalidate.01" content="%s">' % BING_VERIFY)
+    if BING_VERIFY2:
+        head.append('<meta name="msvalidate.01" content="%s">' % BING_VERIFY2)
     head.append('<script>document.documentElement.className+=" js";setTimeout(function(){if(!window.HZ_SITE){var a=document.querySelectorAll(".rv");for(var i=0;i<a.length;i++)a[i].className+=" in"}},3000)</script>')
     head.append('<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">')
     if tool:
