@@ -8,3 +8,5 @@ _src/shop/_t_*.html
 _src/demo_raw_*.json
 _src/brand/_*.html
 .DS_Store
+_src/skkc/dist/preview_*
+_src/skkc/shots/

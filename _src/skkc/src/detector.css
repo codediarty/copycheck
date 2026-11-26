@@ -1,0 +1,216 @@
+/* 카피클린 AI 사용 여부 확인(/ai-detector) 첫 화면 2026.11.26: 메인(성균관컨설팅) 첫 화면 02 칸과 같은 초록 판 · 유리 칩 · 흰 알약 단추 */
+.ccd, .ccd *, .ccd *::before, .ccd *::after {
+  margin: 0; padding: 0; border: 0; outline: 0; box-sizing: border-box;
+  font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-style: normal; text-decoration: none; list-style: none; letter-spacing: -0.01em;
+  max-width: none; min-width: 0; float: none; text-transform: none;
+}
+.ccd {
+  display: block; width: 100%; color: #fff; background: #0a794a;
+  font-size: 16px; line-height: 1.5; word-break: keep-all; overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+.ccd a, .ccd a:link, .ccd a:visited, .ccd a:hover, .ccd a:active, .ccd a:focus { text-decoration: none; }
+.ccd svg { display: block; overflow: visible; }
+
+/* 판 */
+.ccd .ccd-hero {
+  position: relative; overflow: hidden; isolation: isolate; display: block;
+  padding: 76px 40px 96px;
+  background:
+    radial-gradient(1000px 620px at 10% 0%, rgba(255,255,255,0.17), rgba(255,255,255,0) 60%),
+    radial-gradient(900px 720px at 100% 100%, rgba(5,88,52,0.92), rgba(5,88,52,0) 64%),
+    linear-gradient(135deg, #12a86a 0%, #0c8b56 52%, #0a794a 100%);
+}
+.ccd .ccd-deco { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.ccd .ccd-blob { position: absolute; border-radius: 50%; display: block; }
+.ccd .ccd-blob--a { width: 560px; height: 560px; left: -170px; top: -200px; opacity: 0.35;
+  background: radial-gradient(circle at 62% 42%, rgba(255,255,255,0.8), rgba(255,255,255,0) 62%); }
+.ccd .ccd-blob--b { width: 440px; height: 440px; right: 6%; bottom: -190px; opacity: 0.5;
+  background: radial-gradient(circle at 50% 50%, #48c990, rgba(72,201,144,0) 66%); }
+.ccd .ccd-ring { position: absolute; display: block; width: 760px; height: 760px; right: -170px; top: 50%; margin-top: -380px;
+  border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); }
+.ccd .ccd-ring--2 { width: 1040px; height: 1040px; right: -310px; margin-top: -520px; border-color: rgba(255,255,255,0.09); }
+.ccd .ccd-dots { position: absolute; display: block; left: 3%; bottom: 9%; width: 230px; height: 190px; opacity: 0.22;
+  background-image: radial-gradient(rgba(255,255,255,0.95) 1.2px, rgba(255,255,255,0) 1.3px); background-size: 14px 14px; }
+.ccd .ccd-big { position: absolute; display: block; right: 2%; bottom: -74px; font-size: 380px; font-weight: 800; line-height: 0.8;
+  letter-spacing: -0.06em; color: rgba(255,255,255,0.06); user-select: none; }
+
+.ccd .ccd-inner { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr); gap: 60px; align-items: center; }
+
+/* 왼쪽 글 */
+.ccd .ccd-copy { animation: ccdIn 0.7s ease-out 0.08s both; }
+.ccd .ccd-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+.ccd .ccd-chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 15px 8px 10px; border-radius: 999px;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.24);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.22); font-size: 14px; font-weight: 600; color: #fff; line-height: 1.3; white-space: nowrap; }
+.ccd .ccd-chip svg { width: 16px; height: 16px; stroke: #d6fbe9; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.ccd .ccd-title { font-size: clamp(32px, 2.3vw + 18px, 56px); font-weight: 800; line-height: 1.2; letter-spacing: -0.035em; color: #fff; margin-bottom: 22px; }
+.ccd .ccd-title em { position: relative; display: inline-block; font-weight: 800; color: #fff; z-index: 0; }
+.ccd .ccd-title em::after { content: ""; position: absolute; left: -2px; right: -2px; bottom: 5px; height: 13px; border-radius: 3px; background: rgba(255,255,255,0.22); z-index: -1; }
+.ccd .ccd-desc { font-size: clamp(15px, 0.3vw + 13px, 18px); font-weight: 400; line-height: 1.75; color: rgba(255,255,255,0.86); max-width: 560px; margin-bottom: 28px; }
+.ccd .ccd-desc b { font-weight: 700; color: #fff; }
+
+/* 가격 · 일정 칸 */
+.ccd .ccd-offer { display: flex; align-items: center; gap: 22px; width: -webkit-fit-content; width: fit-content; max-width: 100%;
+  padding: 15px 22px; margin-bottom: 26px; border-radius: 18px;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.2); }
+.ccd .ccd-offer__price small { display: block; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.78); margin-bottom: 2px; }
+.ccd .ccd-offer__row { display: flex; align-items: baseline; gap: 8px; }
+.ccd .ccd-offer__price b { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; color: #fff; line-height: 1.1; }
+.ccd .ccd-offer__price b span { font-size: 17px; font-weight: 700; margin-left: 1px; }
+.ccd .ccd-offer__price s { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.62); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.ccd .ccd-offer__sep { width: 1px; align-self: stretch; background: rgba(255,255,255,0.24); }
+.ccd .ccd-offer__meta { display: flex; flex-direction: column; gap: 6px; }
+.ccd .ccd-offer__meta span { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.94); line-height: 1.35; }
+.ccd .ccd-offer__meta svg { width: 16px; height: 16px; stroke: #c4f4dd; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+/* 단추 */
+.ccd .ccd-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 24px; margin-bottom: 26px; }
+.ccd .ccd-cta, .ccd .ccd-cta:link, .ccd .ccd-cta:visited, .ccd .ccd-cta:focus, .ccd .ccd-cta:active {
+  display: inline-flex; align-items: center; justify-content: space-between; gap: 20px; min-width: 310px;
+  padding: 11px 11px 11px 32px; border-radius: 999px; background: #fff; color: #0a794a;
+  font-size: clamp(17px, 0.4vw + 15px, 19px); font-weight: 800; letter-spacing: -0.015em; line-height: 1;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.22), inset 0 1px 0 #fff; cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.3s; }
+.ccd .ccd-cta:hover { transform: translateY(-3px); box-shadow: 0 22px 46px rgba(0,0,0,0.28); color: #0a794a; background: #fff; }
+.ccd .ccd-cta__arrow { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%;
+  background: #10a366; flex-shrink: 0; transition: transform 0.3s cubic-bezier(0.22,0.61,0.36,1), background 0.3s; }
+.ccd .ccd-cta__arrow svg { width: 20px; height: 20px; stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ccd .ccd-cta:hover .ccd-cta__arrow { transform: translateX(6px); background: #0a794a; }
+.ccd .ccd-link, .ccd .ccd-link:link, .ccd .ccd-link:visited, .ccd .ccd-link:focus, .ccd .ccd-link:active {
+  display: inline-flex; align-items: center; gap: 6px; padding-bottom: 3px; color: #fff; font-size: 15px; font-weight: 700;
+  border-bottom: 1px solid rgba(255,255,255,0.5); transition: border-color 0.2s; }
+.ccd .ccd-link:hover { color: #fff; border-bottom-color: #fff; }
+.ccd .ccd-link svg { width: 15px; height: 15px; stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+.ccd .ccd-trust { display: flex; flex-wrap: wrap; gap: 10px 22px; }
+.ccd .ccd-trust li { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.4; }
+.ccd .ccd-trust svg { width: 16px; height: 16px; stroke: #b9f2d6; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+/* 오른쪽 결과서 예시 */
+.ccd .ccd-visual { position: relative; padding: 40px 18px 44px 30px; animation: ccdIn 0.8s ease-out 0.22s both; }
+.ccd .ccd-stack { position: absolute; z-index: 1; top: 54px; right: 0; bottom: 24px; left: 56px; border-radius: 26px;
+  background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.22); transform: rotate(4deg); }
+.ccd .ccd-card { position: relative; z-index: 2; background: #fff; color: #0f1c17; border-radius: 24px; padding: 22px 22px 18px;
+  box-shadow: 0 44px 90px -26px rgba(2,36,22,0.6), 0 0 0 1px rgba(255,255,255,0.6); }
+.ccd .ccd-card__head { display: flex; align-items: center; gap: 11px; padding-bottom: 15px; margin-bottom: 16px; border-bottom: 1px solid #edf2ef; }
+.ccd .ccd-logo { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 11px;
+  background: linear-gradient(135deg, #12a86a, #0a794a); box-shadow: 0 6px 14px rgba(16,163,102,0.35); flex-shrink: 0; }
+.ccd .ccd-logo svg { width: 19px; height: 19px; stroke: #fff; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ccd .ccd-card__name b { display: block; font-size: 15.5px; font-weight: 800; color: #0f1c17; letter-spacing: -0.02em; line-height: 1.3; }
+.ccd .ccd-card__name small { display: block; font-size: 11.5px; font-weight: 600; color: #8a9892; letter-spacing: 0.02em; }
+.ccd .ccd-tag { margin-left: auto; padding: 4px 11px; border-radius: 999px; background: #f2f6f4; border: 1px solid #e1e9e5;
+  font-size: 12px; font-weight: 700; color: #56655f; white-space: nowrap; }
+
+.ccd .ccd-card__top { display: grid; grid-template-columns: 148px minmax(0, 1fr); grid-template-areas: "g j" "g m"; column-gap: 20px; row-gap: 14px; align-items: center; margin-bottom: 16px; }
+.ccd .ccd-gauge { grid-area: g; }
+.ccd .ccd-judge { grid-area: j; }
+.ccd .ccd-mini { grid-area: m; }
+.ccd .ccd-gauge { position: relative; width: 148px; height: 148px; }
+.ccd .ccd-gauge svg { width: 148px; height: 148px; transform: rotate(-90deg); }
+.ccd .ccd-gauge .trk { fill: none; stroke: #fde9e9; stroke-width: 13; }
+.ccd .ccd-gauge .val { fill: none; stroke: #e5484d; stroke-width: 13; stroke-linecap: round; }
+.ccd .ccd-gauge__c { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.ccd .ccd-gauge__c b { font-size: 40px; font-weight: 800; color: #dc3a40; letter-spacing: -0.04em; line-height: 1; }
+.ccd .ccd-gauge__c b small { font-size: 20px; font-weight: 800; margin-left: 1px; }
+.ccd .ccd-gauge__c span { margin-top: 6px; font-size: 12px; font-weight: 700; color: #6b7a74; }
+.ccd .ccd-verdict { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.ccd .ccd-pill { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 999px; background: #e5484d; color: #fff;
+  font-size: 13px; font-weight: 800; box-shadow: 0 6px 14px rgba(229,72,77,0.3); }
+.ccd .ccd-verdict small { font-size: 12.5px; font-weight: 600; color: #6b7a74; }
+.ccd .ccd-scale { position: relative; display: grid; grid-template-columns: 20fr 20fr 60fr; gap: 3px; height: 8px; margin-bottom: 6px; }
+.ccd .ccd-scale i { display: block; height: 8px; border-radius: 99px; }
+.ccd .ccd-scale i:nth-child(1) { background: #2fb47a; }
+.ccd .ccd-scale i:nth-child(2) { background: #f2a93b; }
+.ccd .ccd-scale i:nth-child(3) { background: #e5484d; }
+.ccd .ccd-scale em { position: absolute; top: -5px; left: 48%; width: 4px; height: 18px; margin-left: -2px; border-radius: 3px; background: #0f1c17; box-shadow: 0 0 0 2px #fff; }
+.ccd .ccd-scale__lb { display: grid; grid-template-columns: 20fr 20fr 60fr; gap: 3px; }
+.ccd .ccd-scale__lb span { font-size: 11px; font-weight: 800; color: #8a9892; line-height: 1.35; }
+.ccd .ccd-scale__lb span:nth-child(1) { color: #1f8f5e; }
+.ccd .ccd-scale__lb span:nth-child(2) { color: #c27c12; }
+.ccd .ccd-scale__lb span:nth-child(3) { color: #c8343a; }
+.ccd .ccd-scale__lb i { display: block; font-style: normal; font-size: 10.5px; font-weight: 600; color: #98a5a0; }
+.ccd .ccd-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ccd .ccd-mini div { padding: 9px 11px; border-radius: 12px; background: #f6f9f7; border: 1px solid #edf2ef; }
+.ccd .ccd-mini small { display: block; font-size: 11.5px; font-weight: 600; color: #6b7a74; margin-bottom: 1px; }
+.ccd .ccd-mini b { font-size: 17px; font-weight: 800; color: #0f1c17; letter-spacing: -0.02em; }
+.ccd .ccd-mini b i { font-size: 12.5px; font-weight: 600; color: #8a9892; }
+
+.ccd .ccd-lines { display: flex; flex-direction: column; gap: 7px; padding: 14px 15px; border-radius: 14px; background: #f8faf9; border: 1px solid #edf2ef; }
+.ccd .ccd-lines__h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; font-size: 12px; font-weight: 800; color: #3b4a44; }
+.ccd .ccd-lines__h span { font-size: 11.5px; font-weight: 600; color: #8a9892; }
+.ccd .ccd-lines p { font-size: 13.5px; font-weight: 500; line-height: 1.6; color: #45544e; }
+.ccd .ccd-lines mark { color: #b4232a; font-weight: 600; background: linear-gradient(rgba(229,72,77,0) 56%, rgba(229,72,77,0.2) 56%); padding: 0 1px; }
+.ccd .ccd-lines .t { display: inline-block; margin-left: 6px; padding: 2px 7px; border-radius: 5px; background: #e5484d; color: #fff;
+  font-size: 10.5px; font-weight: 800; line-height: 1.3; vertical-align: 1px; }
+.ccd .ccd-card__foot { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
+.ccd .ccd-card__foot span { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; color: #3b4a44; }
+.ccd .ccd-card__foot svg { width: 16px; height: 16px; stroke: #10a366; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ccd .ccd-card__foot .ccd-dl { padding: 6px 12px; border-radius: 999px; background: #e7f7ef; color: #0a794a; font-size: 12px; font-weight: 800; }
+
+.ccd .ccd-float { position: absolute; z-index: 3; display: flex; align-items: center; gap: 10px; padding: 9px 16px 9px 9px; border-radius: 16px;
+  background: rgba(255,255,255,0.97); color: #0f1c17; box-shadow: 0 18px 40px -12px rgba(2,36,22,0.5);
+  font-size: 14px; font-weight: 800; letter-spacing: -0.02em; white-space: nowrap; animation: ccdFloat 6s ease-in-out infinite; }
+.ccd .ccd-float__ic { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px; background: #e7f7ef; flex-shrink: 0; }
+.ccd .ccd-float__ic svg { width: 18px; height: 18px; stroke: #10a366; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ccd .ccd-float small { display: block; font-size: 11.5px; font-weight: 600; color: #6b7a74; }
+.ccd .ccd-float--a { left: 0; top: 0; }
+.ccd .ccd-float--b { right: -6px; bottom: 0; animation-delay: -3s; }
+
+@keyframes ccdIn { 0% { opacity: 0; transform: translateY(16px); } 100% { opacity: 1; transform: none; } }
+@keyframes ccdFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+@media (max-width: 1180px) {
+  .ccd .ccd-inner { gap: 40px; }
+  .ccd .ccd-float--b { right: 0; }
+}
+@media (max-width: 1024px) {
+  .ccd .ccd-hero { padding: 60px 32px 76px; }
+  .ccd .ccd-inner { grid-template-columns: minmax(0, 1fr); gap: 44px; }
+  .ccd .ccd-visual { width: 100%; max-width: 560px; margin: 0 auto; }
+}
+@media (max-width: 768px) {
+  .ccd .ccd-hero { padding: 40px 20px 56px; }
+  .ccd .ccd-chips { gap: 8px; margin-bottom: 18px; }
+  .ccd .ccd-chip { font-size: 12.5px; padding: 7px 12px 7px 9px; }
+  .ccd .ccd-chip svg { width: 14px; height: 14px; }
+  .ccd .ccd-title { font-size: clamp(28px, 7.4vw, 36px); margin-bottom: 16px; }
+  .ccd .ccd-title em::after { height: 10px; bottom: 4px; }
+  .ccd .ccd-desc { font-size: 15px; line-height: 1.7; margin-bottom: 22px; }
+  .ccd .ccd-br { display: none; }
+  .ccd .ccd-offer { width: 100%; gap: 14px; padding: 13px 16px; margin-bottom: 20px; }
+  .ccd .ccd-offer__price b { font-size: 26px; }
+  .ccd .ccd-offer__meta span { font-size: 13px; }
+  .ccd .ccd-actions { gap: 14px; margin-bottom: 22px; }
+  .ccd .ccd-cta, .ccd .ccd-cta:link, .ccd .ccd-cta:visited { width: 100%; min-width: 0; padding: 9px 9px 9px 24px; font-size: 17px; }
+  .ccd .ccd-cta__arrow { width: 42px; height: 42px; }
+  .ccd .ccd-link, .ccd .ccd-link:link, .ccd .ccd-link:visited { margin: 0 auto; font-size: 14px; }
+  .ccd .ccd-trust { gap: 8px 14px; }
+  .ccd .ccd-trust li { font-size: 13px; }
+  .ccd .ccd-visual { padding: 14px 6px 6px; }
+  .ccd .ccd-stack { left: 26px; top: 26px; }
+  .ccd .ccd-float { display: none; }
+  .ccd .ccd-card { padding: 18px 16px 14px; border-radius: 20px; }
+  .ccd .ccd-card__top { grid-template-columns: 112px minmax(0, 1fr); grid-template-areas: "g m" "j j"; column-gap: 14px; row-gap: 14px; }
+  .ccd .ccd-gauge, .ccd .ccd-gauge svg { width: 112px; height: 112px; }
+  .ccd .ccd-mini { grid-template-columns: minmax(0, 1fr); }
+  .ccd .ccd-gauge__c b { font-size: 32px; }
+  .ccd .ccd-lines p { font-size: 12.5px; }
+  .ccd .ccd-big { font-size: 220px; bottom: -40px; }
+}
+@media (max-width: 400px) {
+  .ccd .ccd-offer { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .ccd .ccd-offer__sep { display: none; }
+  .ccd .ccd-mini { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ccd .ccd-copy, .ccd .ccd-visual, .ccd .ccd-float { animation: none; }
+}
+
+/* 2026.11.26 아래 차별점 칸 강조색: 첫 화면 초록에 맞춤(예전 파랑 변수는 남겨 두고 덮어씀) */
+.ccx { --ccx-blue: #10a366; --ccx-blue-deep: #0a794a; --ccx-blue-soft: #e7f7ef; }

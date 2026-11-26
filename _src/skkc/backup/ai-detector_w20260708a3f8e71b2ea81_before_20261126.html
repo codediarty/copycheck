@@ -1,0 +1,750 @@
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════
+   카피클린 문서 평가 - 메인 히어로 + 차별점
+   아임웹 호환 (!important 적용)
+   ═══════════════════════════════════════════════ */
+
+/* 네임스페이스 리셋 */
+.ccx, .ccx *, .ccx *::before, .ccx *::after {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-sizing: border-box !important;
+  font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+  font-style: normal !important;
+  text-decoration: none !important;
+  list-style: none !important;
+  letter-spacing: -0.01em !important;
+  vertical-align: baseline !important;
+  max-width: none !important;
+  min-width: 0 !important;
+}
+
+.ccx {
+  --ccx-blue:        #2563eb;
+  --ccx-blue-deep:   #0f4c81;
+  --ccx-blue-soft:   #eff6ff;
+  --ccx-red:         #ef4444;
+  --ccx-red-light:   #fee2e2;
+  --ccx-ink:         #0f172a;
+  --ccx-ink-2:       #334155;
+  --ccx-muted:       #64748b;
+  --ccx-line:        #e5e7eb;
+  --ccx-bg:          #f8fafc;
+  --ccx-white:       #ffffff;
+
+  display: block !important;
+  width: 100% !important;
+  background: var(--ccx-white) !important;
+  color: var(--ccx-ink) !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+.ccx a,
+.ccx a:link,
+.ccx a:visited,
+.ccx a:hover,
+.ccx a:active {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+.ccx svg { display: block !important; }
+
+/* ═══════════ 1. HERO ═══════════ */
+.ccx .cc-hero {
+  display: block !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%) !important;
+  padding: 80px 24px 100px !important;
+}
+.ccx .cc-hero__inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: 1.05fr 1fr !important;
+  gap: 80px !important;
+  align-items: center !important;
+}
+
+/* 좌측 ━━━━━━━━━━ */
+.ccx .cc-hero__left {
+  min-width: 0 !important;
+  display: block !important;
+}
+
+/* 로고 */
+.ccx .cc-logo {
+  display: block !important;
+  width: auto !important;
+  height: 56px !important;
+  margin-bottom: 20px !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+}
+
+/* 배지 그룹 */
+.ccx .cc-badges {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-bottom: 24px !important;
+}
+
+.ccx .cc-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 10px 18px !important;
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  border-radius: 999px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: var(--ccx-ink-2) !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+  white-space: nowrap !important;
+}
+.ccx .cc-badge svg {
+  width: 16px !important;
+  height: 16px !important;
+  stroke: var(--ccx-blue) !important;
+  stroke-width: 2 !important;
+  fill: none !important;
+  flex-shrink: 0 !important;
+}
+
+.ccx .cc-hero__title {
+  font-size: 60px !important;
+  font-weight: 900 !important;
+  line-height: 1.18 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--ccx-ink) !important;
+  margin-bottom: 28px !important;
+  word-break: keep-all !important;
+}
+.ccx .cc-hero__title .hl {
+  color: var(--ccx-blue) !important;
+  display: inline-block !important;
+  font-weight: 900 !important;
+}
+
+.ccx .cc-hero__desc {
+  font-size: 18px !important;
+  line-height: 1.65 !important;
+  color: var(--ccx-muted) !important;
+  margin-bottom: 36px !important;
+  word-break: keep-all !important;
+  font-weight: 500 !important;
+}
+
+/* 기능 칩 (3개) */
+.ccx .cc-features {
+  display: flex !important;
+  gap: 24px !important;
+  margin-bottom: 40px !important;
+  flex-wrap: wrap !important;
+}
+.ccx .cc-feature {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+.ccx .cc-feature__icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 10px !important;
+  background: var(--ccx-blue-soft) !important;
+  color: var(--ccx-blue) !important;
+  flex-shrink: 0 !important;
+}
+.ccx .cc-feature__icon svg {
+  width: 18px !important;
+  height: 18px !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  fill: none !important;
+}
+.ccx .cc-feature__text {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+.ccx .cc-feature__text strong {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: var(--ccx-ink) !important;
+  letter-spacing: -0.02em !important;
+}
+.ccx .cc-feature__text small {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--ccx-muted) !important;
+}
+
+/* CTA 버튼 */
+.ccx .cc-ctas {
+  display: flex !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 20px !important;
+}
+.ccx .cc-btn,
+.ccx .cc-btn:link,
+.ccx .cc-btn:visited,
+.ccx .cc-btn:hover,
+.ccx .cc-btn:focus,
+.ccx .cc-btn:active {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 18px 28px !important;
+  border-radius: 16px !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  text-decoration: none !important;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease !important;
+}
+.ccx .cc-btn--primary,
+.ccx .cc-btn--primary:link,
+.ccx .cc-btn--primary:visited,
+.ccx .cc-btn--primary:hover,
+.ccx .cc-btn--primary:focus,
+.ccx .cc-btn--primary:active {
+  background: var(--ccx-blue) !important;
+  color: #ffffff !important;
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.28) !important;
+}
+.ccx .cc-btn--primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 16px 36px rgba(37, 99, 235, 0.32) !important;
+}
+.ccx .cc-btn--ghost,
+.ccx .cc-btn--ghost:link,
+.ccx .cc-btn--ghost:visited,
+.ccx .cc-btn--ghost:hover,
+.ccx .cc-btn--ghost:focus,
+.ccx .cc-btn--ghost:active {
+  background: rgb(16, 163, 102) !important;
+  color: #ffffff !important;
+  box-shadow: 0 12px 28px rgba(16, 163, 102, 0.28) !important;
+}
+.ccx .cc-btn--ghost:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 16px 36px rgba(16, 163, 102, 0.32) !important;
+}
+.ccx .cc-btn svg {
+  width: 18px !important;
+  height: 18px !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  fill: none !important;
+}
+.ccx .cc-btn__arrow {
+  margin-left: 4px !important;
+  width: 16px !important;
+  height: 16px !important;
+  stroke-width: 2.4 !important;
+}
+
+/* 안전 안내 */
+.ccx .cc-notice {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 13px !important;
+  color: var(--ccx-muted) !important;
+  font-weight: 500 !important;
+}
+.ccx .cc-notice svg {
+  width: 14px !important;
+  height: 14px !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  fill: none !important;
+}
+
+/* 우측 ━━━━━━━━━━ (이미지 영역) */
+.ccx .cc-hero__right {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.ccx .cc-hero__image {
+  display: block !important;
+  width: 100% !important;
+  max-width: 640px !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+}
+
+/* 차트 카드 */
+.ccx .cc-visual {
+  background: #ffffff !important;
+  border: 1px solid var(--ccx-line) !important;
+  border-radius: 24px !important;
+  padding: 28px 24px 24px !important;
+  box-shadow:
+    0 30px 60px -20px rgba(15, 23, 42, 0.18),
+    0 12px 24px -8px rgba(15, 23, 42, 0.08) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.ccx .cc-visual__head {
+  text-align: center !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: var(--ccx-ink-2) !important;
+  margin-bottom: 10px !important;
+  letter-spacing: -0.02em !important;
+}
+
+.ccx .cc-gauge {
+  position: relative !important;
+  width: 220px !important;
+  height: 220px !important;
+  margin: 0 auto 6px !important;
+}
+.ccx .cc-gauge svg {
+  width: 100% !important;
+  height: 100% !important;
+  transform: rotate(-90deg) !important;
+}
+.ccx .cc-gauge__track {
+  fill: none !important;
+  stroke: #fee2e2 !important;
+  stroke-width: 14 !important;
+}
+.ccx .cc-gauge__fill {
+  fill: none !important;
+  stroke: url(#cc-gauge-grad) !important;
+  stroke-width: 14 !important;
+  stroke-linecap: round !important;
+  stroke-dasharray: 314 654 !important;
+  filter: drop-shadow(0 6px 12px rgba(239, 68, 68, 0.25)) !important;
+}
+.ccx .cc-gauge__center {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+.ccx .cc-gauge__pct {
+  font-size: 56px !important;
+  font-weight: 900 !important;
+  color: var(--ccx-red) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.04em !important;
+}
+.ccx .cc-gauge__pct span {
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  margin-left: 2px !important;
+}
+.ccx .cc-gauge__label {
+  font-size: 12px !important;
+  color: var(--ccx-muted) !important;
+  font-weight: 600 !important;
+  margin-top: 8px !important;
+  letter-spacing: -0.02em !important;
+}
+
+.ccx .cc-risk {
+  display: block !important;
+  margin: 0 auto 18px !important;
+  width: fit-content !important;
+  padding: 6px 18px !important;
+  background: var(--ccx-red) !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  border-radius: 999px !important;
+  box-shadow: 0 6px 14px rgba(239, 68, 68, 0.30) !important;
+}
+
+.ccx .cc-chart {
+  width: 100% !important;
+  height: 80px !important;
+  margin-bottom: 12px !important;
+}
+.ccx .cc-chart svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.ccx .cc-visual__note {
+  text-align: center !important;
+  font-size: 12.5px !important;
+  color: var(--ccx-muted) !important;
+  font-weight: 600 !important;
+}
+
+/* 우측 사이드 미니카드 */
+.ccx .cc-side {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  margin-top: 24px !important;
+}
+.ccx .cc-side__card {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 16px 18px !important;
+  background: #ffffff !important;
+  border: 1px solid var(--ccx-line) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05) !important;
+}
+.ccx .cc-side__icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 12px !important;
+  background: var(--ccx-blue-soft) !important;
+  color: var(--ccx-blue) !important;
+  flex-shrink: 0 !important;
+}
+.ccx .cc-side__icon svg {
+  width: 20px !important;
+  height: 20px !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  fill: none !important;
+}
+.ccx .cc-side__text {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+.ccx .cc-side__text strong {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: var(--ccx-ink) !important;
+}
+.ccx .cc-side__text small {
+  font-size: 12px !important;
+  color: var(--ccx-muted) !important;
+  font-weight: 500 !important;
+}
+
+/* 우측 하단 3D 방패 장식 */
+.ccx .cc-shield {
+  position: absolute !important;
+  right: -10px !important;
+  bottom: -30px !important;
+  width: 130px !important;
+  height: 130px !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+  filter: drop-shadow(0 16px 28px rgba(37, 99, 235, 0.30)) !important;
+}
+.ccx .cc-shield svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ═══════════ 2. 차별점 (DIFF) ═══════════ */
+.ccx .cc-diff {
+  background: var(--ccx-bg) !important;
+  padding: 80px 24px 100px !important;
+}
+.ccx .cc-diff__inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+}
+.ccx .cc-diff__title {
+  text-align: center !important;
+  font-size: 36px !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--ccx-ink) !important;
+  margin-bottom: 48px !important;
+  word-break: keep-all !important;
+}
+.ccx .cc-diff__title .hl {
+  color: var(--ccx-blue) !important;
+}
+
+.ccx .cc-diff__grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px !important;
+}
+.ccx .cc-diff__card {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  background: #ffffff !important;
+  border: 1px solid var(--ccx-line) !important;
+  border-radius: 16px !important;
+  padding: 28px 20px 22px !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04) !important;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease !important;
+}
+.ccx .cc-diff__card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 18px 36px rgba(37, 99, 235, 0.10) !important;
+  border-color: rgba(37, 99, 235, 0.20) !important;
+}
+.ccx .cc-diff__num {
+  position: absolute !important;
+  top: 10px !important;
+  left: 16px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #94a3b8 !important;
+  letter-spacing: 0.04em !important;
+}
+.ccx .cc-diff__icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 50% !important;
+  background: var(--ccx-blue-soft) !important;
+  color: var(--ccx-blue) !important;
+  flex-shrink: 0 !important;
+}
+.ccx .cc-diff__icon svg {
+  width: 26px !important;
+  height: 26px !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  fill: none !important;
+}
+.ccx .cc-diff__body {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  min-width: 0 !important;
+}
+.ccx .cc-diff__h {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: var(--ccx-ink) !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.3 !important;
+}
+.ccx .cc-diff__p {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: var(--ccx-muted) !important;
+  line-height: 1.55 !important;
+  word-break: keep-all !important;
+}
+
+/* ═══════════ 반응형 ═══════════ */
+@media (max-width: 1100px) {
+  .ccx .cc-hero__inner { grid-template-columns: 1fr !important; gap: 48px !important; }
+  .ccx .cc-hero__right { grid-template-columns: 1.4fr 1fr !important; }
+  .ccx .cc-hero__title { font-size: 48px !important; }
+  .ccx .cc-diff__grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (max-width: 768px) {
+  .ccx .cc-hero { padding: 16px 18px 72px !important; }
+  .ccx .cc-logo { height: 44px !important; margin-bottom: 16px !important; }
+  .ccx .cc-badges { gap: 8px !important; margin-bottom: 20px !important; }
+  .ccx .cc-hero__title { font-size: 32px !important; }
+  .ccx .cc-hero__desc { font-size: 15px !important; margin-bottom: 28px !important; }
+  .ccx .cc-features { gap: 14px !important; }
+  .ccx .cc-feature__icon { width: 32px !important; height: 32px !important; }
+  .ccx .cc-feature__icon svg { width: 16px !important; height: 16px !important; }
+  .ccx .cc-feature__text strong { font-size: 13px !important; }
+  .ccx .cc-feature__text small { font-size: 11px !important; }
+  .ccx .cc-ctas {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .ccx .cc-btn,
+  .ccx .cc-btn:link,
+  .ccx .cc-btn:visited,
+  .ccx .cc-btn:hover,
+  .ccx .cc-btn:active {
+    padding: 16px 20px !important;
+    font-size: 15px !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .ccx .cc-hero__image { max-width: 100% !important; }
+  .ccx .cc-diff { padding: 56px 18px 72px !important; }
+  .ccx .cc-diff__title { font-size: 26px !important; margin-bottom: 32px !important; }
+  .ccx .cc-diff__grid { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 480px) {
+  .ccx .cc-hero__title { font-size: 28px !important; }
+  .ccx .cc-badge { font-size: 12px !important; padding: 8px 14px !important; }
+  .ccx .cc-logo { height: 40px !important; }
+}
+</style>
+
+<div class="ccx">
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="cc-hero">
+    <div class="cc-hero__inner">
+
+      <!-- 좌측: 텍스트 -->
+      <div class="cc-hero__left">
+
+
+
+        <div class="cc-badges">
+          <span class="cc-badge">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+            AI 사용 여부 판별 분석 서비스
+          </span>
+
+          <span class="cc-badge">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="9" r="6"/>
+              <polyline points="9 9 11 11 15 7"/>
+              <path d="M8.5 14.5 7 22l5-2.5L17 22l-1.5-7.5"/>
+            </svg>
+            한국 AI 윤리위원회 인증
+          </span>
+        </div>
+
+        <h1 class="cc-hero__title">
+          <span class="hl">AI 사용 여부 확인</span>은<br>
+          필수입니다.
+        </h1>
+
+        <p class="cc-hero__desc">
+          대학교와 기업·기관은 이미 AI 사용 여부 확인 탐지 시스템을 적용했습니다.<br>
+          카피클린(copyclean)은 AI 유사도와 문서 리스크를 점검하는 서비스입니다.
+        </p>
+
+        <ul class="cc-features">
+          <li class="cc-feature">
+            <span class="cc-feature__icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            </span>
+            <div class="cc-feature__text">
+              <strong>AI 사용 여부 판별</strong>
+              <small>최신 AI 탐지 모델 적용</small>
+            </div>
+          </li>
+          <li class="cc-feature">
+            <span class="cc-feature__icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <div class="cc-feature__text">
+              <strong>표절·중복 사전 예방</strong>
+              <small>제출 전 리스크 최소화</small>
+            </div>
+          </li>
+          <li class="cc-feature">
+            <span class="cc-feature__icon">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <div class="cc-feature__text">
+              <strong>신뢰할 수 있는 결과</strong>
+              <small>정식 결과서로 안심 제출</small>
+            </div>
+          </li>
+        </ul>
+
+        <div class="cc-ctas">
+          <a href="/shop_view?idx=6" class="cc-btn cc-btn--primary">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            AI 사용 여부 확인하기
+            <svg class="cc-btn__arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+
+        </div>
+
+        <p class="cc-notice">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          업로드된 문서는 안전하게 보호되며, 분석 후 즉시 삭제됩니다.
+        </p>
+      </div>
+
+      <!-- 우측: 시각화 (이미지) -->
+      <div class="cc-hero__right">
+        <img class="cc-hero__image"
+             src="https://cdn.imweb.me/upload/S20260518406d2e32b3a46/8cc6b166f140f.jpg"
+             alt="AI 사용 여부 판별 분석 결과 - 안전한 데이터 보호, 상세 분석 리포트, 정식 결과서 제공">
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 차별점 ═══════════ -->
+  <section class="cc-diff">
+    <div class="cc-diff__inner">
+      <h2 class="cc-diff__title">
+        성균관컨설팅 <span class="hl">카피클린</span>의 차별점
+      </h2>
+      <div class="cc-diff__grid">
+        <div class="cc-diff__card">
+          <span class="cc-diff__num">01</span>
+          <span class="cc-diff__icon">
+            <svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="3" x2="9" y2="5"/><line x1="15" y1="3" x2="15" y2="5"/><line x1="9" y1="19" x2="9" y2="21"/><line x1="15" y1="19" x2="15" y2="21"/><line x1="3" y1="9" x2="5" y2="9"/><line x1="3" y1="15" x2="5" y2="15"/><line x1="19" y1="9" x2="21" y2="9"/><line x1="19" y1="15" x2="21" y2="15"/></svg>
+          </span>
+          <div class="cc-diff__body">
+            <h4 class="cc-diff__h">최신 AI 엔진 적용</h4>
+            <p class="cc-diff__p">지속 업데이트되는 AI 모델로<br>더 정확한 AI 사용 여부 판별</p>
+          </div>
+        </div>
+
+        <div class="cc-diff__card">
+          <span class="cc-diff__num">02</span>
+          <span class="cc-diff__icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <div class="cc-diff__body">
+            <h4 class="cc-diff__h">다양한 문서 형식 지원</h4>
+            <p class="cc-diff__p">HWP, DOCX, PDF, TXT 등<br>다양한 형식의 문서 분석 가능</p>
+          </div>
+        </div>
+
+        <div class="cc-diff__card">
+          <span class="cc-diff__num">03</span>
+          <span class="cc-diff__icon">
+            <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-6.219-8.56"/><polyline points="22 4 12 14 9 11"/></svg>
+          </span>
+          <div class="cc-diff__body">
+            <h4 class="cc-diff__h">한눈에 보는 분석 결과</h4>
+            <p class="cc-diff__p">직관적인 리포트로 AI 사용 의심<br>현황을 쉽게 확인</p>
+          </div>
+        </div>
+
+        <div class="cc-diff__card">
+          <span class="cc-diff__num">04</span>
+          <span class="cc-diff__icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+          </span>
+          <div class="cc-diff__body">
+            <h4 class="cc-diff__h">정식 결과서 제공</h4>
+            <p class="cc-diff__p">공식 제출용 결과서로<br>신뢰성 있게 활용 가능</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
