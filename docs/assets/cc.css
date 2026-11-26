@@ -893,3 +893,105 @@ html.hz42-on,html.hz42-on body{overflow:hidden}
 .cmp-tabs button[aria-selected="true"],.calc-docs button[aria-pressed="true"]{background:#0a8a5f;border-color:#0a8a5f}
 /* 메뉴 이름이 길어져(이용 요금 · 이용 가이드 · 자주 묻는 질문) 노트북 폭에서 머리 오른쪽 단추가 밀리지 않게: 1480px 아래는 머리의 '카피체크' 꼬리표를 접음(바닥글은 그대로) */
 @media (max-width:1480px){.hd .logo .lg-k{display:none}}
+
+/* =====================================================================
+   2026.11.26 오후 대표 '카피체크 홈페이지 뭔가 약간 촌스러운데 우측에 이것도 어지럽고'
+   민트 그라데이션 · 초록 격자 · 움직이는 검사 줄(오른쪽 문서 그림) · 무지개 글씨 · 보라색을 걷어내고
+   흰 바탕 · 남색 글씨 · 초록은 단추와 강조에만, AI 문장은 차분한 빨강으로. 예전 규칙은 지우지 않고 여기서 덮어씀
+   ===================================================================== */
+:root{
+  --ink:#0f172a;--ink-2:#334155;--ink-3:#64748b;--line:#e2e8f0;--line-2:#eef2f6;--soft:#f8fafc;--navy:#0f172a;
+  --grad:linear-gradient(135deg,#0a7f57,#0a7f57);
+  --ai:#dc3a40;--ai-bg:rgba(220,58,64,.08);
+  --bad:#dc3a40;--bad-bg:#fff4f4;--bad-bd:#f8d2d2;
+  --sh:0 1px 2px rgba(15,23,42,.05),0 8px 24px rgba(15,23,42,.06);--sh-l:0 30px 70px -32px rgba(15,23,42,.32);
+}
+
+/* 맨 위 띠 · 머리글 */
+.topbar{background:#0b6e4d;color:#e3f4ec}
+.topbar .dot{background:#9ff0cd;box-shadow:0 0 0 3px rgba(255,255,255,.14)}
+.hd{border-bottom-color:#eef2f6}
+
+/* 단추: 그라데이션 대신 한 가지 초록 */
+.btn-p{background:#0a7f57;box-shadow:0 10px 22px -14px rgba(10,127,87,.7),inset 0 1px 0 rgba(255,255,255,.1)}
+.btn-p:hover{background:#086a49;filter:none;box-shadow:0 14px 26px -14px rgba(10,127,87,.75)}
+.btn-g{border-color:#d7dee7}
+
+/* 첫 화면: 흰 바탕 + 아주 옅은 회색 격자(가운데만), 오른쪽 문서 그림 · 검사 줄 없앰 */
+.hero{background:radial-gradient(720px 460px at 86% 30%,rgba(13,154,108,.06),transparent 70%),linear-gradient(180deg,#f6f8fa 0%,#fafbfc 58%,#fff 100%);border-bottom:1px solid #edf1f5}
+.hero::before{background-image:linear-gradient(rgba(15,23,42,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(15,23,42,.035) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse 62% 70% at 30% 30%,#000 15%,transparent 72%);mask-image:radial-gradient(ellipse 62% 70% at 30% 30%,#000 15%,transparent 72%)}
+.orbit,.orbit.scanfx{display:none}
+.hero-demo::before{background:radial-gradient(closest-side,rgba(15,23,42,.07),transparent 72%);filter:blur(18px)}
+.hero .eyebrow{color:#334155!important;background:#fff;border:1px solid #e2e8f0;box-shadow:0 1px 2px rgba(15,23,42,.05)}
+.hero .eyebrow b,.hero .eb-2 b{background:#ecf8f2;color:#0a7f57}
+.hero a.eyebrow:hover{background:#f8fafc;border-color:#cbd5e1}
+.hero .h1{color:#0f172a;letter-spacing:-.04em}
+.hero .h1 em{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#0a7f57;-webkit-text-fill-color:#0a7f57}
+.hero .h1 .kw{color:#0a7f57}
+.hero .lead{color:#475569}
+.hero .lead b{color:#0f172a}
+.hero-up{background:#fff;border:1.5px dashed #cbd5e1;box-shadow:0 18px 40px -30px rgba(15,23,42,.35)}
+.hero-up:hover,.hero-up.over{border-color:#0d9a6c;background:#fbfdfc;box-shadow:0 22px 46px -30px rgba(15,23,42,.4)}
+.hu-ic{background:#ecf8f2;color:#0a7f57}
+.hu-h b{color:#0f172a}
+.hu-h span{color:#64748b}
+.hero .hu-b .btn-g{background:#fff;border:1px solid #d7dee7;color:#0f172a}
+.hero .hu-b .btn-g:hover{background:#f8fafc;border-color:#94a3b8}
+.hero-pts{color:#334155}
+.hero-pts .ico{color:#0a7f57}
+.hero-proof{background:#fff;border:1px solid #e2e8f0;color:#475569;box-shadow:0 14px 30px -26px rgba(15,23,42,.35)}
+.hero-proof b{color:#0f172a}
+.hero-proof .hp-n s{color:#dc3a40}
+.hero-proof .hp-n i{color:#94a3b8}
+.hero-proof .hp-n em{color:#0a7f57}
+.hero-proof .hp-t small{color:#64748b}
+.hero .demo{border:1px solid #e2e8f0;box-shadow:0 1px 2px rgba(15,23,42,.04),0 40px 80px -42px rgba(15,23,42,.34)}
+
+/* 예시 창: AI 문장은 보라 글씨 대신 옅은 빨강 형광펜 + 빨강 막대, 고친 곳은 초록 */
+.s.ai{color:#1e293b;font-weight:500;background:rgba(220,58,64,.07);border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.s.ai .x{text-decoration-color:rgba(220,58,64,.6)}
+.pat p .s.ai{color:#b4232a;background:none;text-decoration-color:rgba(220,58,64,.5)}
+.demo-tag,.demo-tag.st{background:#fde4e4;color:#b4232a}
+.demo-tag.ok{background:#ddf3e8;color:#0a7f57}
+.demo-scan{background:linear-gradient(180deg,rgba(13,154,108,0),rgba(13,154,108,.08) 45%,rgba(13,154,108,.16) 50%,rgba(13,154,108,.08) 55%,rgba(13,154,108,0))}
+.dm-arr{background:#0a7f57;box-shadow:0 8px 18px -10px rgba(10,127,87,.7)}
+.dm.good{border-color:#cdebdc}
+
+/* 구역 이름표: 초록 알약 대신 글자만 */
+.kick,.dark .kick{background:none;padding:0;border-radius:0;color:#0a7f57;font-size:13px;letter-spacing:.04em}
+.card .ic{background:#f1f7f4;border:1px solid #dcefe5;color:#0a7f57}
+.card,.gcard{border-color:#e2e8f0}
+
+/* 구역 바탕: 민트 대신 아주 옅은 회색 */
+.sec.alt,.sec-s.alt{background:#f8fafc}
+.sec.dark{background:#f8fafc;border-top:1px solid #eef2f6;border-bottom:1px solid #eef2f6}
+.stat{border-color:#e2e8f0;box-shadow:0 14px 34px -30px rgba(15,23,42,.35)}
+.stat b{color:#0f172a}
+.stat p{color:#334155}
+.stat cite,.src{color:#94a3b8}
+.pat{border-color:#e2e8f0;box-shadow:0 12px 28px -26px rgba(15,23,42,.35)}
+
+/* 검사 도구 판 테두리: 초록 빛 대신 옅은 회색 */
+.tool-panel{box-shadow:0 40px 90px -46px rgba(15,23,42,.35),0 0 0 1px rgba(15,23,42,.05)}
+.tool-panel::before{background:linear-gradient(140deg,rgba(15,23,42,.10),rgba(15,23,42,.04) 45%,rgba(15,23,42,0) 75%)}
+.tool-head h2 .ic{background:#0a7f57}
+
+/* 마지막 권유 · 가이드 권유: 진한 초록 판 대신 밝은 판 + 초록 단추 */
+.cta,.gcta{background:radial-gradient(620px 260px at 50% -30%,rgba(13,154,108,.10),transparent 70%),#f4faf7;border:1px solid #d9ede3;box-shadow:none;color:#0f172a}
+.cta::before{display:none}
+.cta h2,.gcta h2{color:#0f172a}
+.cta p,.gcta p{color:#475569}
+.cta .btn-p,.gcta .btn-p{background:#0a7f57;color:#fff;box-shadow:0 10px 22px -14px rgba(10,127,87,.7)}
+.cta .btn-p:hover,.gcta .btn-p:hover{background:#086a49;color:#fff}
+.cta .btn-g{background:#fff;border:1px solid #cbd5e1;color:#0f172a}
+.cta .btn-g:hover{background:#f8fafc;border-color:#94a3b8;color:#0f172a}
+
+/* 바닥글 · 아래 고정 단추 */
+.ft{background:#f8fafc;border-top:1px solid #e2e8f0;color:#64748b}
+.ft h4{color:#0f172a}
+.ft a{color:#334155}
+.ft-kw span{color:#475569;border-color:#e2e8f0}
+.ft-kw a:hover span{border-color:#9fdcc4;color:#0a7f57}
+.ft-biz{border-top-color:#e2e8f0;color:#64748b}
+.ft-biz b{color:#334155}
+.mcta{border-color:#e2e8f0;box-shadow:0 18px 40px -18px rgba(15,23,42,.35)}

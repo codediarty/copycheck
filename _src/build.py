@@ -35,7 +35,7 @@ SITE = "https://copycheck.skkc.co.kr"
 HOST = "copycheck.skkc.co.kr"
 BRAND = "카피체크"
 BRAND_KO = "CopyCheck"
-VER = "20261126a"   # 2026.11.26 밝은 바탕 · 새 로고 · 첫 화면 문구(예전 20261125c)
+VER = "20261126b"   # 2026.11.26 밝은 바탕 · 새 로고 · 첫 화면 문구(예전 20261125c)
 TODAY = "2026-11-26"
 # 카피체크 배포(AIMarker 서버 프로젝트 버전 55, 엔진은 AIMarker 와 같음 · 2026.11.25 22:48, CC서버.gs 1.0.0)
 API = "https://script.google.com/macros/s/AKfycbz3qUbNNd_21wHvi6EGHAz1_lrRJ7LAzzIYlIeg4U0bm8m-ioqHLPJV1UzatPmpOfkOFg/exec"
@@ -517,7 +517,7 @@ def tool_section(flat=False):
 
 def example_section(h2="AI 작성률 개선 전과 후,<br>실제 엔진으로 잰 결과", alt=False):   # 2026.11.26 '휴머나이징' 말을 줄임(예전: AI 휴머나이징 전과 후)
     return ('<section class="sec%s" id="example"><div class="wrap"><div class="center"><p class="kick">%s실제 측정 결과</p><h2 class="h2">%s</h2>'
-            '<p class="sub">아래 예시는 %s 엔진에 그대로 넣어 잰 실제 값입니다. 보라색은 AI 작성 의심 문장, 초록색은 개선 완료 문장입니다.</p></div>%s</div></section>') % (
+            '<p class="sub">아래 예시는 %s 엔진에 그대로 넣어 잰 실제 값입니다. 빨간색은 AI 작성 의심 문장, 초록색은 개선 완료 문장입니다.</p></div>%s</div></section>') % (
         " alt" if alt else "", ico("eye"), h2, BRAND, compare_block())
 
 
