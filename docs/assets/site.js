@@ -25,7 +25,7 @@
   /* 예시 데이터 */
   var D = null; try { D = JSON.parse(($('#hzDemoData') || {}).textContent || 'null'); } catch (e) { D = null; }
   function bandCls(b) { return /안전/.test(b) ? 'good' : 'bad'; }
-  function bandS(b) { return String(b || '').replace(/^AI 작성률\s*/, ''); }   // 2026.11.24 판정 이름이 'AI 작성률 높음'이라 'AI 작성률 92% · 높음'처럼 한 번만
+  function bandS(b) { return String(b || '').replace(/^AI 작성(률| 패턴)\s*/, ''); }   // 2026.11.26 판정 이름 'AI 작성 패턴 높음'도 'AI 작성률 92% · 높음'처럼   // 2026.11.24 판정 이름이 'AI 작성률 높음'이라 'AI 작성률 92% · 높음'처럼 한 번만
   function meter(el, rate, band, wait) {
     if (!el) return;
     el.className = 'dm ' + (wait ? 'wait ' : '') + bandCls(band);
@@ -73,26 +73,26 @@
       say('<span class="dot"></span>AI 작성률 검사 중');
       demo.classList.remove('scanning'); void demo.offsetWidth; demo.classList.add('scanning');
       sents.forEach(function (x, j) { later(function () { x.classList.remove('pre'); }, RM ? 0 : 260 + j * 230); });
-      later(function () { count(mFrom, 0, S.before.rate, RM ? 1 : 900, S.before.band); say('<b class="bad">AI 작성률 ' + S.before.rate + '% · ' + bandS(S.before.band) + '</b> · AI 패턴 문장 ' + S.before.n + '개'); }, RM ? 0 : 260 + sents.length * 230);
+      later(function () { count(mFrom, 0, S.before.rate, RM ? 1 : 900, S.before.band); say('<b class="bad">AI 작성률 ' + S.before.rate + '% · ' + bandS(S.before.band) + '</b> · AI 작성 의심 문장 ' + S.before.n + '개'); }, RM ? 0 : 260 + sents.length * 230);
       later(function () { if (!hover) humanize(); }, RM ? 400 : 1400 + sents.length * 230 + 1600);
     }
     function humanize() {
       if (phase !== 1) return; phase = 2; stop();
       var S = D.samples[cur], xs = $$('.x', doc), n = xs.length, done = 0, blk = $('.ai-blk', doc);
       setBtn(true);
-      say('<span class="spin"></span>휴머나이징 중 · <b>0</b> / ' + n + '곳');
+      say('<span class="spin"></span>AI 작성률 개선 중 · <b>0</b> / ' + n + '곳');   // 2026.11.26 대표 전 → 후(휴머나이징 중)
       var gap = RM ? 0 : Math.max(55, Math.min(150, 2600 / Math.max(1, n)));
       xs.forEach(function (x, j) {
         later(function () { x.classList.add('del'); }, j * gap);
         later(function () {
           x.textContent = x.getAttribute('data-n') || ''; x.classList.remove('del'); x.classList.add('ins'); done++;
           var b = st && st.querySelector('b'); if (b) b.textContent = done;
-          var s = x.closest('.s'); if (s && !$('.x:not(.ins)', s)) { s.classList.remove('ai'); s.classList.add('hu'); var tg = $('.demo-tag', s); if (tg && S.after.n === 0) { tg.classList.add('ok'); tg.textContent = 'AI 미검출'; } }
+          var s = x.closest('.s'); if (s && !$('.x:not(.ins)', s)) { s.classList.remove('ai'); s.classList.add('hu'); var tg = $('.demo-tag', s); if (tg && S.after.n === 0) { tg.classList.add('ok'); tg.textContent = '개선 완료'; } }
         }, j * gap + (RM ? 0 : 260));
       });
       later(function () {
         $$('.s.ai', doc).forEach(function (s) { s.classList.remove('ai'); s.classList.add('hu'); });
-        if (S.after.n === 0) $$('.demo-tag:not(.ok)', doc).forEach(function (tg) { tg.classList.add('ok'); tg.textContent = 'AI 미검출'; });
+        if (S.after.n === 0) $$('.demo-tag:not(.ok)', doc).forEach(function (tg) { tg.classList.add('ok'); tg.textContent = '개선 완료'; });
         if (blk) blk.classList.add('done');
         count(mTo, S.before.rate, S.after.rate, RM ? 1 : 1300, S.after.band);
         say('<b class="good">AI 작성률 ' + S.before.rate + '% → ' + S.after.rate + '% · ' + bandS(S.after.band) + '</b> · 바꾼 곳 ' + n + '곳 · 뜻 · 숫자 그대로');
@@ -119,7 +119,7 @@
       L.innerHTML = S.src; R.innerHTML = S.dst;
       pl.className = 'pill l ' + bandCls(S.before.band); pl.textContent = 'AI 작성률 ' + S.before.rate + '% · ' + bandS(S.before.band);
       pr.className = 'pill r ' + bandCls(S.after.band); pr.textContent = 'AI 작성률 ' + S.after.rate + '% · ' + bandS(S.after.band);
-      if (ft) ft.innerHTML = '<span>AI 패턴 문장 <b>' + S.before.n + '개 → ' + S.after.n + '개</b></span><span>바꾼 곳 <b>' + S.changes + '곳</b></span><span>숫자 · 이름 · 인용 <b>그대로</b></span>';
+      if (ft) ft.innerHTML = '<span>AI 작성 의심 문장 <b>' + S.before.n + '개 → ' + S.after.n + '개</b></span><span>바꾼 곳 <b>' + S.changes + '곳</b></span><span>숫자 · 이름 · 인용 <b>그대로</b></span>';
     }
     $$('.cmp-tabs button').forEach(function (b, j) { b.addEventListener('click', function () { pick(j); }); });
     pick(0);
@@ -142,14 +142,14 @@
       oH.textContent = cH.checked ? fmt(h) + '토큰' + (cT.checked ? '(두 번)' : '') : '하지 않음';
       oS.textContent = fmt(t) + '토큰 · 약 ' + Math.round(t * 100).toLocaleString('ko-KR') + '원';
       var P = (CD.packs || []).filter(function (p) { return p.tok >= t; })[0], big = (CD.packs || [])[CD.packs.length - 1];
-      if (!t) { oR.innerHTML = 'AI 작성률 검사는 가입 없이 <b>무료</b>입니다.'; oB.textContent = '무료로 검사하기'; oB.href = '/#tool'; oB.setAttribute('data-tool', ''); return; }
+      if (!t) { oR.innerHTML = 'AI 작성률 검사는 회원가입 없이 <b>무료</b>입니다.'; oB.textContent = '무료로 검사하기'; oB.href = '/#tool'; oB.setAttribute('data-tool', ''); return; }
       oB.removeAttribute('data-tool');
       if (P) {
         oR.innerHTML = '<b>' + P.name + ' ' + P.tok.toLocaleString('ko-KR') + '토큰(' + P.price.toLocaleString('ko-KR') + '원)</b>이면 됩니다. 쓰고 남는 ' + fmt(P.tok - t) + '토큰은 기한 없이 그대로입니다.';
         oB.textContent = P.name + ' 충전하기'; oB.href = '/#buy-' + P.id; oB.setAttribute('data-buy', P.id); oB.removeAttribute('target');   /* 2026.11.25 대표: 충전 창 먼저(예전: oB.href = P.link || '/pricing/' · 새 창) */
       } else {
         var k = Math.ceil(t / big.tok);
-        oR.innerHTML = '긴 글이네요. <b>' + big.name + ' ' + k + '개</b>(' + (k * big.tok).toLocaleString('ko-KR') + '토큰)를 같은 코드에 충전하거나, 걸린 장만 휴머나이징하면 토큰을 아낄 수 있습니다.';
+        oR.innerHTML = '긴 글이네요. <b>' + big.name + ' ' + k + '개</b>(' + (k * big.tok).toLocaleString('ko-KR') + '토큰)를 같은 코드에 충전하거나, AI 작성 의심 문장이 많은 장만 개선하면 토큰을 아낄 수 있습니다.';
         oB.textContent = big.name + ' 충전하기'; oB.href = '/#buy-' + big.id; oB.setAttribute('data-buy', big.id); oB.removeAttribute('target');   /* 2026.11.25 대표: 충전 창 먼저 */
       }
     }

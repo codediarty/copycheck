@@ -35,8 +35,8 @@ SITE = "https://copycheck.skkc.co.kr"
 HOST = "copycheck.skkc.co.kr"
 BRAND = "카피체크"
 BRAND_KO = "CopyCheck"
-VER = "20261125c"
-TODAY = "2026-11-25"
+VER = "20261126a"   # 2026.11.26 밝은 바탕 · 새 로고 · 첫 화면 문구(예전 20261125c)
+TODAY = "2026-11-26"
 # 카피체크 배포(AIMarker 서버 프로젝트 버전 55, 엔진은 AIMarker 와 같음 · 2026.11.25 22:48, CC서버.gs 1.0.0)
 API = "https://script.google.com/macros/s/AKfycbz3qUbNNd_21wHvi6EGHAz1_lrRJ7LAzzIYlIeg4U0bm8m-ioqHLPJV1UzatPmpOfkOFg/exec"
 SHOP = "https://skkc.co.kr/shop_view?idx=%s&kaiec_buy=1"
@@ -80,12 +80,21 @@ def shop(pid):
 
 # 로고: 예전 카피체크 'CC' 표지를 다듬은 표지(검은 사각 · 흰 C · 초록 확인 표시) + 글자 로고(Copy 검정 · Check 초록) + 카피체크
 MARK = '<svg class="lg-m" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="11" fill="#0b0f14"/><path d="M24.6 13.4a8.6 8.6 0 1 0 0 13.2" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/><path d="m21.2 20.3 3.6 3.6 7.4-8" fill="none" stroke="#22c38e" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-LOGO = '<a class="logo" href="/" aria-label="%s(%s) 홈">%s<span class="lg-t">Copy<b>Check</b></span><span class="lg-k">카피체크</span></a>' % (BRAND, BRAND_KO, MARK)
-LOGO_W = '<a class="logo logo-w" href="/" aria-label="%s(%s) 홈">%s<span class="lg-t">Copy<b>Check</b></span><span class="lg-k">카피체크</span></a>' % (BRAND, BRAND_KO, MARK.replace('fill="#0b0f14"', 'fill="#fff"').replace('stroke="#fff"', 'stroke="#0b0f14"'))
+LOGO_OLD = '<a class="logo" href="/" aria-label="%s(%s) 홈">%s<span class="lg-t">Copy<b>Check</b></span><span class="lg-k">카피체크</span></a>' % (BRAND, BRAND_KO, MARK)   # 2026.11.25 판(검은 사각 표지 + 글자), 지금은 쓰지 않음
+LOGO_W_OLD = '<a class="logo logo-w" href="/" aria-label="%s(%s) 홈">%s<span class="lg-t">Copy<b>Check</b></span><span class="lg-k">카피체크</span></a>' % (BRAND, BRAND_KO, MARK.replace('fill="#0b0f14"', 'fill="#fff"').replace('stroke="#fff"', 'stroke="#0b0f14"'))
+# 2026.11.26 대표 '로고 심볼은 글자는 첨부중에 어울리는걸로 바꿔주고'(배경이 너무 검은색이라 밝은 바탕으로 바꾸면서): 대표가 준 두 그림 가운데 흰 바탕용
+# (초록 리본 C 표지 + 검정 Copy · 초록 Check)을 그대로 씀. 그림은 _src/brand/make_logo.py 가 원본(cc-logo-source-light.png)에서 흰 바탕만 투명으로 바꿔 만듦
+LOGO_IMG = '<img class="lg-i" src="/assets/img/cc-logo.png?v=%s" width="151" height="38" alt="CopyCheck">' % VER
+LOGO = '<a class="logo" href="/" aria-label="%s(%s) 홈">%s<span class="lg-k">카피체크</span></a>' % (BRAND, BRAND_KO, LOGO_IMG)
+LOGO_W = '<a class="logo logo-f" href="/" aria-label="%s(%s) 홈">%s<span class="lg-k">카피체크</span></a>' % (BRAND, BRAND_KO, LOGO_IMG)   # 바닥글도 밝은 바탕이라 같은 로고
 
 # 메뉴: 형제 사이트에서 대표가 정한 대로 'AI 휴머나이저(AI 작성률 낮추기)' 하나가 첫 칸(헷갈리지 않고 결제로). 검사기 이름은 메뉴에 쓰지 않음
-NAV = [("", "AI 작성률 낮추기"), ("ai-similarity-check/", "AI 유사도 검사"), ("ai-humanizer/", "AI 휴머나이저"), ("@menu", "상황별 안내"),
-       ("pricing/", "요금"), ("guide/", "가이드"), ("board/", "커뮤니티"), ("faq/", "FAQ")]   # 2026.11.25 형제 사이트 방침대로 'AI 작성률 낮추기'가 첫 칸, 검사기 이름은 메뉴에 쓰지 않음
+NAV_OLD = [("", "AI 작성률 낮추기"), ("ai-similarity-check/", "AI 유사도 검사"), ("ai-humanizer/", "AI 휴머나이저"), ("@menu", "상황별 안내"),
+           ("pricing/", "요금"), ("guide/", "가이드"), ("board/", "커뮤니티"), ("faq/", "FAQ")]   # 2026.11.25 형제 사이트 방침대로 'AI 작성률 낮추기'가 첫 칸, 검사기 이름은 메뉴에 쓰지 않음
+# 2026.11.26 대표 메뉴 전 → 후: AI 유사도 검사 → AI 작성률 검사(이름에 맞게 /ai-rate-check/ 쪽으로. AI 유사도 검사 쪽은 그대로, 바닥글에서 이어짐) ·
+# 상황별 안내 → 활용 분야 · 요금 → 이용 요금 · 가이드 → 이용 가이드 · FAQ → 자주 묻는 질문
+NAV = [("", "AI 작성률 낮추기"), ("ai-rate-check/", "AI 작성률 검사"), ("ai-humanizer/", "AI 휴머나이저"), ("@menu", "활용 분야"),
+       ("pricing/", "이용 요금"), ("guide/", "이용 가이드"), ("board/", "커뮤니티"), ("faq/", "자주 묻는 질문")]
 
 
 def menu_links(path, mobile=False):
@@ -108,13 +117,13 @@ def header(path):
             parts.append('<a href="/%s"%s>%s</a>' % (p, ' aria-current="page"' if path == p else "", t))
     nav = "".join(parts)
     mnav = "".join('<a href="/%s">%s</a>' % (p, t) for p, t in NAV if p != "@menu")
-    mnav += '<details class="m-dd"><summary>상황별 안내%s</summary><div class="m-dd-in">%s</div></details>' % (ico("chev", "ico dd-i"), menu_links(path, True))
-    top = ('<div class="topbar"><div class="wrap"><span class="dot" aria-hidden="true"></span><span><b>AI 작성률 검사 무료</b> · 가입 없이 20만 자<span class="hide-s"> · 한글 · 워드 · PDF 그대로</span></span>'
+    mnav += '<details class="m-dd"><summary>활용 분야%s</summary><div class="m-dd-in">%s</div></details>' % (ico("chev", "ico dd-i"), menu_links(path, True))
+    top = ('<div class="topbar"><div class="wrap"><span class="dot" aria-hidden="true"></span><span><b>AI 작성률 무료 검사</b> · 회원가입 없이 20만 자<span class="hide-s"> · 한글 · Word · PDF 그대로</span></span>'
            '<a href="/#tool" data-tool>지금 검사하기 →</a></div></div>')
     return (top + '<header class="hd" id="hd"><div class="wrap hd-in">%s<nav class="nav" aria-label="주요 메뉴">%s</nav>'
             '<div class="hd-r"><a class="btn btn-g btn-s hd-tk" href="/pricing/">토큰 충전</a><a class="btn btn-p btn-s" href="/#tool" data-tool>%s<span class="hl">무료 AI 작성률 검사</span><span class="hs">무료 검사</span></a>'
             '<button class="menu-btn" id="menuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mnav">%s</button></div></div></header>'
-            '<nav class="mnav" id="mnav" aria-label="모바일 메뉴">%s<a href="/#tool" data-tool>무료 AI 작성률 검사</a><a href="/#example">실제 측정 결과</a><a href="/technology/">휴머나이징 기술</a><a href="/about/">서비스 소개</a></nav>') % (LOGO, nav, ico("search"), ico("menu"), mnav)
+            '<nav class="mnav" id="mnav" aria-label="모바일 메뉴">%s<a href="/#tool" data-tool>무료 AI 작성률 검사</a><a href="/#example">실제 측정 결과</a><a href="/technology/">AI 작성률 감소 기술</a><a href="/about/">서비스 소개</a></nav>') % (LOGO, nav, ico("search"), ico("menu"), mnav)
 
 
 def guide_by(slug):
@@ -147,11 +156,11 @@ def footer(home=False):
     cols = [
         ("서비스", [("/#tool", "무료 AI 작성률 검사"), ("/ai-similarity-check/", "AI 유사도 검사"), ("/ai-similarity-lower/", "AI 유사도 낮추기"), ("/pricing/", "요금 · 토큰 충전"), ("/faq/", "자주 묻는 질문")]),
         ("가이드", gl),
-        ("회사 · 정책", [("/about/", "서비스 소개"), ("/technology/", "휴머나이징 기술"), ("/board/", "커뮤니티"), ("/terms/", "이용약관"), ("/privacy/", "개인정보처리방침"), ("mailto:" + BIZ["mail"], "문의 " + BIZ["mail"])]),
+        ("회사 · 정책", [("/about/", "서비스 소개"), ("/technology/", "AI 작성률 감소 기술"), ("/board/", "커뮤니티"), ("/terms/", "이용약관"), ("/privacy/", "개인정보처리방침"), ("mailto:" + BIZ["mail"], "문의 " + BIZ["mail"])]),
     ]
     c = "".join('<div><h4>%s</h4><ul>%s</ul></div>' % (h, "".join('<li><a href="%s">%s</a></li>' % (u, t) for u, t in L)) for h, L in cols)
     kw = "".join('<a href="%s"><span>%s</span></a>' % (u, t) for u, t in FT_KW + (FT_KW_HOME if home else FT_KW_SUB))
-    return ('<footer class="ft"><div class="wrap"><div class="ft-top"><div>%s<p>카피체크 | 제출 전 AI 작성률 검사 · AI 휴머나이징.<br>걸린 문장을 찾고, 그 문장만 사람 문장으로 바꾸고, 다시 잽니다.</p><div class="ft-kw">%s</div></div>%s</div>'
+    return ('<footer class="ft"><div class="wrap"><div class="ft-top"><div>%s<p>카피체크 | AI 작성률 검사부터 문장 개선까지.<br>AI 작성 의심 문장을 찾고, 원문의 의미는 그대로 자연스럽게 바꾸고, 같은 기준으로 다시 잽니다.</p><div class="ft-kw">%s</div></div>%s</div>'
             '<div class="ft-biz"><b>운영</b> %s · 대표 %s · 사업자등록번호 %s · 통신판매업 신고 %s<br>%s · %s<br>성균관대학교 RISE 사업단 지원 · 한국AI윤리위원회 인증<br>'
             '다른 AI 탐지 서비스의 이름은 각 권리자의 상표이며, 카피체크는 해당 서비스와 제휴 관계가 없습니다. AI 작성률과 판정은 카피체크 판정 기준으로 계산한 추정값입니다.<br>© 2026 카피체크(CopyCheck). All rights reserved.</div></div></footer>'
             '<div class="mcta" id="mcta"><a class="btn btn-p" href="/#tool" data-tool>%s무료 검사</a><a class="btn btn-g" href="/pricing/">요금 보기</a></div>') % (
@@ -212,7 +221,7 @@ def page(path, title, desc, body, *, ld=None, tool=False, og=None, ptype="websit
             '<meta property="og:title" content="%s"><meta property="og:description" content="%s"><meta property="og:url" content="%s">' % (esc(title), esc(desc), url),
             '<meta property="og:image" content="%s"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="%s">' % (ogimg, esc(BRAND + " · AI 작성률 검사와 AI 휴머나이징")),
             '<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="%s"><meta name="twitter:description" content="%s"><meta name="twitter:image" content="%s">' % (esc(title), esc(desc), ogimg),
-            '<meta name="theme-color" content="#0b0f14"><meta name="format-detection" content="telephone=no"><meta name="author" content="%s"><meta name="application-name" content="%s">' % (BRAND, BRAND),
+            '<meta name="theme-color" content="#066b4b"><meta name="format-detection" content="telephone=no"><meta name="author" content="%s"><meta name="application-name" content="%s">' % (BRAND, BRAND),
             ('<link rel="icon" href="/favicon.ico?v=%s" sizes="any"><link rel="icon" href="/assets/img/favicon.svg?v=%s" type="image/svg+xml"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=%s"><link rel="manifest" href="/site.webmanifest?v=%s">' % (VER, VER, VER, VER)),
             '<link rel="alternate" type="application/rss+xml" title="%s 가이드" href="/rss.xml">' % BRAND]
     if NAVER_VERIFY:
@@ -258,7 +267,8 @@ def tool_html():
         cls = ' class="best"' if p.get("best") else (' class="top"' if p.get("top") else "")
         tag = '<i class="tg">%s</i>' % p["best"] if p.get("best") else ('<i class="tg top">%s</i>' % p["top"] if p.get("top") else "")
         sv = '<i class="hz17-sv">%s</i>' % p["save"] if p.get("save") else ""
-        packs.append('<label%s><input type="radio" name="product" value="%s"%s><span>%s<b class="nm">%s</b><b class="tk">%s<small>토큰</small></b><b class="pr">%s<small>토큰당 %s</small></b>%s<small class="ds">%s · 검사와 휴머나이징 %s</small></span></label>' % (
+        packs.append('<label%s><input type="radio" name="product" value="%s"%s><span>%s<b class="nm">%s</b><b class="tk">%s<small>토큰</small></b><b class="pr">%s<small>토큰당 %s</small></b>%s<small class="ds">%s · 검사와 AI 작성률 낮추기 %s</small></span></label>' % (   # 2026.11.26 충전 창 글도 'AI 작성률 낮추기' 중심(예전: 검사와 휴머나이징)
+            
             cls, p["id"], " checked" if p.get("best") else "", tag, p["name"], "{:,}".format(p["tok"]), won(p["price"]), p["per"], sv, p["who"], p["chars"]))
     return P.TOOL_TPL.format(ico_upload=ico("upload"), ico_search=ico("search"), ico_pen=ico("pen"), ico_lock=ico("lock"), ico_x=ico("x"), ico_spark=ico("sparkle"), ico_arrow=ico("arrow"),
                              packs="".join(packs), biz_no=BIZ["no"], mail=BIZ["mail"], brand=BRAND)
@@ -318,8 +328,8 @@ def _sent_ops(src, dst):
     return per
 
 
-BAND_LABEL = {"부적합": "AI 작성률 높음"}   # 2026.11.24 대표: '부적합'은 공식 제출 기준이 있는 것처럼 보일 수 있어 예시 화면에서는 'AI 작성률 높음'. 엔진 원값(demo.json)은 그대로
-DEMO_MEASURED = "카피체크 엔진(HUM 2.5) 적용 결과입니다. 문서의 특성과 AI 작성 패턴에 따라 감소율은 달라질 수 있으며, 여러 번 변환해 더 낮출 수 있습니다."   # 2026.11.24 대표 전 → 후(예전 문구는 demo.json measured 에 그대로)
+BAND_LABEL = {"부적합": "AI 작성 패턴 높음"}   # 2026.11.26 대표 전 → 후(AI 작성률 높음 → AI 작성 패턴 높음). 2026.11.24 대표: '부적합'은 공식 제출 기준이 있는 것처럼 보일 수 있어 예시 화면에서는 'AI 작성률 높음'. 엔진 원값(demo.json)은 그대로
+DEMO_MEASURED = "카피체크 전용 엔진(HUM 2.5)이 적용된 결과입니다. 반복 개선을 통해 AI 작성률을 추가로 낮출 수 있으며, 감소율은 문서에 따라 달라질 수 있습니다."   # 2026.11.26 대표 전 → 후(예전: 카피체크 엔진(HUM 2.5) 적용 결과입니다. 문서의 특성과 AI 작성 패턴에 따라 감소율은 달라질 수 있으며, 여러 번 변환해 더 낮출 수 있습니다.) · 2026.11.24 대표 전 → 후(예전 문구는 demo.json measured 에 그대로)
 
 
 def _band(b):
@@ -339,8 +349,8 @@ def demo_samples():
             nch += n
             isai = i in flags
             p0, p1 = scores.get(str(i)), ascores.get(str(i))
-            tag = ('<i class="demo-tag" data-p0="%s" data-p1="%s">AI 패턴</i>' % (p0, "" if p1 is None else p1)) if (isai and p0 is not None) else ""
-            okt = '<i class="demo-tag ok">AI 미검출</i>' if (isai and p0 is not None and n and S["after"].get("n") == 0) else ""
+            tag = ('<i class="demo-tag" data-p0="%s" data-p1="%s">AI 감지</i>' % (p0, "" if p1 is None else p1)) if (isai and p0 is not None) else ""
+            okt = '<i class="demo-tag ok">개선 완료</i>' if (isai and p0 is not None and n and S["after"].get("n") == 0) else ""
             A_ = "".join(esc(o[1]) if o[0] == "e" else _chg(o[1], o[2], "anim") for o in ops)
             S_ = "".join(esc(o[1]) if o[0] == "e" else _chg(o[1], o[2], "src") for o in ops)
             D_ = "".join(esc(o[2]) if o[0] == "e" else _chg(o[1], o[2], "dst") for o in ops)
@@ -365,13 +375,13 @@ def demo_card():
     S = SAMPLES
     tabs = "".join('<button type="button" role="tab" aria-selected="%s">%s</button>' % ("true" if i == 0 else "false", s["label"]) for i, s in enumerate(S))
     first = S[0]
-    return ('<div class="demo" id="demo" aria-label="AI 작성률 검사와 휴머나이징 예시(실제 엔진 값)">'
+    return ('<div class="demo" id="demo" aria-label="AI 작성률 검사와 개선 예시(실제 엔진 값)">'
             '<div class="demo-bar"><i></i><i></i><i></i><span class="fn">%s<span>%s</span></span><div class="demo-tabs" role="tablist" aria-label="예시 글 종류">%s</div></div>'
             '<div class="demo-scan" aria-hidden="true"></div>'
-            '<div class="demo-meter"><div class="dm from bad"><small>휴머나이징 전 AI 작성률</small><b>%s<small style="font-size:18px">%%</small> <em>%s</em></b><div class="dm-bar"><i style="width:%s%%"></i></div></div>'
+            '<div class="demo-meter"><div class="dm from bad"><small>개선 전 AI 작성률</small><b>%s<small style="font-size:18px">%%</small> <em>%s</em></b><div class="dm-bar"><i style="width:%s%%"></i></div></div>'
             '<span class="dm-arr" aria-hidden="true">%s</span>'
-            '<div class="dm to good wait"><small>휴머나이징 후 AI 작성률</small><b>– <em>대기</em></b><div class="dm-bar"><i style="width:0"></i></div></div></div>'
-            '<div class="demo-legend"><span class="a"><i></i>AI 패턴 감지 문장</span><span class="h"><i></i>AI 패턴 개선 문장</span><span class="demo-state" aria-live="polite"></span></div>'
+            '<div class="dm to good wait"><small>개선 후 AI 작성률</small><b>– <em>대기</em></b><div class="dm-bar"><i style="width:0"></i></div></div></div>'
+            '<div class="demo-legend"><span class="a"><i></i>AI 작성 의심 문장</span><span class="h"><i></i>개선 완료 문장</span><span class="demo-state" aria-live="polite"></span></div>'
             '<div class="demo-doc">%s</div>'
             '<div class="demo-ft"><a class="btn btn-p btn-s demo-go" href="#tool" data-hum-go>%s<span>AI 작성률 낮추기</span></a>'
             '<a class="btn btn-g btn-s" href="#tool" data-tool>무료 AI 작성률 검사</a><p class="note">%s</p></div></div>') % (
@@ -383,8 +393,8 @@ def compare_block():
     S = SAMPLES
     tabs = "".join('<button type="button" role="tab" aria-selected="%s">%s</button>' % ("true" if i == 0 else "false", s["label"]) for i, s in enumerate(S))
     return ('<div class="cmp-tabs" role="tablist" aria-label="예시 글 종류">%s</div><div class="cmp" id="cmp">'
-            '<div class="cmp-col"><div class="cmp-h"><span>휴머나이징 전</span><span class="pill l bad"></span></div><div class="cmp-t l"></div></div>'
-            '<div class="cmp-col"><div class="cmp-h"><span>휴머나이징 후</span><span class="pill r good"></span></div><div class="cmp-t r"></div></div></div>'
+            '<div class="cmp-col"><div class="cmp-h"><span>개선 전</span><span class="pill l bad"></span></div><div class="cmp-t l"></div></div>'
+            '<div class="cmp-col"><div class="cmp-h"><span>개선 후</span><span class="pill r good"></span></div><div class="cmp-t r"></div></div></div>'
             '<div class="cmp-foot"></div><p class="center measured">%s</p>') % (tabs, esc(DEMO_MEASURED))
 
 
@@ -427,7 +437,7 @@ def pricing_cards(cta_text="충전하기"):
         btn = '<a class="btn %s" href="/#buy-%s" data-buy="%s" data-pack="%s">%s</a>' % (bcls, p["id"], p["id"], p["id"], label)
         sv = save_badge(p)
         out.append('<div class="%s rv">%s<h3>%s</h3><p class="who">%s</p><p class="tk2"><b>%s</b>토큰</p><p class="pr2"><b>%s</b>%s<span>토큰당 %s · 부가세 포함</span></p>%s'
-                   '<p class="use">%s 검사와 휴머나이징 서비스 <b>%s</b></p>%s</div>' % (
+                   '<p class="use">%s 검사와 AI 작성률 낮추기 <b>%s</b></p>%s</div>' % (
                        cls, tag, p["name"], p["sub"], "{:,}".format(p["tok"]), won(p["price"]), plus_strike(p), p["per"], sv, p["doc"], p["pg"], btn))
     return '<div class="price">' + "".join(out) + "</div>" + '<p class="price-rep">%s</p>' % REP_LINE + '<p class="price-fn">%s</p>' % PRICE_FN
 
@@ -439,13 +449,13 @@ def calc_block():
     return ('<div class="calc rv" id="calc"><div class="calc-in"><h3>내 글에는 토큰이 얼마나 들까요?</h3><p>글 종류를 고르거나 글자 수를 맞춰 보세요. 서버가 실제로 빼는 값과 같은 셈입니다.</p>'
             '<div class="calc-docs" role="group" aria-label="글 종류">%s</div>'
             '<div class="calc-row"><label class="sr" for="calcN">글자 수</label><input type="range" id="calcN" min="500" max="200000" step="500" value="5000"><output id="calcO" for="calcN">5,000자</output></div>'
-            '<div class="calc-opt"><label><input type="checkbox" id="calcC" checked>AI 작성률 검사</label><label><input type="checkbox" id="calcH" checked>AI 휴머나이징</label><label><input type="checkbox" id="calcT">한 번 더 다듬기</label></div></div>'
-            '<div class="calc-out" aria-live="polite"><dl><div><dt>AI 작성률 검사</dt><dd id="calcCc">무료</dd></div><div><dt>AI 휴머나이징</dt><dd id="calcHc">30토큰</dd></div>'
+            '<div class="calc-opt"><label><input type="checkbox" id="calcC" checked>AI 작성률 검사</label><label><input type="checkbox" id="calcH" checked>AI 작성률 낮추기</label><label><input type="checkbox" id="calcT">한 번 더 다듬기</label></div></div>'
+            '<div class="calc-out" aria-live="polite"><dl><div><dt>AI 작성률 검사</dt><dd id="calcCc">무료</dd></div><div><dt>AI 작성률 낮추기</dt><dd id="calcHc">30토큰</dd></div>'
             '<div class="sum"><dt>합계</dt><dd id="calcS">30토큰</dd></div></dl><p class="calc-rec" id="calcR"></p><a class="btn btn-p" id="calcB" href="/pricing/">충전하기</a></div>'
             '<script type="application/json" id="calcData">%s</script></div>') % (btns, data)
 
 
-def cta_band(h="제출 전 30초, AI 작성률부터 확인하세요", p="가입도 카드 등록도 없이 무료로 검사합니다. 걸리는 문장이 있을 때만 휴머나이징하면 됩니다."):
+def cta_band(h="제출 전 30초, AI 작성률부터 확인하세요", p="회원가입도 카드 등록도 없이 무료로 검사합니다. AI 작성 의심 문장이 있을 때만 개선하면 됩니다."):   # 2026.11.26 '휴머나이징' 말을 줄임(예전: 가입도 카드 등록도 없이 무료로 검사합니다. 걸리는 문장이 있을 때만 휴머나이징하면 됩니다.)
     return ('<section class="sec-s cta-sec"><div class="wrap"><div class="cta rv"><h2>%s</h2><p>%s</p><div class="btns"><a class="btn btn-p btn-l" href="/#tool" data-tool>%s무료로 AI 작성률 검사</a>'
             '<a class="btn btn-g btn-l" href="/pricing/">요금 보기</a></div></div></div></section>') % (h, p, ico("search"))
 
@@ -459,7 +469,7 @@ def proof_line():
     (예전: '논문 예시, 한 번의 휴머나이징 · 실제 엔진으로 잰 값입니다. 글마다 결과는 다릅니다.') 숫자는 첫 예시(demo.json 논문) 그대로, 차이는 빼서 셈"""
     S = SAMPLES[0]
     a, b = S["before"]["rate"], S["after"]["rate"]
-    return ('<p class="hero-proof"><span class="hp-n"><s>%d%%</s><i>→</i><em>%d%%</em></span><span class="hp-t"><b>한 번의 휴머나이징으로 AI 작성률 %d%%p 감소</b><small>자체 엔진 측정 사례이며 문서에 따라 결과는 달라질 수 있습니다.</small></span></p>' % (a, b, a - b))
+    return ('<p class="hero-proof"><span class="hp-n"><s>%d%%</s><i>→</i><em>%d%%</em></span><span class="hp-t"><b>단 한 번의 개선으로 AI 작성률 %d%%p 감소</b><small>자체 엔진 측정 사례이며 문서에 따라 결과는 달라질 수 있습니다.</small></span></p>' % (a, b, a - b))
 
 
 ORBIT = ('<svg class="orbit scanfx" viewBox="0 0 980 760" aria-hidden="true" focusable="false"><defs>'
@@ -477,18 +487,20 @@ TECH_PAGE = True   # 2026.11.24 build_tech() 가 /technology/ 를 만듦(첫 화
 
 def eb2_html():
     if TECH_PAGE:
-        return '<a class="eyebrow eb-2" href="/technology/"><b>%s</b>AI 작성률 저감 기술</a>' % ico("trend_down")
-    return '<p class="eyebrow eb-2"><b>%s</b>AI 작성률 저감 기술</p>' % ico("trend_down")
+        return '<a class="eyebrow eb-2" href="/technology/"><b>%s</b>AI 작성률 감소 특화 기술</a>' % ico("trend_down")   # 2026.11.26 대표 전 → 후(AI 작성률 저감 기술)
+    return '<p class="eyebrow eb-2"><b>%s</b>AI 작성률 감소 특화 기술</p>' % ico("trend_down")
 
 
 def hero(eyebrow, h1, lead, pts=None):
-    """첫 화면: 어두운 바탕(궤도선) 왼쪽 글(알약 · 제목 · 설명 · 파일 상자 · 장점 · 실측 한 줄) + 오른쪽 실제 엔진 예시.
+    """첫 화면: 밝은 바탕(2026.11.26 대표 '배경이 너무 검은색', 예전 어두운 바탕 · 궤도선) 왼쪽 글(알약 · 제목 · 설명 · 파일 상자 · 장점 · 실측 한 줄) + 오른쪽 실제 엔진 예시.
     검사 도구는 바로 아래 떠 있는 흰 판(tool_section). 좁은 화면은 예시를 도구 아래로 옮김(site.js)"""
-    pts = pts or ["문장 단위 AI 작성률 검사", "걸린 문장만 휴머나이징", "HWP · Word · PDF 지원"]   # 2026.11.24 대표 전 → 후(예전: 한국어 전용 엔진 · 문장 단위 AI 작성률 · 한글 · 워드 · PDF 그대로)
+    # 2026.11.26 대표 전 → 후(구매 전환 · 이탈 없이): 장점 세 줄 '문장 단위 AI 작성률 검사 · 걸린 문장만 휴머나이징 · HWP · Word · PDF 지원' → 아래 세 줄
+    # (파일 형식 안내는 바로 위 파일 상자에 있어 겹치지 않게). 파일 상자 제목 · 설명 · 두 단추도 '무료 검사'가 바로 보이게
+    pts = pts or ["문장별 AI 작성률 분석", "AI 작성 패턴 집중 개선", "원문의 의미와 맥락 유지"]
     return ('<section class="hero" id="top">%s<div class="wrap"><div class="hero-grid">'
             '<div class="hero-copy"><div class="eb-row"><p class="eyebrow eb-1"><b>%s</b>%s</p>%s</div><h1 class="h1">%s</h1><p class="lead">%s</p>'
-            '<div class="hero-up" data-hero-drop><div class="hu-h"><span class="hu-ic">%s</span><p><b>파일 업로드 한 번으로 AI 작성률 확인</b><span>한글(HWP · HWPX) · 워드(DOCX) · PDF · 텍스트, 끌어다 놓아도 됩니다</span></p></div>'
-            '<div class="hu-b"><button class="btn btn-p" type="button" data-hero-pick>%s파일 업로드</button><a class="btn btn-g" href="#tool" data-tool>%s텍스트 입력</a></div></div>'
+            '<div class="hero-up" data-hero-drop><div class="hu-h"><span class="hu-ic">%s</span><p><b>내 문서의 AI 작성률을 무료로 확인하세요</b><span>한글, Word, PDF, 텍스트 파일 지원</span></p></div>'
+            '<div class="hu-b"><button class="btn btn-p" type="button" data-hero-pick>%s파일로 무료 검사</button><a class="btn btn-g" href="#tool" data-tool>%s텍스트로 무료 검사</a></div></div>'
             '<ul class="hero-pts">%s</ul>%s</div>'
             '<div class="hero-demo" id="heroDemo">%s</div>'
             '</div></div></section>') % (
@@ -496,22 +508,22 @@ def hero(eyebrow, h1, lead, pts=None):
 
 
 def tool_section(flat=False):
-    badges = [("lock", "가입 없이 무료"), ("file", "20만 자"), ("check", "한글 · 워드 · PDF"), ("shield", "글은 저장하지 않음")]
+    badges = [("lock", "회원가입 없이 무료"), ("file", "20만 자"), ("check", "한글 · 워드 · PDF"), ("shield", "글은 저장하지 않음")]
     return ('<section class="tool-sec%s" aria-labelledby="toolH"><div class="wrap"><div class="tool-panel">'
-            '<div class="tool-head"><h2 id="toolH"><span class="ic">%s</span>AI 작성률 검사 · AI 휴머나이징</h2><div class="tool-badges">%s</div></div>'
+            '<div class="tool-head"><h2 id="toolH"><span class="ic">%s</span>AI 작성률 검사 · AI 작성률 낮추기</h2><div class="tool-badges">%s</div></div>'
             '<div id="tool" class="tool-w">%s</div></div><div class="demo-slot" id="demoSlot"></div></div></section>') % (
         " tool-flat" if flat else "", ico("sparkle"), "".join('<span>%s%s</span>' % (ico(i), t) for i, t in badges), tool_html())
 
 
-def example_section(h2="AI 휴머나이징 전과 후,<br>실제 엔진으로 잰 결과", alt=False):
+def example_section(h2="AI 작성률 개선 전과 후,<br>실제 엔진으로 잰 결과", alt=False):   # 2026.11.26 '휴머나이징' 말을 줄임(예전: AI 휴머나이징 전과 후)
     return ('<section class="sec%s" id="example"><div class="wrap"><div class="center"><p class="kick">%s실제 측정 결과</p><h2 class="h2">%s</h2>'
-            '<p class="sub">아래 예시는 %s 엔진에 그대로 넣어 잰 실제 값입니다. 보라색은 AI 패턴이 감지된 문장, 초록색은 AI 패턴을 개선한 문장입니다.</p></div>%s</div></section>') % (
+            '<p class="sub">아래 예시는 %s 엔진에 그대로 넣어 잰 실제 값입니다. 보라색은 AI 작성 의심 문장, 초록색은 개선 완료 문장입니다.</p></div>%s</div></section>') % (
         " alt" if alt else "", ico("eye"), h2, BRAND, compare_block())
 
 
 def price_section(alt=True):
-    return ('<section class="sec%s" id="price"><div class="wrap"><div class="center"><p class="kick">%s요금</p><h2 class="h2">AI 휴머나이징 가격,<br><em>쓴 만큼만</em> 냅니다</h2><p class="sub">월 구독 없이 한 번 충전하면 글자 수만큼만 빠지고, 남은 토큰은 기한 없이 쓸 수 있습니다. 검사는 언제나 무료로 먼저 해 보세요.</p></div>%s'
-            '<p class="price-note">AI 작성률 검사 무료 · AI 휴머나이징 1,000자 6토큰 · 1토큰 100원 · 부가세 포함 · 결제는 운영사 성균관컨설팅 결제 페이지(가입 없이 카드 · 간편결제)</p>%s</div></section>') % (
+    return ('<section class="sec%s" id="price"><div class="wrap"><div class="center"><p class="kick">%s요금</p><h2 class="h2">AI 작성률 낮추기,<br><em>쓴 만큼만</em> 냅니다</h2><p class="sub">월 구독 없이 한 번 충전하면 글자 수만큼만 빠지고, 남은 토큰은 기한 없이 쓸 수 있습니다. 검사는 언제나 무료로 먼저 해 보세요.</p></div>%s'
+            '<p class="price-note">AI 작성률 검사 무료 · AI 작성률 낮추기 1,000자 6토큰 · 1토큰 100원 · 부가세 포함 · 결제는 운영사 성균관컨설팅 결제 페이지(가입 없이 카드 · 간편결제)</p>%s</div></section>') % (
         " alt" if alt else "", ico("card"), pricing_cards(), calc_block())
 
 
@@ -539,7 +551,7 @@ def build_home():
     body += P.usecases_section(ico)
     body += guides_section()
     body += price_section(alt=False)
-    body += '<section class="sec alt" id="faq"><div class="wrap-n"><div class="center"><p class="kick">%s자주 묻는 질문</p><h2 class="h2">AI 휴머나이징, 궁금한 점부터</h2></div>%s<p class="center" style="margin-top:22px"><a class="btn btn-g" href="/faq/">질문 모두 보기</a></p></div></section>' % (ico("chat"), faq_html(H["faq"]))
+    body += '<section class="sec alt" id="faq"><div class="wrap-n"><div class="center"><p class="kick">%s자주 묻는 질문</p><h2 class="h2">AI 작성률 낮추기, 궁금한 점부터</h2></div>%s<p class="center" style="margin-top:22px"><a class="btn btn-g" href="/faq/">질문 모두 보기</a></p></div></section>' % (ico("chat"), faq_html(H["faq"]))
     body += cta_band()
     ld = [APP, ld_faq(H["faq"]), ld_howto("AI 작성률 낮추기(%s)" % BRAND, P.HOW_STEPS)]
     page("", H["title"], H["desc"], body, ld=ld, tool=True, priority="1.0", keywords=H["keywords"])
@@ -553,7 +565,7 @@ def build_pricing():
     body += P.pricing_detail(ico)
     body += MK.PRICING_MORE   # 11.23: 요금 쪽만의 구역(사이트마다 다른 글)
     body += '<section class="sec alt"><div class="wrap-n"><h2 class="h2 center">결제 · 토큰 자주 묻는 질문</h2>%s</div></section>' % faq_html(P.PRICE_FAQ)
-    body += cta_band("먼저 무료로 검사해 보세요", "AI 작성률이 높게 나온 문장만 휴머나이징하면 토큰을 아낄 수 있습니다.")
+    body += cta_band("먼저 무료로 검사해 보세요", "AI 작성률이 높게 나온 문장만 개선하면 토큰을 아낄 수 있습니다.")
     page("pricing/", "카피체크 요금 · AI 휴머나이징 가격 · 토큰 충전 | 카피체크", "카피체크 AI 휴머나이징 가격. 라이트 100토큰 9,900원부터 맥스 2,000토큰 69,900원까지. 월 구독 없이 한 번 충전, AI 작성률 검사 무료 · 휴머나이징 1,000자 6토큰.",
          body, ld=[ld_offers(), ld_faq(P.PRICE_FAQ), ld_crumbs(trail)], priority="0.9", keywords="카피체크 요금, 카피체크 가격, AI 휴머나이징 가격, AI 유사도 낮추기 가격, AI 작성률 낮추기 비용")
 
@@ -728,7 +740,7 @@ def build_seo():
     items = "".join("<item><title>%s</title><link>%s/%s</link><guid>%s/%s</guid><pubDate>%s</pubDate><description>%s</description></item>" % (
         esc(g["h1"]), SITE, gpath(g), SITE, gpath(g), datetime.datetime.strptime(g["date"], "%Y-%m-%d").strftime("%a, %d %b %Y 09:00:00 +0900"), esc(g["desc"])) for g in P.GUIDES)
     open(os.path.join(OUT, "rss.xml"), "w", encoding="utf-8").write('<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>%s 가이드</title><link>%s/guide/</link><description>AI 작성률 · AI 유사도 검사와 AI 휴머나이징 가이드</description><language>ko</language>%s</channel></rss>' % (BRAND, SITE, items))
-    open(os.path.join(OUT, "site.webmanifest"), "w", encoding="utf-8").write(json.dumps({"name": BRAND + " AI 작성률 검사 · AI 휴머나이저", "short_name": BRAND, "start_url": "/", "display": "standalone", "background_color": "#ffffff", "theme_color": "#0b0f14", "lang": "ko",
+    open(os.path.join(OUT, "site.webmanifest"), "w", encoding="utf-8").write(json.dumps({"name": BRAND + " AI 작성률 검사 · AI 휴머나이저", "short_name": BRAND, "start_url": "/", "display": "standalone", "background_color": "#ffffff", "theme_color": "#066b4b", "lang": "ko",
                                                                                          "icons": [{"src": "/assets/img/logo-192.png?v=" + VER, "sizes": "192x192", "type": "image/png"}, {"src": "/assets/img/logo-512.png?v=" + VER, "sizes": "512x512", "type": "image/png"}]}, ensure_ascii=False))
     open(os.path.join(OUT, INDEXNOW_KEY + ".txt"), "w").write(INDEXNOW_KEY)
     if BING_VERIFY2:   # 2026.11.25 빙 XML 파일 확인(메타 태그와 같은 계정 코드)

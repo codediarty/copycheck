@@ -24,7 +24,18 @@ MARK_SVG = ('<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect w
 MARK_SVG_W = MARK_SVG.replace('fill="#0b0f14"', 'fill="#fff"').replace('stroke="#fff"', 'stroke="#0b0f14"')
 
 
+LOGO_PNG = "file://" + os.path.join(SRC, "brand", "cc-logo-full.png")   # 2026.11.26 대표가 준 새 로고(흰 바탕용, make_logo.py 가 투명하게 만든 원본 크기)
+
+
 def logo_html(h=96, white=False):
+    """2026.11.26 새 로고 그림(리본 C 표지 + CopyCheck) + 카피체크 꼬리표. 예전 그림 로고는 아래 logo_html_old"""
+    kb, kc = ("rgba(255,255,255,.12)", "#d4efe2") if white else ("#eef4f1", "#5f6d67")
+    return ('<div class="lg" style="display:flex;align-items:center;gap:%dpx;height:%dpx"><img src="%s" style="display:block;height:%dpx;width:auto" alt="">'
+            '<span style="margin-left:2px;padding:%dpx %dpx;border-radius:999px;background:%s;font-size:%dpx;font-weight:780;color:%s;letter-spacing:-.01em">카피체크</span></div>') % (
+        int(h * .2), h, LOGO_PNG, h, int(h * .09), int(h * .2), kb, int(h * .25), kc)
+
+
+def logo_html_old(h=96, white=False):
     m = MARK_SVG_W if white else MARK_SVG
     c1, c2, kb, kc = ("#fff", "#5ee6b4", "rgba(255,255,255,.10)", "#b9c9c1") if white else ("#0b0f14", "#0d9a6c", "#f1f4f2", "#6a7570")
     return ('<div class="lg" style="display:flex;align-items:center;gap:%dpx;height:%dpx"><span style="display:block;width:%dpx;height:%dpx">%s</span>'
@@ -61,8 +72,8 @@ THUMB_CSS = """
 body{width:1200px;height:1200px;position:relative;overflow:hidden;background:radial-gradient(700px 420px at 100% 0%,rgba(34,195,142,.10),transparent 70%),linear-gradient(180deg,#ffffff 0%,#f2f5f3 100%)}
 .lg{position:absolute;left:92px;top:74px}
 .card{position:absolute;left:92px;top:212px;width:1016px;height:600px;border-radius:48px;overflow:hidden;color:#fff;
- background:radial-gradient(560px 380px at 100% 0%,rgba(34,195,142,.55),transparent 70%),radial-gradient(520px 360px at 0% 110%,rgba(13,154,108,.55),transparent 64%),linear-gradient(155deg,#0b0f14 0%,#0f1d18 58%,#0b0f14 100%);
- box-shadow:0 44px 80px -34px rgba(11,15,20,.65)}
+ background:radial-gradient(560px 380px at 100% 0%,rgba(110,231,183,.42),transparent 70%),radial-gradient(520px 360px at 0% 110%,rgba(3,55,38,.55),transparent 64%),linear-gradient(155deg,#05573e 0%,#08744f 52%,#0b8a5f 100%);
+ box-shadow:0 44px 80px -34px rgba(6,70,50,.6)}
 .card:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:56px 56px}
 .orb{position:absolute;right:-170px;top:-60px;width:900px;opacity:.85}
 .km{position:absolute;right:-30px;bottom:-40px;height:380px;opacity:.16;filter:brightness(1.6)}
@@ -72,7 +83,7 @@ body{width:1200px;height:1200px;position:relative;overflow:hidden;background:rad
 .badge.top{background:#fff;color:#0b0f14}
 .pills{position:absolute;left:56px;top:128px;display:flex;gap:14px;z-index:2}
 .pill{height:58px;padding:0 26px;border-radius:29px;display:flex;align-items:center;font-size:29px;font-weight:860}
-.pill.n{background:linear-gradient(135deg,#087a55,#0d9a6c 50%,#22c38e);color:#fff;box-shadow:0 10px 24px -10px rgba(34,195,142,.9)}
+.pill.n{background:#fff;color:#066a4a;box-shadow:0 10px 24px -12px rgba(3,40,28,.6)}
 .pill.o{border:2px solid rgba(255,255,255,.36);color:#fff;font-weight:720}
 .big{position:absolute;left:48px;top:206px;display:flex;align-items:flex-end;z-index:2}
 .big b{font-size:@BIG@px;font-weight:880;letter-spacing:-.06em;line-height:.8;background:linear-gradient(180deg,#ffffff 30%,#c9f5e3 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 18px 40px rgba(0,0,0,.35))}
@@ -97,16 +108,16 @@ body{width:1200px;height:1200px;position:relative;overflow:hidden;background:rad
 
 def thumb_html(p):
     badge = ('<div class="badge best">%s</div>' % p["badge"]) if p["badge"] == "추천 요금제" else (('<div class="badge top">%s</div>' % p["badge"]) if p["badge"] else "")
-    low = ('<div class="save">%s</div>' % p["save"]) if p["save"] else '<div class="note">AI 작성률 검사 · AI 휴머나이징 서비스</div>'
+    low = ('<div class="save">%s</div>' % p["save"]) if p["save"] else '<div class="note">AI 작성률 검사 · AI 작성률 낮추기</div>'
     big = 250 if len(p["tok"]) <= 3 else 205
     css = THUMB_CSS.replace("@BIG@", str(big))
     body = ('%s'
-            '<div class="card">%s<div class="hdr">AI 작성률 검사 · AI 휴머나이징</div>%s'
+            '<div class="card">%s<div class="hdr">AI 작성률 검사 · AI 작성률 낮추기</div>%s'
             '<div class="pills"><span class="pill n">%s</span><span class="pill o">토큰 충전</span></div>'
             '<div class="big"><b>%s</b><span>토큰</span></div><div class="fit">%s · %s</div>%s'
             '<div class="price"><b>%s</b><small>%s · 부가세 포함</small></div></div>'
             '<div class="feat"><div>%s월 구독 없음</div><div>%s쓴 만큼 차감 · 기한 무제한</div><div>%s결제 즉시 코드 발송</div></div>'
-            '<div class="proof"><span class="k">실측 예시</span><span class="v"><s>%d%%</s><i>→</i><b>%d%%</b></span><span class="t">%s · 한 번의 휴머나이징<br>실제 엔진으로 잰 값 · 글마다 다릅니다</span></div>') % (
+            '<div class="proof"><span class="k">실측 예시</span><span class="v"><s>%d%%</s><i>→</i><b>%d%%</b></span><span class="t">%s · 단 한 번의 개선<br>자체 엔진 측정 사례 · 문서마다 다릅니다</span></div>') % (
         logo_html(98), ORBIT, badge, p["name"], p["tok"], p["fit"], p["pg"], low, p["price"], p["per"], CHECK, CHECK, CHECK, B_RATE, A_RATE, T_LABEL)
     return BASE % (css, body)
 
@@ -122,7 +133,7 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#087a55,#0d9a6c 50%,#2
 .st i{flex:none;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#087a55,#0d9a6c 50%,#22c38e);color:#fff;font-style:normal;font-weight:860;font-size:28px;display:grid;place-items:center}
 .st b{display:block;font-size:31px;font-weight:860;letter-spacing:-.03em;color:#0b0f14}
 .st p{margin-top:4px;font-size:22.5px;line-height:1.5;color:#3a4540}
-.cost{position:absolute;left:72px;right:72px;bottom:56px;padding:30px 34px;border-radius:26px;color:#fff;overflow:hidden;background:radial-gradient(420px 260px at 100% 0%,rgba(34,195,142,.6),transparent 70%),linear-gradient(150deg,#0b0f14,#0f1d18)}
+.cost{position:absolute;left:72px;right:72px;bottom:56px;padding:30px 34px;border-radius:26px;color:#fff;overflow:hidden;background:radial-gradient(420px 260px at 100% 0%,rgba(110,231,183,.45),transparent 70%),linear-gradient(150deg,#05573e,#0b8a5f)}
 .cost h2{font-size:30px;font-weight:860;letter-spacing:-.03em}
 .cost ul{list-style:none;margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px 26px;font-size:24px;color:#d3ebe0}
 .cost b{color:#fff}
@@ -133,10 +144,10 @@ def guide_html():
     steps = [("결제", "토큰을 고르고 성균관컨설팅 결제 페이지에서 결제합니다. 회원가입 없이 카드 · 간편결제로 끝납니다."),
              ("메일로 코드", "결제가 확인되면 보통 1분 안에 주문서의 이메일로 16자리 토큰 코드가 갑니다. 보내는 이름은 '카피체크'입니다."),
              ("바로 이어서", "메일의 '바로 이어서 하기'를 누르면 코드가 들어간 채로 copycheck.skkc.co.kr 이 열리고, 하던 글을 그대로 이어 갑니다."),
-             ("쓴 만큼만", "글을 넣고 검사 · 휴머나이징을 누르면 글자 수만큼만 빠집니다. 남은 토큰은 기한 없이 그대로입니다.")]
+             ("쓴 만큼만", "글을 넣고 AI 작성률 낮추기를 누르면 글자 수만큼만 빠집니다. 남은 토큰은 기한 없이 그대로입니다.")]
     s = "".join('<div class="st"><i>%d</i><div><b>%s</b><p>%s</p></div></div>' % (i + 1, a, b) for i, (a, b) in enumerate(steps))
-    body = ('%s<h1>결제하고 <em>1분</em>,<br>메일로 받은 코드로 바로</h1><p class="sub">AI 작성률 검사 · AI 휴머나이징 서비스에 쓰는 토큰 이용 안내</p><div class="steps">%s</div>'
-            '<div class="cost"><h2>토큰은 이렇게 빠집니다</h2><ul><li>AI 작성률 검사 <b>무료</b></li><li>상세 진단 <b>1,000자 3토큰</b></li><li>휴머나이징 <b>1,000자 6토큰</b></li><li>1토큰 <b>100원</b> · 구독 없음</li></ul></div>') % (logo_html(84), s)
+    body = ('%s<h1>결제하고 <em>1분</em>,<br>메일로 받은 코드로 바로</h1><p class="sub">AI 작성률 검사 · AI 작성률 낮추기에 쓰는 토큰 이용 안내</p><div class="steps">%s</div>'
+            '<div class="cost"><h2>토큰은 이렇게 빠집니다</h2><ul><li>AI 작성률 검사 <b>무료</b></li><li>상세 진단 <b>1,000자 3토큰</b></li><li>AI 작성률 낮추기 <b>1,000자 6토큰</b></li><li>1토큰 <b>100원</b> · 구독 없음</li></ul></div>') % (logo_html(84), s)
     return BASE % (GUIDE_CSS, body)
 
 
@@ -169,6 +180,35 @@ def og_html():
     return BASE % (OG_CSS, body)
 
 
+# 2026.11.26 공유 그림도 첫 화면처럼 밝은 바탕(대표 '배경이 너무 검은색') + 새 로고 + 새 제목. 예전 어두운 공유 그림은 위 og_html(쓰지 않음)
+OG_CSS2 = """
+body{width:1200px;height:630px;position:relative;overflow:hidden;color:#0d1117;
+ background:radial-gradient(640px 420px at 96% 0%,rgba(34,195,142,.22),transparent 64%),radial-gradient(560px 420px at 0% 0%,rgba(13,154,108,.10),transparent 62%),linear-gradient(180deg,#edf8f3 0%,#f6fbf9 55%,#ffffff 100%)}
+body:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(13,154,108,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(13,154,108,.07) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse 80% 80% at 70% 30%,#000 30%,transparent 80%)}
+.lg{position:absolute;left:72px;top:56px}
+.kw{position:absolute;left:76px;top:186px;font-size:27px;font-weight:780;color:#0a8a5f;letter-spacing:-.015em}
+h1{position:absolute;left:72px;top:232px;font-size:68px;line-height:1.17;font-weight:860;letter-spacing:-.05em;color:#0d1117}
+h1 em{font-style:normal;background:linear-gradient(92deg,#05855b,#0fae78 52%,#0b9a6a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chips{position:absolute;left:76px;bottom:62px;display:flex;gap:10px}
+.chips span{height:46px;padding:0 18px;border-radius:23px;display:flex;align-items:center;font-size:19px;font-weight:740;border:1.5px solid #cfe5db;color:#26352e;background:#fff}
+.chips span:first-child{background:linear-gradient(135deg,#077a55,#0d9a6c 50%,#19b47f);border-color:transparent;color:#fff}
+.proof{position:absolute;right:72px;bottom:58px;width:340px;padding:22px 26px;border-radius:24px;background:#fff;border:1.5px solid #d4ebdf;box-shadow:0 30px 60px -30px rgba(6,70,50,.45)}
+.proof small{display:block;font-size:17px;font-weight:760;color:#6a7570}
+.proof .v{display:flex;align-items:baseline;gap:12px;margin-top:6px;font-weight:880;letter-spacing:-.04em}
+.proof .v s{font-size:40px;color:#e5154f;text-decoration-thickness:3px}
+.proof .v i{font-style:normal;font-size:30px;color:#98a2b3}
+.proof .v b{font-size:58px;color:#0a9a66}
+.proof p{font-size:16px;color:#6a7570;margin-top:4px}
+"""
+
+
+def og_html2():
+    body = ('%s<p class="kw">AI 작성률 검사부터 문장 개선까지</p><h1>원문의 의미는 그대로,<br><em>AI 작성률은 대폭 낮추세요</em>.</h1>'
+            '<div class="chips"><span>회원가입 없이 무료 검사</span><span>한글 · Word · PDF</span><span>copycheck.skkc.co.kr</span></div>'
+            '<div class="proof"><small>%s 예시 · 단 한 번의 개선</small><div class="v"><s>%d%%</s><i>→</i><b>%d%%</b></div><p>자체 엔진 측정 사례 · 문서마다 다릅니다</p></div>') % (logo_html(80), T_LABEL, B_RATE, A_RATE)
+    return BASE % (OG_CSS2, body)
+
+
 async def shot(b, html, w, h, fp, jpeg=False):
     path = os.path.join(HERE, "_t_%d.html" % abs(hash(fp)))
     open(path, "w", encoding="utf-8").write(html)
@@ -181,6 +221,9 @@ async def shot(b, html, w, h, fp, jpeg=False):
     await pg.close(); os.remove(path)
 
 
+NEW_ICONS = True   # 2026.11.26 새 로고: 아이콘은 make_logo.py
+
+
 async def main():
     async with async_playwright() as pw:
         b = await pw.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--no-sandbox", "--allow-file-access-from-files"])
@@ -191,13 +234,17 @@ async def main():
         fp = os.path.join(OUT, "cc-tokens-guide.png")
         await shot(b, guide_html(), 1080, 1350, fp)
         shutil.copy(fp, os.path.join(PROD, os.path.basename(fp)))
-        await shot(b, og_html(), 1200, 630, os.path.join(IMG, "og.png"))
-        for n, sz in [("apple-touch-icon.png", 180), ("logo-192.png", 192), ("logo-512.png", 512), ("_ico48.png", 48), ("_ico32.png", 32), ("_ico16.png", 16)]:
+        await shot(b, og_html2(), 1200, 630, os.path.join(IMG, "og.png"))   # 2026.11.26 밝은 공유 그림(예전 og_html 은 어두운 바탕)
+        # 2026.11.26 아이콘 · 파비콘은 새 로고 그림으로 _src/brand/make_logo.py 가 만듦(아래 예전 검은 사각 표지 아이콘은 만들지 않음)
+        for n, sz in ([] if NEW_ICONS else [("apple-touch-icon.png", 180), ("logo-192.png", 192), ("logo-512.png", 512), ("_ico48.png", 48), ("_ico32.png", 32), ("_ico16.png", 16)]):
             pad = 0 if n.startswith("_ico") else int(sz * .1)
             html = "<!doctype html><html><body style='margin:0;width:%dpx;height:%dpx;display:grid;place-items:center;background:%s'>%s</body></html>" % (
                 sz, sz, "transparent" if n.startswith("_ico") else "#ffffff", MARK_SVG.replace("<svg ", "<svg width='%d' height='%d' " % (sz - 2 * pad, sz - 2 * pad)))
             await shot(b, html, sz, sz, os.path.join(IMG, n))
         await b.close()
+    if NEW_ICONS:
+        print("ok", sorted(os.listdir(OUT)), "(아이콘은 make_logo.py)")
+        return
     from PIL import Image
     ims = [Image.open(os.path.join(IMG, "_ico%d.png" % z)).convert("RGBA") for z in (16, 32, 48)]
     ims[2].save(os.path.join(os.path.dirname(IMG), "..", "favicon.ico"), sizes=[(16, 16), (32, 32), (48, 48)], append_images=ims[:2])

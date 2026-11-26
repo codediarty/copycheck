@@ -789,3 +789,107 @@ html.hz42-on,html.hz42-on body{overflow:hidden}
 @media (max-width:1180px){.nav a{padding:8px 8px;font-size:14px}.logo .lg-k{display:none}}
 @media (max-width:760px){.logo .lg-t{font-size:20px}.logo .lg-m{width:32px;height:32px}}
 @media (prefers-reduced-motion:reduce){.scanfx .beam{animation:none}}
+
+/* =====================================================================
+   2026.11.26 대표 '카피체크 홈페이지 배경이 너무 검은색이다' · '로고 심볼은 글자는 첨부중에 어울리는걸로 바꿔주고'
+   검은 바탕(맨 위 띠 · 첫 화면 · 경고 구역 · 마지막 권유 · 가이드 권유 · 바닥글 · 아래 고정 단추)을 밝은 바탕(흰 · 옅은 민트)과 브랜드 초록으로.
+   로고는 대표가 준 두 그림 가운데 흰 바탕용(assets/img/cc-logo.png). 예전 규칙은 지우지 않고 여기서 덮어씀
+   ===================================================================== */
+/* 로고(그림 하나: 리본 C 표지 + CopyCheck) */
+.logo{gap:10px}
+.logo img{height:38px}
+.ft .logo img{height:40px}
+@media (max-width:1240px){.logo img{height:36px}}
+@media (max-width:760px){.logo img{height:31px}}
+@media (max-width:520px){.logo img{height:28px}}
+@media (max-width:360px){.logo img{height:25px}}
+
+/* 맨 위 띠: 검정 → 브랜드 초록 */
+.topbar{background:linear-gradient(90deg,#055c41 0%,#077e57 52%,#0a9166 100%);color:#def5ea}
+.topbar b{color:#fff}
+.topbar .dot{background:#b9f6dc;box-shadow:0 0 0 4px rgba(255,255,255,.16)}
+.topbar a{color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.5);text-underline-offset:3px}
+.hd{border-bottom-color:rgba(13,154,108,.10)}
+
+/* 첫 화면: 흰 바탕 + 옅은 민트 빛 + 아주 옅은 초록 격자 */
+.hero{color:var(--ink);
+  background:radial-gradient(820px 520px at 90% 0%,rgba(34,195,142,.17),transparent 62%),radial-gradient(700px 460px at 0% 0%,rgba(13,154,108,.09),transparent 60%),linear-gradient(180deg,#edf8f3 0%,#f5fbf8 50%,#ffffff 100%)}
+.hero::before{background-image:linear-gradient(rgba(13,154,108,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(13,154,108,.075) 1px,transparent 1px);background-size:44px 44px}
+.hero::after{display:none}
+.orbit.scanfx{opacity:.8}
+.scanfx .doc{stroke:rgba(13,154,108,.16)}
+.hero .eyebrow{color:#163f2f!important;background:#fff;border-color:#cde8dc;box-shadow:0 8px 20px -14px rgba(6,95,70,.5);backdrop-filter:none}
+.hero .eyebrow b{background:linear-gradient(135deg,#0a8a5f,#22c38e);color:#fff}
+.hero .eb-2 b{background:#e1f5ec;color:#0a8a5f}
+.hero a.eyebrow:hover{background:#f2fbf7;border-color:#9fdcc4}
+.hero a.eyebrow:focus-visible{outline-color:#0d9a6c}
+.hero .h1{color:#0d1117;font-size:clamp(30px,3.85vw,50px);line-height:1.2}
+.hero .h1 em{background:linear-gradient(92deg,#05855b 0%,#0fae78 52%,#0b9a6a 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .h1 .kw{color:#0a8a5f;font-size:.4em;letter-spacing:-.015em}
+.hero .lead{color:#3d4b45}
+.hero .lead b{color:#0d1117}
+.hero-up{background:#fff;border:1.5px dashed #94d6b9;box-shadow:0 24px 48px -34px rgba(6,95,70,.55)}
+.hero-up:hover,.hero-up.over{border-color:#0d9a6c;background:#f7fcfa;box-shadow:0 28px 56px -32px rgba(6,95,70,.6)}
+.hu-ic{background:linear-gradient(140deg,#e3f6ee,#cdeedf);color:#0a8a5f}
+.hu-h b{color:#0d1117}
+.hu-h span{color:#5f6d67}
+.hero .hu-b .btn-g{background:#fff;border:1px solid #cadcd4;color:#0d1117}
+.hero .hu-b .btn-g:hover{background:#f2faf6;border-color:#8fd3b6}
+.hero-pts{color:#26352e}
+.hero-pts .ico{color:#0d9a6c}
+.hero-proof{background:#fff;border:1px solid #d2ebdf;color:#4b5953;box-shadow:0 16px 34px -28px rgba(6,95,70,.55)}
+.hero-proof b{color:#0d1117}
+.hero-proof .hp-n s{color:#e5154f}
+.hero-proof .hp-n i{color:#9aa7a1}
+.hero-proof .hp-n em{color:#0a9a66}
+.hero-proof .hp-t small{color:#6b7872}
+.hero-demo::before{background:radial-gradient(closest-side,rgba(34,195,142,.22),transparent 72%)}
+.hero .demo{border-color:#d9ede3;box-shadow:0 50px 90px -48px rgba(6,70,50,.5),0 0 0 1px rgba(13,154,108,.08)}
+.dm b em{white-space:nowrap}
+.tool-head h2 .ic{background:linear-gradient(135deg,#0a8a5f,#22c38e)}
+@media (max-width:520px){.hero .h1{font-size:clamp(25px,7.1vw,30px)}}
+
+/* 경고 구역(예전 검은 바탕) → 옅은 민트 바탕 + 흰 카드 */
+.sec.dark{color:var(--ink);background:radial-gradient(820px 380px at 92% -10%,rgba(34,195,142,.13),transparent 62%),linear-gradient(180deg,#f1faf6 0%,#e9f6f0 100%);border-top:1px solid #dfeee7;border-bottom:1px solid #dfeee7}
+.dark .kick{color:#0a7a55;background:#d9f2e7}
+.dark .h2{color:#0d1117}
+.dark .sub{color:#4a5852}
+.stat{background:#fff;border:1px solid #d6eadf;box-shadow:0 18px 40px -32px rgba(6,70,50,.45)}
+.stat b{color:#0d1117}
+.stat p{color:#3d4b45}
+.stat cite{color:#7a8882}
+.pat{border:1px solid #d9eae2;box-shadow:0 14px 30px -26px rgba(6,70,50,.4)}
+.src{color:#7a8882}
+.dark h3.pt{color:#0d1117}
+.dark p.ps{color:#4a5852}
+
+/* 마지막 권유 · 가이드 권유: 검정 → 브랜드 초록(흰 단추가 먼저 보이게) */
+.cta{background:radial-gradient(620px 300px at 12% -20%,rgba(255,255,255,.20),transparent 62%),radial-gradient(560px 300px at 100% 120%,rgba(4,70,50,.38),transparent 64%),linear-gradient(135deg,#066f4e 0%,#0a8a5f 52%,#14a874 100%);box-shadow:0 40px 80px -48px rgba(6,95,70,.7)}
+.cta::before{border-color:rgba(255,255,255,.22)}
+.cta p{color:#e0f5eb}
+.cta .btn-p,.gcta .btn-p{background:#fff;color:#066a4a;box-shadow:0 14px 30px -14px rgba(3,40,28,.55)}
+.cta .btn-p:hover,.gcta .btn-p:hover{background:#effaf5;filter:none}
+.cta .btn-g{background:transparent;border:1px solid rgba(255,255,255,.7);color:#fff}
+.cta .btn-g:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.gcta{background:radial-gradient(500px 220px at 15% -30%,rgba(255,255,255,.2),transparent 62%),linear-gradient(135deg,#066f4e,#0a8a5f 55%,#14a874)}
+.gcta p{color:#e0f5eb}
+
+/* 바닥글: 검정 → 밝은 회녹색 */
+.ft{background:linear-gradient(180deg,#f6f9f7,#eef4f1);color:#56645e;border-top:1px solid #dfe8e3}
+.ft h4{color:#0d1117}
+.ft a{color:#2f3d37}
+.ft a:hover{color:#0a8a5f}
+.ft-kw span{color:#41504a;border-color:#d4e0da;background:#fff}
+.ft-kw a:hover span{border-color:#9fdcc4;color:#0a7a55}
+.ft-biz{border-top-color:#dae5df;color:#6b7973}
+.ft-biz b{color:#34423c}
+
+/* 아래 고정 단추(모바일): 검정 → 흰 판 */
+.mcta{background:rgba(255,255,255,.96);border:1px solid #d8e6df;box-shadow:0 18px 40px -16px rgba(6,60,42,.4)}
+.mcta .btn-g{background:#fff;border:1px solid #cadcd4;color:#0d1117}
+
+/* 작은 검은 칸도 브랜드 초록으로(표의 카피체크 칸 · 고른 탭) */
+.tbl thead .me{background:#0a8a5f}
+.cmp-tabs button[aria-selected="true"],.calc-docs button[aria-pressed="true"]{background:#0a8a5f;border-color:#0a8a5f}
+/* 메뉴 이름이 길어져(이용 요금 · 이용 가이드 · 자주 묻는 질문) 노트북 폭에서 머리 오른쪽 단추가 밀리지 않게: 1480px 아래는 머리의 '카피체크' 꼬리표를 접음(바닥글은 그대로) */
+@media (max-width:1480px){.hd .logo .lg-k{display:none}}

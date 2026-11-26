@@ -1,3 +1,5 @@
+/* 2026.11.26 카피체크만: 대표 '휴머나이징 말을 줄이고 AI 작성률 낮추기 중심으로(구매 전환)'에 맞춰 결제로 이어지는 단추 글 세 곳만 바꿈
+   ('충전하고 글 전체 휴머나이징' → '충전하고 AI 작성률 낮추기' · '글 전체 휴머나이징 · N토큰' → 'AI 작성률 낮추기 · N토큰' / '글 전체 AI 작성률 낮추기 · N토큰' · 결과 아래 '휴머나이징' → 'AI 작성률 낮추기'). 엔진 동작은 그대로. 형제 엔진을 다시 옮겨 올 때 이 세 곳을 다시 맞출 것 */
 /* 카피체크 AI 작성률 검사 · 휴머나이징 12.1 (2026.10.21 오후) → 13.13 (2026.10.31)
    - 13.43(2026.11.25 밤 손님 '결제 후 사용하고 있는데 갑자기 무료 ai 표절률 검사가 안되네요' · 대표 '결제한사람들도 그런 버튼을 어디에 만들어야 부자연스럽지않을까?'):
      13.42 에서 글을 넣으면 저절로 하던 무료 검사를 멈추면서(AUTO_RUN) 토큰 코드가 있는 손님은 무료 검사로 가는 길이 없어졌음.
@@ -1082,7 +1084,7 @@
     else price = '이 글 전체는 <b>' + tk(cost) + '토큰</b>이에요. ' + esc(pk.name) + ' ' + tk(pk.cr) + '토큰(' + n2(pk.price) + '원)' + (pk.cr >= cost ? '이면 다듬고 <b>' + tk(pk.cr - cost) + '토큰</b>이 남아 다음 글에도 씁니다.' : '에 모자라는 만큼은 같은 코드에 충전해 이어서 다듬습니다.') + ' 결제하면 바로 메일로 토큰 코드가 오고, 이 글은 이어서 다듬어 드립니다.';
     return '<section class="hz12-next ' + bandCls(k) + (hot ? ' hot' : sig ? ' sig' : ' calm') + '" aria-labelledby="hzNextT"><div class="l"><h3 id="hzNextT">' + (hot ? esc(title).replace('인간화(휴머나이징)해 드립니다', '<span class="nb"><em>인간화(휴머나이징)</em>해 드립니다</span>') : esc(title)) + '</h3><p class="sub">' + (hot ? '<b>AI 문장 패턴을 자연스럽게 다듬어 드려요.</b> ' : '') + esc(sub) + '</p>' +
       '<ul>' + li.map(function (x) { return '<li>' + ico('check') + '<span>' + esc(x) + '</span></li>'; }).join('') + '</ul></div>' +
-      '<div class="r"><button class="btn btn-p btn-l" type="button" data-act="humall">' + ico('pen') + '<span>' + (S.pass ? '글 전체 휴머나이징 · ' + tk(cost) + '토큰' : '충전하고 글 전체 휴머나이징') + '</span></button><p class="price"><span class="lead">AI 작성률을 줄이고 원문의 의미는 유지합니다.</span>' + price + '</p>' +
+      '<div class="r"><button class="btn btn-p btn-l" type="button" data-act="humall">' + ico('pen') + '<span>' + (S.pass ? 'AI 작성률 낮추기 · ' + tk(cost) + '토큰' : '충전하고 AI 작성률 낮추기') + '</span></button><p class="price"><span class="lead">AI 작성률을 줄이고 원문의 의미는 유지합니다.</span>' + price + '</p>' +
       (S.pass ? '' : '<button class="btn btn-g" type="button" data-act="humfree">' + freeTaste(t).part + ' 무료로 먼저 보기</button><button type="button" class="hz7-link" data-code data-intent="hum">토큰 코드가 있어요</button>') + rptHtml(M, t) +
       '</div></section>';   // 2026.11.22 대표: 휴머나이징 단추 밑에 한 줄, '규정대로 밝히세요' 줄은 자리만 차지해 뺌
   }
@@ -1112,7 +1114,7 @@
   }
   function actsHtml(M) {   // 토큰 결과의 아래 단추(무료는 ③ 다듬기 칸에)
     if (!M.full) return '';
-    return '<div class="hz7-acts">' + (M.band.key === 'short' ? '' : '<button class="btn btn-p" type="button" data-act="report">' + ico('file') + '<span>결과상세내역서 저장(PDF)</span></button>') + '<button class="btn btn-g" type="button" data-act="hum">휴머나이징</button><button class="btn btn-g" type="button" data-act="recheck">다시 검사' + (function () { var rc = reCost(cur()); return rc ? ' · ' + tkw(rc) : ''; })() + '</button></div>';
+    return '<div class="hz7-acts">' + (M.band.key === 'short' ? '' : '<button class="btn btn-p" type="button" data-act="report">' + ico('file') + '<span>결과상세내역서 저장(PDF)</span></button>') + '<button class="btn btn-g" type="button" data-act="hum">AI 작성률 낮추기</button><button class="btn btn-g" type="button" data-act="recheck">다시 검사' + (function () { var rc = reCost(cur()); return rc ? ' · ' + tkw(rc) : ''; })() + '</button></div>';
   }
   function stamp(d) { d = d || new Date(); var p = function (x) { return ('0' + x).slice(-2); }; return d.getFullYear() + '.' + p(d.getMonth() + 1) + '.' + p(d.getDate()) + ' ' + p(d.getHours()) + ':' + p(d.getMinutes()); }
 
@@ -1422,7 +1424,7 @@
       (F.changes ? '<section class="hz9-sec"><div class="hz9-sec-h"><h3>바꾼 곳 ' + n2(F.changes) + '곳</h3><p>숫자, 고유명사, 인용은 그대로 둡니다</p></div>' + catChips(F.samples) + '</section>' : '') +
       unlockHtml(rest ? (F.changes ? '나머지 ' + n2(rest) + '자도 이렇게 다듬어 드려요' : '나머지 ' + n2(rest) + '자까지 글 전체를 다듬어 드려요') : '바꾼 이유와 다른 버전까지 보기',
         '글 전체 휴머나이징으로 바꾼 이유와 다른 버전, 다듬기 전후 AI 작성률, 숫자와 인용을 지켰는지 확인, 다듬은 파일 받기까지 열립니다.' + (needA ? ' 이 글(' + n2(allT.length) + '자)은 ' + tkw(needA) + '입니다.' : ''),
-        '<button class="btn btn-p" type="button" data-act="humall">' + ico('pen') + '<span>글 전체 휴머나이징 · ' + tk(needA) + '토큰</span></button>') +
+        '<button class="btn btn-p" type="button" data-act="humall">' + ico('pen') + '<span>글 전체 AI 작성률 낮추기 · ' + tk(needA) + '토큰</span></button>') +
       (S.res ? '<div class="hz7-acts"><button class="btn btn-g" type="button" data-act="backres">검사 결과로 돌아가기</button></div>' : '') + '</div>';
     toOut();
   }

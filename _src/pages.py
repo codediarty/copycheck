@@ -19,15 +19,20 @@ def _cc(s):
 
 # ---------------- 검사 도구 화면(humanize.js 가 쓰는 id 그대로, 엔진 화면은 형제 사이트와 같음) ----------------
 TOOL_TPL = _cc(_A.TOOL_TPL).replace("AI로 쓴 글, 과제 · 논문 · 자기소개서를 붙여 넣으세요", "검사할 글을 붙여 넣으세요. 논문 · 레포트 · 자기소개서 모두 됩니다")
+# 2026.11.26 대표 '휴머나이징 말을 줄이고 AI 작성률 낮추기 중심으로': 도구 세 단계의 셋째 칸 이름과 낮추기 단추 이름만(엔진 화면 틀은 그대로)
+TOOL_TPL = TOOL_TPL.replace('<span class="f">휴머나이징</span><span class="s">다듬기</span>', '<span class="f">AI 작성률 낮추기</span><span class="s">낮추기</span>').replace('<span>휴머나이징<small>AI 작성률 낮추기</small></span>', '<span>AI 작성률 낮추기<small>휴머나이징</small></span>')\
+    .replace('글자 수는 AI 작성률 검사와 휴머나이징을 한 번씩 했을 때 기준', '글자 수는 AI 작성률 검사와 AI 작성률 낮추기를 한 번씩 했을 때 기준')
 
 # ---------------- 홈 ----------------
 HOME = {
-    "title": "카피체크 | AI 작성률 검사 · AI 유사도 낮추기 · AI 휴머나이징",
-    "desc": "카피체크(CopyCheck)는 논문 · 레포트 · 자기소개서의 AI 작성률과 AI 유사도를 문장 단위로 무료 검사하고, 걸린 문장만 사람 문장으로 바꾸는 AI 휴머나이징 서비스입니다. 가입 없이 한글 · 워드 · PDF 그대로.",
+    "title": "카피체크 | AI 작성률 낮추기 · AI 작성률 검사 · AI 휴머나이징",   # 2026.11.26 고객이 원하는 결과(AI 작성률 낮추기)를 앞에. 예전: 카피체크 | AI 작성률 검사 · AI 유사도 낮추기 · AI 휴머나이징
+    "desc": "카피체크(CopyCheck)는 논문 · 레포트 · 자기소개서의 AI 작성률(AI 유사도)을 문장 단위로 무료 검사하고, 원문의 의미는 그대로 AI 작성 패턴만 자연스러운 문장으로 개선해 AI 작성률을 낮춥니다. 회원가입 없이 한글 · Word · PDF 그대로.",
     "keywords": "카피체크, CopyCheck, AI 작성률 검사, AI 작성률 낮추기, AI 유사도 검사, AI 유사도 낮추기, AI 휴머나이징, AI 휴머나이저, AI 작성 흔적 검사, AI 판별, AI 탐지 낮추기, 논문 AI 검사, 자기소개서 AI 검사, 레포트 AI 검사",
-    "eyebrow": "가입 없이 무료 AI 작성률 검사",
-    "h1": '<span class="kw">제출 전 AI 작성률 검사 · AI 휴머나이징</span>AI로 쓴 문장은<br><em>제출 전에 걸러 냅니다</em>.',
-    "lead": "<b>카피체크</b>는 내 글에서 AI 탐지기에 걸리는 문장을 먼저 찾아 보여 주고, 그 문장만 골라 사람이 쓴 한국어로 바꿉니다. 바꾼 뒤에는 처음과 같은 기준으로 다시 재서, AI 작성률이 얼마나 내려갔는지 숫자로 확인시켜 드립니다.",
+    # 2026.11.26 대표 전 → 후(구매 전환 · 이탈 없이, 서비스 목적이 바로 보이게). 예전: 알약 '가입 없이 무료 AI 작성률 검사' · 위 줄 '제출 전 AI 작성률 검사 · AI 휴머나이징' ·
+    # 제목 'AI로 쓴 문장은 / 제출 전에 걸러 냅니다.' · 설명 '카피체크는 내 글에서 AI 탐지기에 걸리는 문장을 먼저 찾아 보여 주고, 그 문장만 골라 사람이 쓴 한국어로 바꿉니다. 바꾼 뒤에는 처음과 같은 기준으로 다시 재서, AI 작성률이 얼마나 내려갔는지 숫자로 확인시켜 드립니다.'
+    "eyebrow": "회원가입 없이 무료 검사",
+    "h1": '<span class="kw">AI 작성률 검사부터 문장 개선까지</span>원문의 의미는 그대로,<br><em>AI 작성률은 대폭 낮추세요</em>.',
+    "lead": "<b>카피체크</b>는 AI 작성 패턴을 정밀하게 분석하고, 원문의 의미와 맥락을 유지하면서 자연스러운 문장으로 개선합니다. 개선 전후 AI 작성률을 비교하고 변화된 결과를 직접 확인하세요.",
     "faq": [
         ("카피체크는 어떤 서비스인가요?", "제출하기 전에 글의 AI 작성률(AI 유사도)을 문장 단위로 검사하고, AI 패턴으로 걸린 문장을 사람 문장으로 바꾸는 서비스입니다. 검사, 휴머나이징, 재검사가 한 화면에서 이어지며 검사는 가입 없이 무료입니다."),
         ("AI 유사도와 AI 작성률은 같은 말인가요?", "네. 학교와 서비스마다 부르는 이름만 다릅니다. 글에서 AI가 쓴 것으로 판별된 문장이 차지하는 비율을 뜻하며, 다른 글과 겹치는 정도를 보는 표절률과는 다른 숫자입니다."),
@@ -44,7 +49,7 @@ HOME = {
 HOW_STEPS = [
     ("글 넣기", "글을 붙여 넣거나 한글 · 워드 · PDF 파일을 올립니다. 파일 속 글은 브라우저 안에서 꺼내며 어디에도 저장하지 않습니다."),
     ("AI 작성률 검사", "문장마다 앞뒤 문맥과 함께 판별해 AI 작성률과 판정, AI로 걸린 문장을 색으로 보여 드립니다. 여기까지 무료입니다."),
-    ("걸린 문장만 휴머나이징", "걸린 문장의 번역투 · 상투적 연결어 · 같은 끝맺음을 사람 문장으로 바꾸고, 같은 기준으로 다시 재서 전후를 보여 드립니다."),
+    ("AI 작성 패턴 집중 개선", "AI 작성 의심 문장의 번역투 · 상투적 연결어 · 같은 끝맺음을 자연스러운 문장으로 바꾸고, 같은 기준으로 다시 재서 전후를 보여 드립니다."),   # 2026.11.26 예전: 걸린 문장만 휴머나이징
 ]
 
 
@@ -78,13 +83,13 @@ def scale_section(ico):
             '<div class="scale-bar rv" aria-hidden="true"><span style="left:20%%">20%%</span><span style="left:40%%">40%%</span></div><div style="height:22px"></div>'
             '<div class="scale rv"><div class="g"><b><i></i>안전 · 20%% 미만</b><p>AI 패턴이 거의 없습니다. 많은 학교와 기관이 기준선으로 보는 구간입니다.</p></div>'
             '<div class="w"><b><i></i>고위험 · 20~40%%</b><p>걸린 문장이 섞여 있습니다. 표시된 문장만 다듬어도 대개 안전 구간으로 내려갑니다.</p></div>'
-            '<div class="r"><b><i></i>부적합 · 40%% 이상</b><p>AI가 쓴 글로 볼 가능성이 높습니다. 제출 전에 휴머나이징을 권합니다.</p></div></div>'
+            '<div class="r"><b><i></i>부적합 · 40%% 이상</b><p>AI가 쓴 글로 볼 가능성이 높습니다. 제출 전에 AI 작성률 낮추기를 권합니다.</p></div></div>'
             '<p class="center measured">제출처마다 기준이 다를 수 있으니 학교 · 기관의 AI 사용 규정을 함께 확인하세요.</p></div></section>') % ico("gauge")
 
 
 def how_section(ico):
     steps = "".join('<div class="step rv"><h3>%s%s</h3><p>%s</p></div>' % (a, '<span class="tg">무료</span>' if i < 2 else "", b) for i, (a, b) in enumerate(HOW_STEPS))
-    return ('<section class="sec alt" id="how"><div class="wrap"><div class="center"><p class="kick">%s이용 방법</p><h2 class="h2">검사부터 휴머나이징까지,<br><em>한 화면에서 세 단계</em></h2><p class="sub">가입도 설치도 없습니다. 결제가 필요할 때만 운영사 성균관컨설팅 결제 페이지에서 바로 결제합니다.</p></div>'
+    return ('<section class="sec alt" id="how"><div class="wrap"><div class="center"><p class="kick">%s이용 방법</p><h2 class="h2">검사부터 문장 개선까지,<br><em>한 화면에서 세 단계</em></h2><p class="sub">가입도 설치도 없습니다. 결제가 필요할 때만 운영사 성균관컨설팅 결제 페이지에서 바로 결제합니다.</p></div>'
             '<div class="steps">%s</div><div class="flow" aria-label="결제 흐름"><span>토큰 고르기</span>%s<span>성균관컨설팅 결제(가입 없이)</span>%s<span>메일로 16자리 코드(보통 1분 안)</span>%s<span class="k">하던 글 그대로 이어서</span></div></div></section>') % (
         ico("zap"), steps, ico("arrow"), ico("arrow"), ico("arrow"))
 
@@ -110,13 +115,13 @@ def compare_table(ico, brand):
             ("결제 방식", "-", "건당 · 월 구독", "달러 월 구독", '<span class="yes">원화 충전 · 구독 없음</span>')]
     body = "".join("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td class=\"me\">%s</td></tr>" % r for r in rows)
     return ('<section class="sec alt"><div class="wrap"><div class="center"><p class="kick">%s비교</p><h2 class="h2">직접 고치기 · 검사 전용 · 해외 변환기와<br>견주어 보세요</h2>'
-            '<p class="sub">검사와 휴머나이징, 재측정을 한 곳에서 이어서 하면 고치는 시간이 크게 줄어듭니다.</p></div>'
+            '<p class="sub">검사와 문장 개선, 재측정을 한 곳에서 이어서 하면 고치는 시간이 크게 줄어듭니다.</p></div>'
             '<div class="tbl-w rv"><table class="tbl"><thead><tr><th>기준</th><th>직접 고치기</th><th>검사 전용 서비스</th><th>해외 문장 변환기</th><th class="me">%s</th></tr></thead><tbody>%s</tbody></table></div></div></section>') % (ico("scale"), brand, body)
 
 
 def usecases_section(ico):
     U = [("cap", "학위논문 · 학술지", "심사와 투고 전에 장별로 AI 작성률을 점검하세요. 학술 용어와 통계값은 그대로, AI 말버릇만 덜어 냅니다."),
-         ("file", "레포트 · 과제", "AI 검사로 과제를 거르는 수업이 늘었습니다. 레포트 한 편은 1분이면 검사와 휴머나이징이 끝납니다."),
+         ("file", "레포트 · 과제", "AI 검사로 과제를 거르는 수업이 늘었습니다. 레포트 한 편은 1분이면 검사와 개선이 끝납니다."),
          ("users", "자기소개서 · 지원서", "서류 전형의 AI 판별에 대비하세요. 습니다체와 내 경험은 그대로 두고 문장만 사람답게 바꿉니다."),
          ("bars", "보고서 · 사업계획서", "정부지원사업 계획서와 사내 보고서도 됩니다. 정해진 틀의 문장에서 AI 티를 덜어 냅니다.")]
     cards = "".join('<a class="card rv" href="/#tool" data-tool><span class="ic">%s</span><h3>%s</h3><p>%s</p><p class="more">내 글로 무료 검사 →</p></a>' % (ico(i), a, b) for i, a, b in U)
