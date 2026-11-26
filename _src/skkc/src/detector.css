@@ -216,3 +216,4 @@
 .ccx { --ccx-blue: #10a366; --ccx-blue-deep: #0a794a; --ccx-blue-soft: #e7f7ef; }
 /* 첫 칸 위 5px 흰 틈(섹션 위 여백)을 덮어 머리글 바로 아래에 붙임 */
 .ccd { margin-top: -5px; }
+#s20260708fe0ddbaafbfaa { scroll-margin-top: 85px; }

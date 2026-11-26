@@ -382,6 +382,10 @@
   .cch .cch-btn, .cch .cch-quote, .cch .cch-stat, .cch .cch-doc { transition: none; }
 }
 
+/* 이 쪽에만 있는 빈 아임웹 머리글 칸(최소 높이 30px)이 첫 칸 위에 흰 틈을 만들어 높이만 0 으로 */
+#inline_header_normal { min-height: 0; }
+.cch .cch-case { scroll-margin-top: 85px; }
+
 /* 예전 이미지 위젯 7개는 지우지 않고 숨김(되돌릴 때 이 규칙만 빼면 됨) */
 #w202608145a43a23926aec, #w20260814745e4df2f6776, #w202608145ea4967240805, #w2026081452d49bb98cd84,
 #w20260814fc27fdb0c2450, #w20260814badb9115bf8d8, #w2026081489a04aac658ff { display: none; }
