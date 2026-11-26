@@ -73,7 +73,7 @@
       say('<span class="dot"></span>AI 작성률 검사 중');
       demo.classList.remove('scanning'); void demo.offsetWidth; demo.classList.add('scanning');
       sents.forEach(function (x, j) { later(function () { x.classList.remove('pre'); }, RM ? 0 : 260 + j * 230); });
-      later(function () { count(mFrom, 0, S.before.rate, RM ? 1 : 900, S.before.band); say('<b class="bad">AI 작성률 ' + S.before.rate + '% · ' + bandS(S.before.band) + '</b> · AI 작성 의심 문장 ' + S.before.n + '개'); }, RM ? 0 : 260 + sents.length * 230);
+      later(function () { count(mFrom, 0, S.before.rate, RM ? 1 : 900, S.before.band); say('<b class="bad">AI 작성률 ' + S.before.rate + '% · ' + bandS(S.before.band) + '</b> · AI 패턴 문장 ' + S.before.n + '개'); }, RM ? 0 : 260 + sents.length * 230);
       later(function () { if (!hover) humanize(); }, RM ? 400 : 1400 + sents.length * 230 + 1600);
     }
     function humanize() {
@@ -119,7 +119,7 @@
       L.innerHTML = S.src; R.innerHTML = S.dst;
       pl.className = 'pill l ' + bandCls(S.before.band); pl.textContent = 'AI 작성률 ' + S.before.rate + '% · ' + bandS(S.before.band);
       pr.className = 'pill r ' + bandCls(S.after.band); pr.textContent = 'AI 작성률 ' + S.after.rate + '% · ' + bandS(S.after.band);
-      if (ft) ft.innerHTML = '<span>AI 작성 의심 문장 <b>' + S.before.n + '개 → ' + S.after.n + '개</b></span><span>바꾼 곳 <b>' + S.changes + '곳</b></span><span>숫자 · 이름 · 인용 <b>그대로</b></span>';
+      if (ft) ft.innerHTML = '<span>AI 패턴 문장 <b>' + S.before.n + '개 → ' + S.after.n + '개</b></span><span>바꾼 곳 <b>' + S.changes + '곳</b></span><span>숫자 · 이름 · 인용 <b>그대로</b></span>';
     }
     $$('.cmp-tabs button').forEach(function (b, j) { b.addEventListener('click', function () { pick(j); }); });
     pick(0);
