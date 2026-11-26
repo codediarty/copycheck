@@ -35,7 +35,7 @@ SITE = "https://copycheck.skkc.co.kr"
 HOST = "copycheck.skkc.co.kr"
 BRAND = "카피체크"
 BRAND_KO = "CopyCheck"
-VER = "20261126c"   # 2026.11.26 18:1x 대표: 예시 창 'AI 작성 의심 문장' → 'AI 패턴 문장'(예전 20261126b: 밝은 바탕 · 새 로고 · 첫 화면 문구, 그 전 20261125c)
+VER = "20261126d"   # 2026.11.26 18:1x 대표 '응 같이 바꿔': 단계 설명 · 권유 띠 · 바닥글 · 충전 안내도 'AI 패턴 문장'(예전 20261126c). 18:1x 대표: 예시 창 'AI 작성 의심 문장' → 'AI 패턴 문장'(예전 20261126b: 밝은 바탕 · 새 로고 · 첫 화면 문구, 그 전 20261125c)
 TODAY = "2026-11-26"
 # 카피체크 배포(AIMarker 서버 프로젝트 버전 55, 엔진은 AIMarker 와 같음 · 2026.11.25 22:48, CC서버.gs 1.0.0)
 API = "https://script.google.com/macros/s/AKfycbz3qUbNNd_21wHvi6EGHAz1_lrRJ7LAzzIYlIeg4U0bm8m-ioqHLPJV1UzatPmpOfkOFg/exec"
@@ -160,7 +160,7 @@ def footer(home=False):
     ]
     c = "".join('<div><h4>%s</h4><ul>%s</ul></div>' % (h, "".join('<li><a href="%s">%s</a></li>' % (u, t) for u, t in L)) for h, L in cols)
     kw = "".join('<a href="%s"><span>%s</span></a>' % (u, t) for u, t in FT_KW + (FT_KW_HOME if home else FT_KW_SUB))
-    return ('<footer class="ft"><div class="wrap"><div class="ft-top"><div>%s<p>카피체크 | AI 작성률 검사부터 문장 개선까지.<br>AI 작성 의심 문장을 찾고, 원문의 의미는 그대로 자연스럽게 바꾸고, 같은 기준으로 다시 잽니다.</p><div class="ft-kw">%s</div></div>%s</div>'
+    return ('<footer class="ft"><div class="wrap"><div class="ft-top"><div>%s<p>카피체크 | AI 작성률 검사부터 문장 개선까지.<br>AI 패턴 문장을 찾고, 원문의 의미는 그대로 자연스럽게 바꾸고, 같은 기준으로 다시 잽니다.</p><div class="ft-kw">%s</div></div>%s</div>'
             '<div class="ft-biz"><b>운영</b> %s · 대표 %s · 사업자등록번호 %s · 통신판매업 신고 %s<br>%s · %s<br>성균관대학교 RISE 사업단 지원 · 한국AI윤리위원회 인증<br>'
             '다른 AI 탐지 서비스의 이름은 각 권리자의 상표이며, 카피체크는 해당 서비스와 제휴 관계가 없습니다. AI 작성률과 판정은 카피체크 판정 기준으로 계산한 추정값입니다.<br>© 2026 카피체크(CopyCheck). All rights reserved.</div></div></footer>'
             '<div class="mcta" id="mcta"><a class="btn btn-p" href="/#tool" data-tool>%s무료 검사</a><a class="btn btn-g" href="/pricing/">요금 보기</a></div>') % (
@@ -455,7 +455,7 @@ def calc_block():
             '<script type="application/json" id="calcData">%s</script></div>') % (btns, data)
 
 
-def cta_band(h="제출 전 30초, AI 작성률부터 확인하세요", p="회원가입도 카드 등록도 없이 무료로 검사합니다. AI 작성 의심 문장이 있을 때만 개선하면 됩니다."):   # 2026.11.26 '휴머나이징' 말을 줄임(예전: 가입도 카드 등록도 없이 무료로 검사합니다. 걸리는 문장이 있을 때만 휴머나이징하면 됩니다.)
+def cta_band(h="제출 전 30초, AI 작성률부터 확인하세요", p="회원가입도 카드 등록도 없이 무료로 검사합니다. AI 패턴 문장이 있을 때만 개선하면 됩니다."):   # 2026.11.26 '휴머나이징' 말을 줄임(예전: 가입도 카드 등록도 없이 무료로 검사합니다. 걸리는 문장이 있을 때만 휴머나이징하면 됩니다.)
     return ('<section class="sec-s cta-sec"><div class="wrap"><div class="cta rv"><h2>%s</h2><p>%s</p><div class="btns"><a class="btn btn-p btn-l" href="/#tool" data-tool>%s무료로 AI 작성률 검사</a>'
             '<a class="btn btn-g btn-l" href="/pricing/">요금 보기</a></div></div></div></section>') % (h, p, ico("search"))
 

@@ -149,7 +149,7 @@
         oB.textContent = P.name + ' 충전하기'; oB.href = '/#buy-' + P.id; oB.setAttribute('data-buy', P.id); oB.removeAttribute('target');   /* 2026.11.25 대표: 충전 창 먼저(예전: oB.href = P.link || '/pricing/' · 새 창) */
       } else {
         var k = Math.ceil(t / big.tok);
-        oR.innerHTML = '긴 글이네요. <b>' + big.name + ' ' + k + '개</b>(' + (k * big.tok).toLocaleString('ko-KR') + '토큰)를 같은 코드에 충전하거나, AI 작성 의심 문장이 많은 장만 개선하면 토큰을 아낄 수 있습니다.';
+        oR.innerHTML = '긴 글이네요. <b>' + big.name + ' ' + k + '개</b>(' + (k * big.tok).toLocaleString('ko-KR') + '토큰)를 같은 코드에 충전하거나, AI 패턴 문장이 많은 장만 개선하면 토큰을 아낄 수 있습니다.';
         oB.textContent = big.name + ' 충전하기'; oB.href = '/#buy-' + big.id; oB.setAttribute('data-buy', big.id); oB.removeAttribute('target');   /* 2026.11.25 대표: 충전 창 먼저 */
       }
     }
