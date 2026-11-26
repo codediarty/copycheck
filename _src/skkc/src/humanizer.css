@@ -383,3 +383,8 @@
 /* 예전 이미지 위젯 7개는 지우지 않고 숨김(되돌릴 때 이 규칙만 빼면 됨) */
 #w202608145a43a23926aec, #w20260814745e4df2f6776, #w202608145ea4967240805, #w2026081452d49bb98cd84,
 #w20260814fc27fdb0c2450, #w20260814badb9115bf8d8, #w2026081489a04aac658ff { display: none; }
+
+/* 2026.11.26 18:1x 대표 '진짜 안 보이는 데 … 유사도 개선 맨 밑': 맨 아래 작은 함께 보기 줄. 숨기지 않고 작고 옅게(구글은 안 보이게 숨긴 링크를 스팸으로 봄) */
+.cch .cch-rel { display: block; margin: 0; padding: 16px 20px 20px; text-align: center; font-size: 12.5px; line-height: 1.6; color: #94a3b8; background: #fff; letter-spacing: -0.01em; }
+.cch .cch-rel a, .cch .cch-rel a:link, .cch .cch-rel a:visited { color: #64748b; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(100,116,139,0.45); }
+.cch .cch-rel a:hover { color: #0b7a4b; }
