@@ -155,6 +155,8 @@ def old_detector_parts():
     keep.append("@media (max-width: 1100px) {\n  .ccx .cc-diff__grid { grid-template-columns: repeat(2, 1fr) !important; }\n}\n"
                 "@media (max-width: 768px) {\n  .ccx .cc-diff { padding: 56px 18px 72px !important; }\n  .ccx .cc-diff__title { font-size: 26px !important; margin-bottom: 32px !important; }\n  .ccx .cc-diff__grid { grid-template-columns: 1fr !important; }\n}\n")
     html = s[s.index('<section class="cc-diff">'):s.rindex("</section>") + len("</section>")]
+    # 2026.11.26 사용자 요청: 'AI 의심' 대신 'AI 패턴'
+    html = html.replace("직관적인 리포트로 AI 사용 의심<br>현황을 쉽게 확인", "직관적인 리포트로 AI 패턴<br>현황을 쉽게 확인")
     return "".join(keep), '<div class="ccx">' + html + "</div>"
 
 
