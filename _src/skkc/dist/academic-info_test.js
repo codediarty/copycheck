@@ -37,8 +37,6 @@ if (p.tagName !== 'P') continue;
 if (isGap(p)) { p.className += ' ac-gap'; continue; }
 if (p.children.length && p.querySelector('img,iframe,video,table')) continue;
 t = clean(p.textContent);
-var next = kids[i + 1];
-if (lineMode && next && next.tagName === 'P' && !isGap(next)) p.className += ' ac-tight';
 if (/^■/.test(t)) { cut(p, /^\s*■\s*/); p.className += ' ac-h'; continue; }
 if (!squares && !semantic && t.length <= 32 && /^\d{1,2}\.\s/.test(t) && !/[.!?다요]$/.test(t)) { p.className += ' ac-h'; continue; }
 if (/^\d{1,2}단계\.\s/.test(t) && t.length <= 40) { p.className += ' ac-h3'; continue; }
@@ -54,13 +52,28 @@ if (as.length === 1 && /→/.test(t) && /^https?:/.test(clean(as[0].textContent)
 var label = clean(t.split('→')[0]);
 if (label && label.length <= 40) { var a = as[0]; a.textContent = label; p.textContent = ''; p.appendChild(a); p.className += ' ac-cta'; continue; }
 }
+var mu = !as.length && t.match(/^(.{2,40}?)\s*→\s*(https?:\S+)$/);
+if (mu) {
+var a2 = document.createElement('a'); a2.href = mu[2]; a2.textContent = clean(mu[1]);
+if (!/skkc\.co\.kr/.test(mu[2])) { a2.target = '_blank'; a2.rel = 'noopener'; }
+p.textContent = ''; p.appendChild(a2); p.className += ' ac-cta'; continue;
+}
+var ms = t.match(/^STEP\s*(\d{1,2})\.?\s+/i);
+if (ms) { cut(p, /^\s*STEP\s*\d{1,2}\.?\s*/i); p.setAttribute('data-n', ms[1]); boldLabel(p); p.className += ' ac-num'; continue; }
 if (/^[-–•·]\s/.test(t)) { cut(p, /^\s*[-–•·]\s*/); boldLabel(p); p.className += ' ac-li'; continue; }
 var mn = t.match(/^(\d{1,2})\.\s/);
 if (mn) { cut(p, /^\s*\d{1,2}\.\s*/); p.setAttribute('data-n', mn[1]); boldLabel(p); p.className += ' ac-num'; continue; }
 if (/^["“].{2,}["”]$/.test(t) && t.length <= 90) { p.className += ' ac-q'; continue; }
+if (/^[^:：]{2,14}?\s+[:：]\s+\S/.test(t)) boldLabel(p);
 p.setAttribute('data-acp', '1');
 }
 if (!lineMode) return;
+for (i = 0; i < kids.length - 1; i++) {
+p = kids[i];
+var nx = kids[i + 1];
+if (p.tagName !== 'P' || isGap(p) || nx.tagName !== 'P' || isGap(nx) || /ac-h/.test(p.className)) continue;
+if (/ac-(li|num|q)/.test(p.className) || clean(p.textContent).length <= 60) p.className += ' ac-tight';
+}
 var run = [];
 function flush() {
 var ok = run.length >= 3;
