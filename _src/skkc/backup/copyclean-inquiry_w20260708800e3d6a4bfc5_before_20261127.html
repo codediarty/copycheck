@@ -1,0 +1,288 @@
+<style>
+    .cc-ent-wrap {
+      font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding: 96px 24px;
+      background: #fff;
+    }
+  
+    .cc-ent-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+  
+    /* 제목 영역 */
+    .cc-ent-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+  
+    .cc-ent-title {
+      font-size: 44px;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.4;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+  
+    .cc-ent-title .highlight {
+      color: #2563eb;
+    }
+  
+    .cc-ent-subtitle {
+      font-size: 18px;
+      color: #64748b;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+  
+    /* 3열 카드 */
+    .cc-ent-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+  
+    @media (max-width: 900px) {
+      .cc-ent-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .cc-ent-title {
+        font-size: 28px;
+        line-height: 1.3;
+      }
+      
+      .cc-ent-subtitle {
+        font-size: 15px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .cc-ent-title {
+        font-size: 24px;
+        line-height: 1.2;
+      }
+      
+      .cc-ent-subtitle {
+        font-size: 14px;
+        line-height: 1.2;
+      }
+      
+      .cc-ent-header {
+        margin-bottom: 40px;
+      }
+      
+      .cc-ent-wrap {
+        padding: 60px 16px;
+      }
+    }
+  
+    .cc-ent-card {
+      background: #f8fafc;
+      border-radius: 20px;
+      padding: 36px 32px;
+      border: 1px solid #f1f5f9;
+      transition: all 0.3s ease;
+    }
+  
+    .cc-ent-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+      border-color: #e2e8f0;
+    }
+  
+    .cc-ent-card-icon {
+      width: 72px;
+      height: 72px;
+      background: #fff;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      border: 1px solid #f1f5f9;
+    }
+  
+    .cc-ent-card-icon svg {
+      width: 33px;
+      height: 33px;
+      stroke: #64748b;
+    }
+  
+    .cc-ent-card-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 10px;
+    }
+  
+    .cc-ent-card-name {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+  
+    .cc-ent-card-desc {
+      font-size: 16px;
+      color: #64748b;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+  
+    /* CTA 버튼 */
+    .cc-ent-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+  
+    .cc-ent-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 40px;
+      background: #0f172a;
+      color: #fff !important;
+      border-radius: 14px;
+      font-size: 18px;
+      font-weight: 800;
+      text-decoration: none !important;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+    }
+  
+    .cc-ent-btn:hover {
+      background: #2563eb;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px rgba(37, 99, 235, 0.2);
+    }
+  
+    .cc-ent-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .cc-ent-email {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      color: #64748b;
+      font-weight: 500;
+    }
+    
+    .cc-ent-email svg {
+      width: 20px;
+      height: 20px;
+      stroke: #64748b;
+    }
+    
+    .cc-ent-email a {
+      color: #2563eb !important;
+      text-decoration: none !important;
+      font-weight: 600;
+    }
+    
+    .cc-ent-email a:hover {
+      text-decoration: underline !important;
+    }
+  </style>
+  
+  <div class="cc-ent-wrap">
+    <div class="cc-ent-inner">
+  
+      <!-- 제목 -->
+      <div class="cc-ent-header">
+<div class="cc-ent-title"> 
+  <span class="highlight">카피클린(CopyClean)</span>은 기업·기관·대학에 <span class="highlight">제출된 문서의</span><br>
+  <span class="highlight">AI 사용 여부</span>와 AI작성률을 <span class="highlight">필터링하는 문서검사 서비스</span>입니다.
+</div>
+   
+      </div>
+  
+      <!-- 3열 카드 -->
+      <div class="cc-ent-grid">
+  
+        <!-- 대학교용 구축형 -->
+        <div class="cc-ent-card">
+          <div class="cc-ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+            </svg>
+          </div>
+          <div class="cc-ent-card-label">대학교용 구축형</div>
+          <div class="cc-ent-card-name">대학 전용<br>카피클린 구축</div>
+          <div class="cc-ent-card-desc">
+            학내 LMS, 과제 제출 시스템, <br>논문 관리 시스템과 연동하여<br>
+            AI 유사도 및 표절 검사를 <br>무제한으로 자동화할 수 있습니다.
+          </div>
+        </div>
+  
+        <!-- 기업용 구축형 -->
+        <div class="cc-ent-card">
+          <div class="cc-ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <div class="cc-ent-card-label">기업용 구축형</div>
+          <div class="cc-ent-card-name">기업 전용<br>카피클린 구축</div>
+          <div class="cc-ent-card-desc">
+            사내 문서 검증, 보고서 품질 관리, <br>생성형 AI 사용 점검을 위해<br>
+            내부 보안 환경에 맞춘 독립 시스템을 <br>무제한 제공합니다.
+          </div>
+        </div>
+  
+        <!-- 기관용 구축형 -->
+        <div class="cc-ent-card">
+          <div class="cc-ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
+              <rect x="9" y="9" width="6" height="6"/>
+              <line x1="9" y1="1" x2="9" y2="4"/>
+              <line x1="15" y1="1" x2="15" y2="4"/>
+              <line x1="9" y1="20" x2="9" y2="23"/>
+              <line x1="15" y1="20" x2="15" y2="23"/>
+            </svg>
+          </div>
+          <div class="cc-ent-card-label">기관용 구축형</div>
+          <div class="cc-ent-card-name">기관 전용<br>카피클린 구축</div>
+          <div class="cc-ent-card-desc">
+            폐쇄망 및 내부 보안 정책에 맞춰 무제한으로<br>
+            문서 유사도 검증 시스템을 <br>독립적으로 구축할 수 있습니다.
+          </div>
+        </div>
+  
+      </div>
+  
+      <!-- CTA 버튼 -->
+      <div class="cc-ent-cta">
+        <a href="https://skcdesk.channel.io/home" target="_blank" class="cc-ent-btn">
+          카피클린 도입 문의하기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
+        <div class="cc-ent-email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          문의 <a href="mailto:consult@skku.edu">consult@skku.edu</a>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
