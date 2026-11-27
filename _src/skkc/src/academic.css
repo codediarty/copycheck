@@ -161,7 +161,7 @@
 #w20260818cbad0e3273d77 .li_board .li_body:hover { background: #f8fafc; }
 #w20260818cbad0e3273d77 .li_board .li_body > li.count { flex: 0 0 72px; width: 72px; margin: 0; padding: 22px 0; float: none; text-align: center; font-size: 14px; font-weight: 600; color: #94a3b8; font-variant-numeric: tabular-nums; }
 #w20260818cbad0e3273d77 .li_board .li_body > li.tit { flex: 1 1 auto; width: auto; margin: 0; padding: 22px 20px 22px 0; float: none; text-align: left; }
-#w20260818cbad0e3273d77 .li_board .li_body .list_text_title, #w20260818cbad0e3273d77 .li_board .li_body .list_text_title span { font-size: 17px; font-weight: 600; line-height: 1.5; letter-spacing: -0.02em; color: #0f172a; text-decoration: none; word-break: keep-all; }
+#w20260818cbad0e3273d77 .li_board .li_body .list_text_title, #w20260818cbad0e3273d77 .li_board .li_body .list_text_title span { font-size: 17px; font-weight: 600; line-height: 1.5; letter-spacing: -0.02em; color: #0f172a; text-decoration: none; word-break: keep-all; text-wrap: pretty; }
 #w20260818cbad0e3273d77 .li_board .li_body:hover .list_text_title span { color: #175df6; }
 
 /* ── 좁은 화면 ── */
