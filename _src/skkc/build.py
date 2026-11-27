@@ -325,6 +325,9 @@ SKP_PAGES = {
                        "hide_s": ["s20260708dfc1adf52dd17"]},
     "reviews": {"first": "s20260708e6feeafa329f2", "first_w": ["w2026070832172f8bcf689", "w202607084e558c1212915", "w2026070890ee26f19e70b"],
                 "hide_s": ["s20260708e9085b48fecef"]},
+    # 2026.11.27 22:45 '여기도 좀 잘 바꿔봐'. 둘째 칸(s2026070870b8543218885)은 지우지 않고 thesis-consulting.css 에서 폼 · 자주 묻는 질문만 남겨 모양을 바꿈
+    "thesis-consulting": {"first": "s20260708a3c65e18cbed6", "first_w": ["w2026070830cf2f3f95856", "w202607086a8723a2ab49e", "w2026070864246139d0abc"],
+                          "hide_s": []},
 }
 
 
