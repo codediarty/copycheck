@@ -6,6 +6,7 @@
   -> dist/preview_*.html (로컬 확인용, 아임웹 머리글 흉내 + 로컬 글꼴)
 CSS 는 src/*.css 에 보통으로 쓰고, 아임웹 기본 CSS 에 지지 않게 모든 선언에 !important 를 붙임(@keyframes 안은 빼고)."""
 import os
+import json
 import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -245,6 +246,20 @@ def build_pricing():
     return len(code)
 
 
+def build_academic():
+    """2026.11.27 /academic-info 학술정보 게시판 글 보기 · 목록 모양(코드 위젯 하나: 스타일 + 예전 글 정리 스크립트). 저장된 글은 그대로."""
+    css = minify(importantize(open(os.path.join(SRC, "academic.css"), encoding="utf-8").read()))
+    js = open(os.path.join(SRC, "academic.js"), encoding="utf-8").read()
+    js = re.sub(r"/\*.*?\*/", "", js, flags=re.S)
+    js = "\n".join(l.strip() for l in js.split("\n") if l.strip())
+    assert "//" not in js, "아임웹이 주석으로 볼 수 있는 // 이 스크립트에 있음"
+    code = "%s\n<style>\n%s\n</style>\n<script>\n%s\n</script>" % (FONT_LINK, css, js)
+    open(os.path.join(DIST, "academic-info_widget.html"), "w", encoding="utf-8").write(code)
+    open(os.path.join(DIST, "academic-info_test.js"), "w", encoding="utf-8").write(
+        "(function(){var s=document.getElementById('acTestStyle')||document.createElement('style');s.id='acTestStyle';s.textContent=%s;document.head.appendChild(s);})();\n%s" % (json.dumps(css, ensure_ascii=False), js))
+    return len(code)
+
+
 def build_humanizer():
     p = os.path.join(SRC, "humanizer.css")
     if not os.path.exists(p):
@@ -260,4 +275,4 @@ def build_humanizer():
 
 
 if __name__ == "__main__":
-    print("detector", build_detector(), "detector_more", build_detector_more(), "inquiry", build_inquiry(), "pricing", build_pricing(), "humanizer", build_humanizer())
+    print("detector", build_detector(), "detector_more", build_detector_more(), "inquiry", build_inquiry(), "pricing", build_pricing(), "academic", build_academic(), "humanizer", build_humanizer())
