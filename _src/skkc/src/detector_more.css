@@ -1,0 +1,252 @@
+/* 카피클린 AI 사용 여부 확인(/ai-detector) 아래 칸(.ccv)
+   2026.11.27 대표 '이런 데도 너무 확대되어 있다 · 밤티 같다': 그림 9장(띠 1 + 갤러리 8)을 글자로 다시 만듦.
+   바탕 규칙(.cch)은 /ai-humanizer 와 같은 것을 빌드할 때 humanizer.css 에서 가져오고, 여기는 이 쪽에만 쓰는 것.
+   큰 그림 글씨가 확대된 느낌이 싫다고 해서 /ai-humanizer 보다 제목 · 여백을 조금 작게. */
+
+.ccv .cch-sec { padding: 92px 40px; }
+.ccv .cch-h2 { font-size: clamp(26px, 1.1vw + 17px, 36px); }
+.ccv .cch-head { margin-bottom: 44px; }
+
+/* 0. 맨 위 띠 */
+.ccv .ccv-lead { padding: 12px 40px 0; }
+.ccv .ccv-band { margin-top: 0; padding: 30px 36px; }
+.ccv .ccv-band .cch-band__txt b { font-size: clamp(20px, 0.7vw + 15px, 25px); }
+.ccv .ccv-band .cch-band__txt span { color: #6ee7b7; font-size: 15.5px; font-weight: 700; }
+
+/* 1. 문서 */
+.ccv .ccv-docs { padding-top: 84px; }
+.ccv .ccv-intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 56px; align-items: center; margin-bottom: 52px; }
+.ccv .ccv-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+.ccv .ccv-brand__logo { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+  background: linear-gradient(135deg, #12a86a, #0b7a4b); box-shadow: 0 6px 14px rgba(16,163,102,0.28); }
+.ccv .ccv-brand__logo svg { width: 18px; height: 18px; stroke: #fff; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ccv .ccv-brand b { font-size: 20px; font-weight: 800; letter-spacing: -0.03em; color: #0f172a; line-height: 1; }
+.ccv .ccv-brand small { padding-top: 3px; font-size: 10.5px; font-weight: 800; letter-spacing: 0.2em; color: #64748b; line-height: 1; }
+.ccv .ccv-intro .cch-sub { max-width: 600px; }
+.ccv .ccv-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.ccv .ccv-chips li { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px 8px 10px; border-radius: 999px; background: #fff; border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(15,23,42,0.05); font-size: 13.5px; font-weight: 650; color: #334155; line-height: 1.3; white-space: nowrap; }
+.ccv .ccv-chips svg { width: 16px; height: 16px; stroke: #0e9a62; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.ccv .ccv-seal { display: block; width: 172px; height: 172px; flex-shrink: 0; margin-right: 12px; filter: drop-shadow(0 18px 26px rgba(146,104,22,0.26)); }
+.ccv .ccv-seal svg { width: 100%; height: 100%; }
+.ccv .ccv-seal text { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+.ccv .ccv-seal .ccv-seal__ring { font-size: 12.5px; font-weight: 800; letter-spacing: 0.04em; }
+.ccv .ccv-seal .ccv-seal__c1 { font-size: 12px; font-weight: 800; letter-spacing: 0.24em; fill: #9a6f1c; }
+.ccv .ccv-seal .ccv-seal__c2 { font-size: 19px; font-weight: 900; letter-spacing: 0.02em; fill: #4a3508; }
+.ccv .ccv-seal .ccv-seal__c3 { font-size: 11px; font-weight: 800; letter-spacing: 0.16em; fill: #9a6f1c; }
+.ccv .ccv-docs__bar { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding-top: 32px; margin-bottom: 20px; border-top: 1px solid #e7ebf0; }
+.ccv .ccv-docs__bar h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.025em; color: #0f172a; line-height: 1.35; }
+.ccv .ccv-docs__bar p { margin-top: 6px; font-size: 15px; line-height: 1.6; color: #64748b; }
+.ccv .ccv-tag { flex-shrink: 0; padding: 6px 12px; border-radius: 999px; background: #f1f5f9; border: 1px solid #e2e8f0; font-size: 12.5px; font-weight: 700; color: #475569; white-space: nowrap; line-height: 1.3; }
+.ccv .cch-doclist { gap: 14px; }
+.ccv .cch-doc { padding: 19px 44px 19px 19px; border-radius: 18px; }
+.ccv .cch-doc b { font-size: 16px; }
+
+/* 2. 인증서(남색) */
+.ccv .ccv-cert { color: #fff; background: radial-gradient(900px 520px at 85% 0%, rgba(16,163,102,0.16), rgba(16,163,102,0) 70%), linear-gradient(180deg, #0f172a 0%, #0b1220 100%); }
+.ccv .ccv-cert .cch-eb { color: #34d399; }
+.ccv .ccv-cert .cch-eb::before { background: #34d399; }
+.ccv .ccv-cert .cch-h2 { color: #fff; }
+.ccv .ccv-cert .cch-h2 em { color: #6ee7b7; background: linear-gradient(rgba(110,231,183,0) 66%, rgba(110,231,183,0.16) 66%, rgba(110,231,183,0.16) 92%, rgba(110,231,183,0) 92%); }
+.ccv .ccv-cert .cch-sub { color: rgba(203,213,225,0.85); max-width: 520px; }
+.ccv .ccv-cert__grid { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr); gap: 64px; align-items: center; }
+.ccv .ccv-cert__note { display: flex; align-items: flex-start; gap: 14px; margin-top: 28px; padding: 18px 20px; border-radius: 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(148,163,184,0.22); }
+.ccv .ccv-cert__note i { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 38px; height: 38px; border-radius: 11px; background: rgba(110,231,183,0.12); font-style: normal; }
+.ccv .ccv-cert__note svg { width: 19px; height: 19px; stroke: #6ee7b7; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ccv .ccv-cert__note b { display: block; font-size: 16px; font-weight: 800; color: #fff; line-height: 1.4; letter-spacing: -0.02em; }
+.ccv .ccv-cert__note p { margin-top: 4px; font-size: 14px; line-height: 1.7; color: rgba(203,213,225,0.82); }
+.ccv .ccv-cert__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 12px 0 30px; }
+.ccv .ccv-cert__stats > div { padding: 16px 16px 14px; border-radius: 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(148,163,184,0.2); }
+.ccv .ccv-cert__stats dt { font-size: 23px; font-weight: 800; letter-spacing: -0.03em; color: #fff; line-height: 1.15; white-space: nowrap; }
+.ccv .ccv-cert__stats dt small { margin-left: 1px; font-size: 15px; font-weight: 800; color: #6ee7b7; }
+.ccv .ccv-cert__stats dd { margin-top: 6px; font-size: 13px; font-weight: 600; line-height: 1.45; color: rgba(203,213,225,0.78); }
+
+.ccv .ccv-cert__visual { position: relative; padding: 22px 30px 40px 18px; }
+.ccv .ccv-paper__back { position: absolute; z-index: 0; top: 40px; right: 8px; bottom: 18px; left: 44px; border-radius: 20px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(148,163,184,0.18); transform: rotate(3.5deg); }
+.ccv .ccv-paper { position: relative; z-index: 1; padding: 12px; border-radius: 16px; background: #fbf8f1; box-shadow: 0 44px 80px -34px rgba(0,0,0,0.75); transform: rotate(-1.2deg); }
+.ccv .ccv-paper__tag { position: absolute; z-index: 2; top: -11px; right: 22px; padding: 5px 11px; border-radius: 999px; background: #0b7a4b; color: #fff;
+  font-size: 11.5px; font-weight: 800; line-height: 1.3; box-shadow: 0 8px 16px -8px rgba(11,122,75,0.7); }
+.ccv .ccv-paper__in { position: relative; padding: 26px 26px 22px; border-radius: 8px; text-align: center; border: 1.5px solid #d6be86;
+  box-shadow: inset 0 0 0 4px #fbf8f1, inset 0 0 0 5px rgba(201,154,59,0.4);
+  background: radial-gradient(260px 160px at 50% 0%, rgba(214,190,134,0.16), rgba(214,190,134,0) 70%), #fffdf8; }
+.ccv .ccv-paper__org { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.ccv .ccv-paper__mark { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+  background: #0f172a; border: 2px solid #d4a443; color: #f3d98b; font-size: 12px; font-weight: 900; letter-spacing: 0.02em; line-height: 1; }
+.ccv .ccv-paper__org div { text-align: left; }
+.ccv .ccv-paper__org b { display: block; font-size: 14px; font-weight: 800; color: #1f2a37; letter-spacing: -0.01em; line-height: 1.25; }
+.ccv .ccv-paper__org small { display: block; margin-top: 2px; font-size: 8px; font-weight: 800; letter-spacing: 0.16em; color: #8a7a55; line-height: 1.2; }
+.ccv .ccv-paper__ttl { margin-top: 18px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em; color: #0f172a; line-height: 1.3; }
+.ccv .ccv-paper__en { margin-top: 2px; font-size: 10px; font-weight: 800; letter-spacing: 0.46em; color: #a98942; line-height: 1.4; }
+.ccv .ccv-paper__rows { max-width: 330px; margin: 18px auto 0; text-align: left; border-top: 1px solid #e8dcc0; }
+.ccv .ccv-paper__rows > div { display: grid; grid-template-columns: 70px minmax(0, 1fr); align-items: center; gap: 10px; padding: 8px 2px; border-bottom: 1px solid #efe6d2; }
+.ccv .ccv-paper__rows dt { font-size: 11.5px; font-weight: 700; color: #8a7a55; line-height: 1.4; }
+.ccv .ccv-paper__rows dd { font-size: 12.5px; font-weight: 700; color: #1f2a37; line-height: 1.4; letter-spacing: 0.01em; }
+.ccv .ccv-paper__rows dd b { font-weight: 800; color: #0a8a55; }
+.ccv .ccv-paper__bar { display: block; width: 82%; height: 8px; border-radius: 4px; background: #e9e1cd; }
+.ccv .ccv-paper__lines { display: flex; flex-direction: column; align-items: center; gap: 6px; max-width: 290px; margin: 16px auto 0; }
+.ccv .ccv-paper__lines i { display: block; width: 100%; height: 6px; border-radius: 3px; background: #eee6d4; }
+.ccv .ccv-paper__lines i:nth-child(2) { width: 90%; }
+.ccv .ccv-paper__lines i:nth-child(3) { width: 58%; }
+.ccv .ccv-paper__sign { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 18px; }
+.ccv .ccv-paper__who { text-align: right; }
+.ccv .ccv-paper__who small { display: block; font-size: 9.5px; font-weight: 700; color: #8a7a55; line-height: 1.3; }
+.ccv .ccv-paper__who b { display: block; font-size: 13px; font-weight: 800; color: #1f2a37; letter-spacing: 0.3em; line-height: 1.4; }
+.ccv .ccv-paper__sig { width: 86px; height: 30px; }
+.ccv .ccv-paper__sig path { fill: none; stroke: #1f2a37; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.ccv .ccv-paper__seal { display: block; width: 46px; height: 46px; flex-shrink: 0; }
+.ccv .ccv-paper__seal svg { width: 46px; height: 46px; }
+.ccv .ccv-paper__seal circle:nth-child(1) { fill: #d4a443; }
+.ccv .ccv-paper__seal circle:nth-child(2) { fill: none; stroke: #fff4d2; stroke-width: 1.4; stroke-dasharray: 1.5 2.5; }
+.ccv .ccv-paper__seal path { fill: none; stroke: #fff; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+.ccv .ccv-paper__chip { position: absolute; z-index: 3; left: -4px; bottom: 8px; display: flex; align-items: center; gap: 10px; padding: 9px 16px 9px 9px; border-radius: 16px;
+  background: #fff; color: #0f172a; box-shadow: 0 18px 40px -16px rgba(0,0,0,0.5); font-size: 14px; font-weight: 800; letter-spacing: -0.02em; white-space: nowrap; line-height: 1.3; }
+.ccv .ccv-paper__chip i { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px; background: #ecf8f2; flex-shrink: 0; font-style: normal; }
+.ccv .ccv-paper__chip svg { width: 18px; height: 18px; stroke: #0e9a62; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ccv .ccv-paper__chip small { display: block; font-size: 11.5px; font-weight: 600; color: #64748b; }
+
+/* 3. 요금 */
+.ccv .ccv-price__grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 64px; }
+.ccv .ccv-checks { grid-template-columns: minmax(0, 1fr); max-width: 400px; gap: 10px; }
+.ccv .ccv-pcard { padding: 34px 34px 32px; border-radius: 28px; background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 44px 90px -50px rgba(15,23,42,0.45); }
+.ccv .ccv-pcard__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding-bottom: 24px; border-bottom: 1px solid #eef2f6; }
+.ccv .ccv-pcard__top small { display: block; font-size: 14px; font-weight: 700; color: #64748b; line-height: 1.4; }
+.ccv .ccv-pcard__top b { display: block; margin-top: 8px; font-size: 46px; font-weight: 800; letter-spacing: -0.045em; color: #0f172a; line-height: 1; }
+.ccv .ccv-pcard__top b span { margin-left: 3px; font-size: 21px; font-weight: 800; letter-spacing: -0.02em; }
+.ccv .ccv-pill { display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 999px; background: #ecf8f2; color: #0b7a4b; font-size: 13px; font-weight: 800; line-height: 1.2; white-space: nowrap; }
+.ccv .ccv-pcard__lb { margin-top: 22px; font-size: 13px; font-weight: 800; color: #64748b; letter-spacing: -0.01em; }
+.ccv .ccv-pcard__inc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 12px 0 24px; }
+.ccv .ccv-pcard__inc li { display: flex; align-items: center; gap: 11px; padding: 13px 14px; border-radius: 14px; background: #f8fafc; border: 1px solid #eef2f6;
+  font-size: 14.5px; font-weight: 700; color: #1e293b; line-height: 1.35; letter-spacing: -0.02em; }
+.ccv .ccv-pcard__inc i { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0; background: #fff; border: 1px solid #e2e8f0; font-style: normal; }
+.ccv .ccv-pcard__inc svg { width: 17px; height: 17px; stroke: #0a8a55; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+/* 4. 기술 */
+.ccv .ccv-tech { background: #fff; }
+.ccv .ccv-tech__grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); gap: 18px; }
+.ccv .ccv-patent { position: relative; overflow: hidden; padding: 36px 38px 34px; border-radius: 26px; color: #fff;
+  background: radial-gradient(520px 320px at 100% 0%, rgba(16,163,102,0.2), rgba(16,163,102,0) 70%), linear-gradient(160deg, #0f172a, #16213a);
+  box-shadow: 0 44px 90px -50px rgba(15,23,42,0.75); }
+.ccv .ccv-patent__top { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.ccv .ccv-pill--dark { background: rgba(110,231,183,0.14); color: #6ee7b7; }
+.ccv .ccv-patent__top small { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; color: rgba(203,213,225,0.72); }
+.ccv .ccv-patent h3 { margin-top: 18px; font-size: clamp(20px, 0.5vw + 16px, 24px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.42; color: #fff; }
+.ccv .ccv-patent p { max-width: 580px; margin-top: 12px; font-size: 15px; line-height: 1.8; color: rgba(226,232,240,0.82); }
+.ccv .ccv-scan { display: flex; flex-direction: column; gap: 17px; margin-top: 26px; padding: 26px 22px 20px; border-radius: 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(148,163,184,0.18); }
+.ccv .ccv-scan span { position: relative; display: block; height: 8px; border-radius: 4px; background: rgba(148,163,184,0.26); }
+.ccv .ccv-scan span:nth-child(1) { width: 94%; }
+.ccv .ccv-scan span:nth-child(2) { width: 82%; }
+.ccv .ccv-scan span:nth-child(3) { width: 90%; }
+.ccv .ccv-scan span:nth-child(4) { width: 70%; }
+.ccv .ccv-scan span:nth-child(5) { width: 48%; }
+.ccv .ccv-scan i { position: absolute; top: -6px; bottom: -6px; border-radius: 6px; border: 1.5px dashed #6ee7b7; background: rgba(110,231,183,0.12); font-style: normal; }
+.ccv .ccv-scan span:nth-child(2) i { left: 26%; width: 52%; }
+.ccv .ccv-scan span:nth-child(4) i { left: 8%; width: 60%; }
+.ccv .ccv-scan em { position: absolute; top: -23px; right: -1px; padding: 2px 7px; border-radius: 5px; background: #10a366; color: #fff; font-size: 10.5px; font-weight: 800; line-height: 1.4; white-space: nowrap; }
+.ccv .ccv-tech__list { display: flex; flex-direction: column; gap: 12px; }
+.ccv .ccv-tech__list li { flex: 1; display: flex; align-items: center; gap: 16px; padding: 22px; border-radius: 22px; background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 18px 40px -32px rgba(15,23,42,0.35); }
+.ccv .ccv-tech__list i { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0; background: #ecf8f2; border: 1px solid #d5eee1; font-style: normal; }
+.ccv .ccv-tech__list svg { width: 22px; height: 22px; stroke: #0b7a4b; stroke-width: 2.1; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ccv .ccv-tech__list em { display: block; font-size: 11.5px; font-weight: 800; letter-spacing: 0.14em; color: #10a366; line-height: 1.3; }
+.ccv .ccv-tech__list b { display: block; margin-top: 3px; font-size: 17px; font-weight: 800; letter-spacing: -0.02em; color: #0f172a; line-height: 1.35; }
+.ccv .ccv-tech__list small { display: block; margin-top: 2px; font-size: 13.5px; line-height: 1.45; color: #64748b; }
+.ccv .ccv-tech .cch-fn { margin-top: 20px; }
+
+/* 5. 이런 분께 */
+.ccv .ccv-who { background: #f5f7fa; }
+.ccv .ccv-who .cch-quote { background: #fff; }
+.ccv .ccv-who .cch-quote p { font-size: 16px; }
+
+/* 6. 검사 방식 · 진행 */
+.ccv .ccv-feat { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.ccv .ccv-feat li { padding: 26px 22px 24px; border-radius: 22px; background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 18px 40px -32px rgba(15,23,42,0.35); transition: transform 0.25s ease, border-color 0.25s ease; }
+.ccv .ccv-feat li:hover { transform: translateY(-4px); border-color: #cbd5e1; }
+.ccv .ccv-feat i { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 14px; background: #ecf8f2; border: 1px solid #d5eee1; font-style: normal; }
+.ccv .ccv-feat svg { width: 22px; height: 22px; stroke: #0b7a4b; stroke-width: 2.1; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ccv .ccv-feat b { display: block; margin-top: 18px; font-size: 17px; font-weight: 800; letter-spacing: -0.025em; color: #0f172a; line-height: 1.4; }
+.ccv .ccv-feat p { margin-top: 6px; font-size: 14.5px; line-height: 1.65; color: #475569; }
+.ccv .ccv-subhead { margin: 72px auto 28px; }
+.ccv .ccv-h3 { font-size: clamp(21px, 0.6vw + 16px, 26px); font-weight: 800; letter-spacing: -0.03em; color: #0f172a; line-height: 1.35; }
+.ccv .cch-flow b { font-size: 18px; }
+
+/* 7. 마지막 권유 */
+.ccv .ccv-final { padding: 104px 40px; }
+.ccv .ccv-final .cch-h2 { font-size: clamp(27px, 1.3vw + 17px, 38px); }
+.ccv .ccv-final__cta { display: flex; justify-content: center; margin-top: 32px; }
+
+/* 줄 끝에 한두 글자만 남지 않게 */
+.ccv .ccv-feat p, .ccv .cch-flow p, .ccv .ccv-docs__bar p, .ccv .cch-sub, .ccv .ccv-cert__note p, .ccv .ccv-patent p { text-wrap: pretty; }
+.ccv .cch-quote p, .ccv .cch-band__txt b { text-wrap: balance; }
+
+/* 반응형 */
+@media (max-width: 1100px) {
+  .ccv .ccv-feat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ccv .ccv-cert__grid { gap: 44px; }
+  .ccv .ccv-price__grid { gap: 44px; }
+}
+@media (max-width: 1024px) {
+  .ccv .cch-sec { padding: 80px 32px; }
+  .ccv .ccv-lead { padding: 12px 32px 0; }
+  .ccv .ccv-docs { padding-top: 72px; }
+  .ccv .ccv-cert__grid, .ccv .ccv-price__grid, .ccv .ccv-tech__grid { grid-template-columns: minmax(0, 1fr); }
+  .ccv .ccv-cert__visual { width: 100%; max-width: 520px; margin: 0 auto; }
+  .ccv .ccv-tech__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ccv .ccv-tech__list li { flex-direction: column; align-items: flex-start; }
+  .ccv .ccv-final { padding: 88px 32px; }
+}
+@media (max-width: 768px) {
+  .ccv .cch-sec { padding: 64px 20px; }
+  .ccv .cch-head { margin-bottom: 32px; }
+  .ccv .ccv-lead { padding: 8px 20px 0; }
+  .ccv .ccv-band { padding: 26px 22px; }
+  .ccv .ccv-docs { padding-top: 60px; }
+  .ccv .ccv-intro { grid-template-columns: minmax(0, 1fr); gap: 22px; margin-bottom: 36px; }
+  .ccv .ccv-seal { order: -1; width: 104px; height: 104px; margin: 0; }
+  .ccv .ccv-brand { margin-bottom: 16px; }
+  .ccv .ccv-chips { margin-top: 20px; }
+  .ccv .ccv-chips li { font-size: 12.5px; padding: 7px 12px 7px 9px; white-space: normal; }
+  .ccv .ccv-docs__bar { flex-direction: column; align-items: flex-start; gap: 12px; padding-top: 26px; }
+  .ccv .ccv-docs__bar h3 { font-size: 18px; }
+  .ccv .ccv-docs__bar p { font-size: 14px; }
+  .ccv .cch-doclist { gap: 10px; }
+  .ccv .cch-doc { padding: 16px 40px 16px 16px; }
+  .ccv .cch-doc b { font-size: 15.5px; }
+  .ccv .ccv-cert__note { padding: 16px; gap: 12px; }
+  .ccv .ccv-cert__stats { gap: 8px; margin-bottom: 26px; }
+  .ccv .ccv-cert__stats > div { padding: 14px 12px 12px; border-radius: 14px; }
+  .ccv .ccv-cert__stats dt { font-size: 19px; }
+  .ccv .ccv-cert__stats dd { font-size: 12px; }
+  .ccv .ccv-cert__visual { padding: 14px 8px 34px; }
+  .ccv .ccv-paper__back { left: 24px; top: 30px; }
+  .ccv .ccv-paper__in { padding: 22px 16px 18px; }
+  .ccv .ccv-paper__ttl { font-size: 22px; }
+  .ccv .ccv-paper__chip { left: 0; bottom: 4px; font-size: 13px; }
+  .ccv .ccv-pcard { padding: 26px 20px 22px; border-radius: 22px; }
+  .ccv .ccv-pcard__top b { font-size: 40px; }
+  .ccv .ccv-pcard__inc { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .ccv .ccv-checks { max-width: none; }
+  .ccv .ccv-patent { padding: 26px 22px 24px; border-radius: 22px; }
+  .ccv .ccv-patent p { font-size: 14.5px; }
+  .ccv .ccv-scan { padding: 24px 16px 18px; }
+  .ccv .ccv-tech__list { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .ccv .ccv-tech__list li { flex-direction: row; align-items: center; padding: 18px; border-radius: 18px; }
+  .ccv .ccv-who .cch-quote p { font-size: 15px; }
+  .ccv .ccv-feat { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .ccv .ccv-feat li { display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 16px; padding: 18px; border-radius: 18px; }
+  .ccv .ccv-feat i { grid-row: span 2; }
+  .ccv .ccv-feat b { margin-top: 2px; font-size: 16.5px; }
+  .ccv .ccv-feat p { margin-top: 3px; font-size: 14px; }
+  .ccv .ccv-subhead { margin: 52px auto 22px; }
+  .ccv .ccv-final { padding: 72px 20px 76px; }
+  .ccv .ccv-final__cta { margin-top: 26px; }
+}
+@media (max-width: 400px) {
+  .ccv .ccv-cert__stats dt { font-size: 17px; }
+  .ccv .ccv-paper__rows > div { grid-template-columns: 62px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ccv .ccv-feat li { transition: none; }
+}
+
+/* 예전 그림 위젯(맨 위 띠 · 갤러리 8장)과 그 위아래 여백 위젯은 지우지 않고 숨김(되돌릴 때 이 규칙만 빼면 됨) */
+#w20260814064d6cad2f029, #w202608144b4b134558b20, #w20260708e2656d8fca571, #w20260708b81308f70b8c9 { display: none; }

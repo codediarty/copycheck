@@ -185,6 +185,32 @@ def build_detector():
     return len(code)
 
 
+# /ai-humanizer 아래 칸 바탕(.cch) 가운데 /ai-detector 아래 칸에서 쓰지 않는 것(첫 화면 .ccd, 그 쪽에만 있는 위젯 숨김 · 머리글 틈 · 카피체크 줄 등)
+CCH_UNUSED = (".ccd", "#inline_header", "#w2026", ".cch-rel", ".cch-case", ".cch-compare", ".cch-cmp", ".cch-bar", ".cch-proof",
+              ".cch-why", ".cch-stats", ".cch-stat", ".cch-src", ".cch-est__card", ".cch-est__lead", ".cch-crit", ".cch-notice",
+              ".cch-promise", ".cch-pr", ".cch-faq", ".cch-qa", ".cch-more", ".cch-quote--ans", ".cch-final__sub")
+
+
+def build_detector_more():
+    """2026.11.27 /ai-detector 아래 그림 9장 대신 글자로 만든 칸(새 코드 위젯, 섹션 s202607082cb706dd1f142 맨 아래)"""
+    hcss = open(os.path.join(SRC, "humanizer.css"), encoding="utf-8").read()
+    base = hcss[hcss.index("/* ── 아래 칸(.cch) ── */"):]
+    base = drop_rules(importantize(base), CCH_UNUSED)
+    more = importantize(open(os.path.join(SRC, "detector_more.css"), encoding="utf-8").read())
+    css = minify(base + "\n" + more)
+    html = compact_html(open(os.path.join(SRC, "detector_more.html"), encoding="utf-8").read())
+    code = "%s\n<style>\n%s\n</style>\n%s" % (FONT_LINK, css, html)
+    open(os.path.join(DIST, "ai-detector_more_widget.html"), "w", encoding="utf-8").write(code)
+    # 로컬 확인용: 첫 화면 + (가운데 예전 칸 자리) + 새 아래 칸 + (자주 묻는 질문 자리)
+    hero = open(os.path.join(DIST, "ai-detector_widget.html"), encoding="utf-8").read().replace(FONT_LINK, "")
+    mid = ("<div style='background:#f7f9fc;padding:70px 0;text-align:center;font:700 26px Pretendard Variable;color:#94a3b8'>"
+           "(가운데 예전 칸 세 개: 실제 분석 결과 기반 정밀 진단 · 제출 전 점검 · 4단계 프로세스, 그대로)</div>")
+    faq = ("<div style='background:#fff;padding:70px 0;text-align:center;font:700 26px Pretendard Variable;color:#94a3b8'>(자주 묻는 질문, 그대로)</div>")
+    open(os.path.join(DIST, "preview_detector_full.html"), "w", encoding="utf-8").write(
+        page_preview("ai-detector full preview", hero, mid + "<div class='widget-code'>" + code.replace(FONT_LINK, "") + "</div>" + faq))
+    return len(code)
+
+
 def build_humanizer():
     p = os.path.join(SRC, "humanizer.css")
     if not os.path.exists(p):
@@ -200,4 +226,4 @@ def build_humanizer():
 
 
 if __name__ == "__main__":
-    print("detector", build_detector(), "humanizer", build_humanizer())
+    print("detector", build_detector(), "detector_more", build_detector_more(), "humanizer", build_humanizer())
