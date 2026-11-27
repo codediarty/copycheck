@@ -1,0 +1,66 @@
+/* 카피클린 바로 결제(/copyclean-pricing) 'AI 유사도 개선 결제' 금액 고르기(.ccp)
+   2026.11.27 대표 'AI 유사도 개선 5만원부터 5만원 단위로 100만원까지 … 편하게 선택해서 결제'. 예전 카드 · 상세내역서 칸은 그대로 두고 그 사이에 더함. 색은 이 페이지 카드와 같은 파랑(#175df6). */
+.ccp, .ccp *, .ccp *::before, .ccp *::after {
+  margin: 0; padding: 0; border: 0; outline: 0; box-sizing: border-box;
+  font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-style: normal; text-decoration: none; list-style: none; letter-spacing: -0.01em; max-width: none; min-width: 0; float: none; text-transform: none;
+}
+.ccp { display: block; width: 100%; max-width: 1100px; margin: 40px auto 0; color: #0f172a; font-size: 16px; line-height: 1.5; word-break: keep-all; -webkit-font-smoothing: antialiased; scroll-margin-top: 90px; }
+.ccp a, .ccp a:link, .ccp a:visited, .ccp a:hover, .ccp a:active, .ccp a:focus { text-decoration: none; }
+.ccp svg { display: block; overflow: visible; }
+.ccp .ccp-panel { padding: clamp(26px, 3.4vw, 44px); border-radius: 24px; background: linear-gradient(180deg, #f2f6ff 0%, #f8faff 60%, #ffffff 100%); border: 1px solid #d6e3fb; }
+.ccp .ccp-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
+.ccp .ccp-eb { display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px 7px 11px; border-radius: 999px; background: #175df6; color: #fff; font-size: 13px; font-weight: 800; line-height: 1.2; }
+.ccp .ccp-eb svg { width: 15px; height: 15px; stroke: #fff; stroke-width: 2.3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ccp .ccp-h2 { margin-top: 14px; font-size: clamp(22px, 1vw + 15px, 30px); font-weight: 800; line-height: 1.3; letter-spacing: -0.035em; color: #0f172a; text-wrap: balance; }
+.ccp .ccp-h2 em { color: #175df6; font-weight: 800; background: linear-gradient(rgba(23,93,246,0) 66%, rgba(23,93,246,0.13) 66%, rgba(23,93,246,0.13) 92%, rgba(23,93,246,0) 92%); }
+.ccp .ccp-sub { margin-top: 10px; max-width: 560px; font-size: 15px; line-height: 1.7; color: #475569; text-wrap: pretty; }
+.ccp .ccp-chat, .ccp .ccp-chat:link, .ccp .ccp-chat:visited { flex-shrink: 0; display: inline-flex; align-items: center; gap: 10px; padding: 11px 16px 11px 12px; border-radius: 14px; background: #fff; border: 1px solid #d6e3fb;
+  color: #0f172a; box-shadow: 0 10px 24px -18px rgba(23,93,246,0.5); transition: border-color 0.2s, transform 0.2s; }
+.ccp .ccp-chat:hover { border-color: #175df6; transform: translateY(-1px); color: #0f172a; }
+.ccp .ccp-chat svg { width: 34px; height: 34px; padding: 8px; border-radius: 10px; background: #ebf2ff; stroke: #175df6; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ccp .ccp-chat span { font-size: 12px; font-weight: 600; color: #64748b; line-height: 1.35; }
+.ccp .ccp-chat b { display: block; font-size: 14.5px; font-weight: 800; color: #0f172a; }
+.ccp .ccp-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.ccp .ccp-amt, .ccp .ccp-amt:link, .ccp .ccp-amt:visited { position: relative; display: flex; flex-direction: column; gap: 3px; padding: 15px 44px 13px 16px; border-radius: 14px; background: #fff; border: 1px solid #e2e8f0;
+  color: #0f172a; box-shadow: 0 1px 2px rgba(15,23,42,0.04); transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+.ccp .ccp-amt:hover, .ccp .ccp-amt:focus-visible { border-color: #175df6; color: #0f172a; box-shadow: 0 14px 28px -18px rgba(23,93,246,0.55); transform: translateY(-2px); }
+.ccp .ccp-amt b { font-size: 23px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.1; color: #0f172a; }
+.ccp .ccp-amt b small { margin-left: 2px; font-size: 14px; font-weight: 700; letter-spacing: -0.01em; color: #334155; }
+.ccp .ccp-amt span { font-size: 12.5px; font-weight: 600; color: #64748b; font-variant-numeric: tabular-nums; }
+.ccp .ccp-amt i { position: absolute; right: 12px; top: 50%; display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-top: -13px; border-radius: 50%; background: #f1f5f9; transition: background 0.2s; }
+.ccp .ccp-amt i svg { width: 14px; height: 14px; stroke: #64748b; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ccp .ccp-amt:hover i { background: #175df6; }
+.ccp .ccp-amt:hover i svg { stroke: #fff; }
+.ccp .ccp-steps { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 22px; padding-top: 18px; border-top: 1px solid #e2e8f0; }
+.ccp .ccp-steps li { display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: #475569; }
+.ccp .ccp-steps b { display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: #ebf2ff; color: #175df6; font-size: 12px; font-weight: 800; }
+@media (max-width: 1024px) {
+  .ccp .ccp-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 768px) {
+  .ccp .ccp-head { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+  .ccp .ccp-chat, .ccp .ccp-chat:link, .ccp .ccp-chat:visited { width: 100%; }
+  .ccp .ccp-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .ccp .ccp-amt, .ccp .ccp-amt:link, .ccp .ccp-amt:visited { padding: 13px 12px 11px; }
+  .ccp .ccp-amt i { display: none; }
+  .ccp .ccp-amt b { font-size: 20px; }
+  .ccp .ccp-amt b small { font-size: 12.5px; }
+  .ccp .ccp-amt span { font-size: 11.5px; }
+  .ccp .ccp-steps { flex-direction: column; gap: 8px; }
+}
+@media (max-width: 420px) {
+  .ccp .ccp-panel { padding: 22px 16px; border-radius: 20px; }
+  .ccp .ccp-grid { gap: 6px; }
+  .ccp .ccp-amt, .ccp .ccp-amt:link, .ccp .ccp-amt:visited { padding: 12px 10px 10px; border-radius: 12px; }
+  .ccp .ccp-amt b { font-size: 19px; }
+  .ccp .ccp-amt b small { font-size: 12px; margin-left: 1px; }
+  .ccp .ccp-amt span { font-size: 11px; letter-spacing: -0.02em; }
+}
+@media (max-width: 340px) {
+  .ccp .ccp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* 예전 'AI유사도 개선' 카드 단추 아래 작은 길잡이(카드 자체는 그대로) */
+.ccp-jump, .ccp-jump:link, .ccp-jump:visited { display: block; margin-top: 12px; text-align: center; font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 13.5px; font-weight: 700; color: #175df6; text-decoration: none; }
+.ccp-jump:hover { color: #0f4fd6; text-decoration: underline; }

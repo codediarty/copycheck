@@ -229,6 +229,22 @@ def build_inquiry():
     return len(code)
 
 
+def build_pricing():
+    """2026.11.27 /copyclean-pricing 코드 위젯(w20260708b6614391e575a): 예전 코드 그대로 + 'AI유사도 개선' 카드 단추 아래 길잡이 + 금액 고르기 칸(.ccp)"""
+    old = open(os.path.join(HERE, "backup", "copyclean-pricing_w20260708b6614391e575a_before_20261127.html"), encoding="utf-8").read()
+    css = minify(importantize(open(os.path.join(SRC, "pricing_pay.css"), encoding="utf-8").read()))
+    block = compact_html(open(os.path.join(SRC, "pricing_pay.html"), encoding="utf-8").read())
+    btn = '      개선 요청하기\n    </a>'
+    assert old.count(btn) == 1
+    code = old.replace(btn, btn + '\n    <a href="#ccpPay" class="ccp-jump">상담 후 안내받은 금액 결제하기 ↓</a>', 1)
+    mark = '<!-- ===== 상세내역서 구성 ===== -->'
+    assert code.count(mark) == 1
+    code = code.replace(mark, "%s\n<style>\n%s\n</style>\n%s\n\n  %s" % (FONT_LINK, css, block, mark), 1)
+    open(os.path.join(DIST, "copyclean-pricing_widget.html"), "w", encoding="utf-8").write(code)
+    open(os.path.join(DIST, "preview_pricing.html"), "w", encoding="utf-8").write(page_preview("pricing preview", code))
+    return len(code)
+
+
 def build_humanizer():
     p = os.path.join(SRC, "humanizer.css")
     if not os.path.exists(p):
@@ -244,4 +260,4 @@ def build_humanizer():
 
 
 if __name__ == "__main__":
-    print("detector", build_detector(), "detector_more", build_detector_more(), "inquiry", build_inquiry(), "humanizer", build_humanizer())
+    print("detector", build_detector(), "detector_more", build_detector_more(), "inquiry", build_inquiry(), "pricing", build_pricing(), "humanizer", build_humanizer())

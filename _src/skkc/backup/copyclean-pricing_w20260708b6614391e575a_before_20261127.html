@@ -1,0 +1,425 @@
+<style>
+.skk-pricing {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+	@media (max-width: 1024px) {
+	  .skk-pricing {
+		grid-template-columns: repeat(2, 1fr);
+	  }
+	}
+
+	@media (max-width: 600px) {
+	  .skk-pricing {
+		grid-template-columns: 1fr;
+	  }
+	}
+  
+	.skk-price-card {
+	  background: #fff;
+	  border-radius: 16px;
+	  border: 1px solid #e5e7eb;
+	  overflow: hidden;
+	  display: flex;
+	  flex-direction: column;
+	  transition: all 0.3s ease;
+	}
+  
+	.skk-price-card:hover {
+	  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+	}
+  
+	/* 상단 이미지 영역 (1:1 정사각) */
+	.skk-card-header {
+	  position: relative;
+	  padding: 20px 20px 0;
+	}
+
+.skk-card-header img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+}
+	
+	/* 추천 플랜 배지 */
+	.skk-badge {
+	  position: absolute;
+	  top: -1px;
+	  left: -1px;
+	  background: linear-gradient(135deg, #10b981, #059669);
+	  color: #ffffff;
+	  font-size: 15px;
+	  font-weight: 600;
+	  padding: 14px 24px;
+	  border-radius: 16px 0 12px 0;
+	  z-index: 10;
+	  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+	}
+	
+	/* 프리미엄 배지 */
+	.skk-badge-premium {
+	  position: absolute;
+	  top: -1px;
+	  left: -1px;
+	  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+	  color: #ffffff;
+	  font-size: 15px;
+	  font-weight: 600;
+	  padding: 14px 24px;
+	  border-radius: 16px 0 12px 0;
+	  z-index: 10;
+	  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+	}
+  
+	/* 콘텐츠 영역 */
+	.skk-card-content {
+	  padding: 28px 28px 32px;
+	  flex-grow: 1;
+	  display: flex;
+	  flex-direction: column;
+	}
+  
+	.skk-plan-title {
+	  font-size: 22px;
+	  font-weight: 500;
+	  color: #111827;
+	  margin-bottom: 12px;
+	  line-height: 1.4;
+	}
+  
+	.skk-plan-desc {
+	  font-size: 12px;
+	  font-weight: 500;
+	  color: #9ca3af;
+	  line-height: 1.6;
+	  margin-bottom: 24px;
+	}
+  
+	.skk-feature-list {
+	  list-style: none;
+	  padding: 0;
+	  margin: 0 0 auto 0;
+	}
+  
+	.skk-feature-item {
+	  display: flex;
+	  align-items: flex-start;
+	  gap: 10px;
+	  font-size: 14px;
+	  font-weight: 500;
+	  color: #374151;
+	  margin-bottom: 12px;
+	  line-height: 1.5;
+	}
+  
+	.skk-feature-check {
+	  flex-shrink: 0;
+	  width: 18px;
+	  height: 18px;
+	  margin-top: 2px;
+	}
+  
+	.skk-feature-check svg {
+	  width: 18px;
+	  height: 18px;
+	  fill: #175df6;
+	}
+  
+	/* 구분선 */
+	.skk-feature-divider {
+	  height: 1px;
+	  background: #f3f4f6;
+	  margin: 8px 0 16px;
+	}
+
+	/* 가격 영역 */
+	.skk-price-section {
+	  padding: 24px 28px 28px;
+	  border-top: 1px solid #f3f4f6;
+	}
+  
+	.skk-price-value {
+	  font-size: 28px;
+	  font-weight: 600;
+	  color: #175df6;
+	  margin-bottom: 16px;
+	}
+  
+	.skk-price-btn {
+	  display: block;
+	  width: 100%;
+	  padding: 14px 24px;
+	  background: #dbeafe !important;
+	  color: #175df6 !important;
+	  font-size: 14px;
+	  font-weight: 500;
+	  text-align: center;
+	  text-decoration: none;
+	  border-radius: 8px;
+	  border: none;
+	  cursor: pointer;
+	  transition: all 0.3s ease;
+	}
+  
+	.skk-price-btn:hover {
+	  background: #175df6 !important;
+	  color: #fff !important;
+	}
+  
+	/* 하단 추가 정보 */
+	.skk-extra-info {
+	  padding: 0 28px 28px;
+	}
+  
+	.skk-extra-title {
+	  font-size: 13px;
+	  font-weight: 500;
+	  color: #111827;
+	  margin-bottom: 12px;
+	}
+  
+	.skk-extra-list {
+	  list-style: none;
+	  padding: 0;
+	  margin: 0;
+	}
+  
+	.skk-extra-item {
+	  font-size: 13px;
+	  color: #6b7280;
+	  line-height: 1.6;
+	  padding-left: 12px;
+	  position: relative;
+	  margin-bottom: 6px;
+	}
+  
+	.skk-extra-item::before {
+	  content: '•';
+	  position: absolute;
+	  left: 0;
+	  color: #9ca3af;
+	}
+  </style>
+  
+  <div class="skk-pricing">
+	<!-- BASIC -->
+	<div class="skk-price-card">
+	  <div class="skk-card-header">
+		<img src="https://cdn.imweb.me/upload/S20260708ebb4c1905beae/5cd8b17840faf.png" alt="">
+	  </div>
+	  <div class="skk-card-content">
+		<div class="skk-plan-title">카피클린 문서검사</div>
+		<div class="skk-plan-desc">문장 단위 분석까지 확인할 수 있는<br>상세 진단 플랜입니다.</div>
+		<ul class="skk-feature-list">
+		  <li class="skk-feature-item">
+			<span class="skk-feature-check"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
+			AI 유사도 표절률 수치 확인
+		  </li>
+		  <li class="skk-feature-item">
+			<span class="skk-feature-check"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
+			진단 총평 확인
+		  </li>
+		  <li class="skk-feature-item">
+			<span class="skk-feature-check"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
+			상세 분석 대시보드 확인
+		  </li>
+		  <li class="skk-feature-item">
+			<span class="skk-feature-check"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
+			문장별 상세 내역서 확인
+		  </li>
+		</ul>
+	  </div>
+	  <div class="skk-price-section">
+		<div class="skk-price-value">5,500원</div>
+		<a href="/shop_view?idx=6" class="skk-price-btn">문서 검사하기</a>
+	  </div>
+	</div>
+
+<!-- AI 유사도 개선 (중앙) -->
+<div class="skk-price-card">
+
+  <div class="skk-card-header">
+    <img src="https://cdn.imweb.me/upload/S20260708ebb4c1905beae/cf5ce0a517f6c.png" alt="">
+  </div>
+
+  <div class="skk-card-content">
+
+    <div class="skk-plan-title">카피클린 AI유사도 개선</div>
+
+    <div class="skk-plan-desc">
+      AI 검출 패턴을 분석하여<br>
+      유사도가 높은 구간을 개선합니다.
+    </div>
+
+    <ul class="skk-feature-list">
+
+      <li class="skk-feature-item">
+        <span class="skk-feature-check">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+        </span>
+        AI 유사도 개선
+      </li>
+
+      <li class="skk-feature-item">
+        <span class="skk-feature-check">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+        </span>
+        휴머나이징(인간화) 작업
+      </li>
+
+      <li class="skk-feature-item">
+        <span class="skk-feature-check">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+        </span>
+        AI 검출 패턴 집중 개선
+      </li>
+
+      <li class="skk-feature-item">
+        <span class="skk-feature-check">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+        </span>
+        문서별 맞춤 작업
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="skk-price-section">
+    <div class="skk-price-value">전문가에게 맡기기</div>
+
+    <a href="https://skcdesk.channel.io/home"
+       class="skk-price-btn"
+       target="_blank">
+      개선 요청하기
+    </a>
+  </div>
+
+</div>
+
+  </div>
+
+  <!-- ===== 상세내역서 구성 ===== -->
+  <style>
+	.skd-root, .skd-root * { box-sizing: border-box; }
+	.skd-root {
+	  width: 100%;
+	  margin-top: 40px;
+	  font-family: 'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;
+	  color: #111827;
+	}
+	.skd-panel {
+	  background: #f9fafb;
+	  border: 1px solid #eef0f3;
+	  border-radius: 24px;
+	  padding: clamp(28px, 4vw, 44px);
+	}
+	.skd-eyebrow {
+	  display: inline-flex;
+	  align-items: center;
+	  gap: 7px;
+	  padding: 7px 14px;
+	  border-radius: 999px;
+	  background: #ebf2ff;
+	  color: #175df6;
+	  font-size: 13px;
+	  font-weight: 700;
+	}
+	.skd-eyebrow svg { width: 15px; height: 15px; fill: #175df6; }
+	.skd-title {
+	  font-size: clamp(22px, 2.4vw, 28px);
+	  font-weight: 800;
+	  color: #111827;
+	  margin-top: 14px;
+	  letter-spacing: -0.5px;
+	}
+	.skd-grid {
+	  margin-top: 24px;
+	  display: grid;
+	  grid-template-columns: repeat(4, 1fr);
+	  gap: 16px;
+	}
+	.skd-card {
+	  background: #fff;
+	  border: 1px solid #e5e7eb;
+	  border-radius: 16px;
+	  padding: 24px;
+	}
+	.skd-ico {
+	  width: 46px; height: 46px;
+	  border-radius: 12px;
+	  background: #ebf2ff;
+	  display: flex; align-items: center; justify-content: center;
+	  margin-bottom: 16px;
+	}
+	.skd-ico svg { width: 22px; height: 22px; fill: #175df6; }
+	.skd-card__t {
+	  font-size: 16px;
+	  font-weight: 700;
+	  color: #111827;
+	  word-break: keep-all;
+	}
+	.skd-card__d {
+	  font-size: 13px;
+	  color: #6b7280;
+	  line-height: 1.6;
+	  margin-top: 7px;
+	  word-break: keep-all;
+	}
+	@media (max-width: 1024px) {
+	  .skd-grid { grid-template-columns: repeat(2, 1fr); }
+	}
+	@media (max-width: 600px) {
+	  .skd-grid { grid-template-columns: 1fr; }
+	}
+  </style>
+
+  <div class="skd-root">
+	<div class="skd-panel">
+	  <span class="skd-eyebrow">
+		<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+		상세내역서 구성
+	  </span>
+	  <div class="skd-title">이런 내용이 담깁니다</div>
+
+	  <div class="skd-grid">
+		<div class="skd-card">
+		  <div class="skd-ico"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10.41V7h-2v6.59l4.29 4.3 1.42-1.42L13 12.41z"/></svg></div>
+		  <div class="skd-card__t">AI 사용 확률</div>
+		  <div class="skd-card__d">전체 및 구간별 AI 생성 의심 수치와 근거</div>
+		</div>
+
+		<div class="skd-card">
+		  <div class="skd-ico"><svg viewBox="0 0 24 24"><path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zM16.2 13H19v6h-2.8z"/></svg></div>
+		  <div class="skd-card__t">표절률 수치</div>
+		  <div class="skd-card__d">유사 문서 대비 표절 의심 구간 식별</div>
+		</div>
+
+		<div class="skd-card">
+		  <div class="skd-ico"><svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></div>
+		  <div class="skd-card__t">위험 구간 표시</div>
+		  <div class="skd-card__d">문단 단위 색상 시각화 및 해석</div>
+		</div>
+
+		<div class="skd-card">
+		  <div class="skd-ico"><svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-9 14-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8zM12 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></div>
+		  <div class="skd-card__t">전문가 종합 의견</div>
+		  <div class="skd-card__d">결과 해석 및 개선 방향 종합 의견</div>
+		</div>
+	  </div>
+	</div>
+  </div>
