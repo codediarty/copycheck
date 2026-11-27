@@ -211,6 +211,24 @@ def build_detector_more():
     return len(code)
 
 
+# /copyclean-inquiry 첫 칸에서 쓰지 않는 바탕 규칙(.cch) 더하기
+INQ_UNUSED = CCH_UNUSED + (".cch-who", ".cch-quotes", ".cch-quote", ".cch-docs", ".cch-doclist", ".cch-doc", ".cch-band", ".cch-est",
+                           ".cch-checks", ".cch-how", ".cch-flow", ".cch-final", ".cch-fn", ".cch-glow", ".cch-center")
+
+
+def build_inquiry():
+    """2026.11.27 /copyclean-inquiry 첫 칸(코드 위젯 w20260708800e3d6a4bfc5) + 아래 입력폼 모양"""
+    hcss = open(os.path.join(SRC, "humanizer.css"), encoding="utf-8").read()
+    base = hcss[hcss.index("/* ── 아래 칸(.cch) ── */"):]
+    base = drop_rules(importantize(base), INQ_UNUSED)
+    own = importantize(open(os.path.join(SRC, "inquiry.css"), encoding="utf-8").read())
+    css = minify(base + "\n" + own)
+    html = compact_html(open(os.path.join(SRC, "inquiry.html"), encoding="utf-8").read())
+    code = "%s\n<style>\n%s\n</style>\n%s" % (FONT_LINK, css, html)
+    open(os.path.join(DIST, "copyclean-inquiry_widget.html"), "w", encoding="utf-8").write(code)
+    return len(code)
+
+
 def build_humanizer():
     p = os.path.join(SRC, "humanizer.css")
     if not os.path.exists(p):
@@ -226,4 +244,4 @@ def build_humanizer():
 
 
 if __name__ == "__main__":
-    print("detector", build_detector(), "detector_more", build_detector_more(), "humanizer", build_humanizer())
+    print("detector", build_detector(), "detector_more", build_detector_more(), "inquiry", build_inquiry(), "humanizer", build_humanizer())
