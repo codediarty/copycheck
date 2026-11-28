@@ -272,7 +272,7 @@
     if (ST.q.due) q.push('희망 마감: ' + ST.q.due);
     if (ST.q.goal) q.push('목표: ' + ST.q.goal);
     if (q.length) L.push(q.join(' / '));
-    L.push(M ? 'AI 작성률 개선 견적 받고 싶어요.' : 'AI 작성률 개선 상담 받고 싶어요.');
+    L.push(M ? 'AI 작성률 개선 견적을 받고 싶어요.' : 'AI 작성률 개선 상담을 받고 싶어요.');
     return L.join('\n');
   }
   function toast(m) {
