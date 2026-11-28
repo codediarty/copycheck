@@ -1,0 +1,49 @@
+/* 2026.11.28 '웹사이트 페이지 전체적으로 모바일까지 잘 최적화' : 휴대폰 글자 크기 · 누르는 칸 보강.
+   사이트 전체 바닥 칸(s202607089e4a30d088029)에 넣는 CSS 전용 코드 위젯. 원래 위젯 · 규칙은 지우지 않고, 화면 폭이 좁을 때만 위젯 ID 를 붙여 덮어씀.
+   375px 폭 점검(11.28): 가로 넘침은 모든 쪽 0. 12px 보다 작은 본문 글자가 첫 화면 104곳 · /apply 6곳 · /copyclean-pricing 20곳. */
+
+/* 첫 화면(/) 맨 위 두 칸 안 작은 설명(10px) */
+@media (max-width: 768px) {
+  #w2026070849b8d69f75e4c .lwc-root .lwc-label__text small { font-size: 12px !important; line-height: 1.4 !important; }
+}
+
+/* 첫 화면(/) 서비스 6칸(10.5~11px): 2열 짜임은 그대로, 글자만 읽기 좋게 */
+@media (max-width: 520px) {
+  #w20260708c604c11e7beed .skk-services { gap: 10px !important; padding: 16px 12px !important; }
+  #w20260708c604c11e7beed .skk-card { padding: 22px 14px !important; min-height: 0 !important; }
+  #w20260708c604c11e7beed .skk-title { font-size: 15.5px !important; margin-bottom: 8px !important; }
+  #w20260708c604c11e7beed .skk-desc { font-size: 13px !important; line-height: 1.6 !important; }
+}
+
+/* 첫 화면(/) 이용자 후기 흐름(10~11px): 카드를 넓히고 글자를 키움. 같은 카드 묶음이 두 번 이어져 흐르는 방식이라 넓혀도 끊기지 않음 */
+@media (max-width: 640px) {
+  #w2026070874c9777616105 .skk-reviews { gap: 12px !important; animation-duration: 80s !important; }
+  #w2026070874c9777616105 .skk-review-card { width: 264px !important; min-width: 0 !important; max-width: none !important; padding: 20px 18px !important; border-radius: 14px !important; }
+  #w2026070874c9777616105 .skk-review-avatar { width: 38px !important; height: 38px !important; font-size: 14px !important; }
+  #w2026070874c9777616105 .skk-review-name { font-size: 14px !important; }
+  #w2026070874c9777616105 .skk-review-meta { font-size: 12.5px !important; max-width: 170px !important; }
+  #w2026070874c9777616105 .skk-review-tag { font-size: 12px !important; padding: 4px 10px !important; }
+  #w2026070874c9777616105 .skk-review-stars svg { width: 12px !important; height: 12px !important; }
+  #w2026070874c9777616105 .skk-review-text { font-size: 14px !important; line-height: 1.65 !important; -webkit-line-clamp: 5 !important; }
+  #w2026070874c9777616105 .skk-review-result { font-size: 12.5px !important; padding: 10px 12px !important; }
+  #w2026070874c9777616105 .skk-review-result svg { width: 12px !important; height: 12px !important; }
+}
+
+/* /apply 분야 6칸 설명(10~11px) */
+@media (max-width: 480px) {
+  #w20260708010fc14291b3d .skk-field-title { font-size: 15px !important; }
+  #w20260708010fc14291b3d .skk-field-desc { font-size: 12.5px !important; line-height: 1.5 !important; }
+  #w20260708010fc14291b3d .skk-field-card { padding: 20px 12px !important; }
+}
+
+/* /copyclean-pricing 바로 결제 금액 칸의 작은 금액 줄(11px) */
+@media (max-width: 768px) {
+  #w20260708b6614391e575a .ccp-amt span { font-size: 12px !important; }
+}
+
+/* 손가락으로 누르기 쉽게: 바닥 글 링크 · 안내 상자 링크 · 결제 칸 안내 링크에 위아래 여백 */
+@media (max-width: 768px) {
+  #w20260708d094e6370d297 a { display: inline-block !important; padding-top: 6px !important; padding-bottom: 6px !important; }
+  .skp .skp-cnote__links a, .skp .skp-tcnote__links a { padding-top: 6px !important; padding-bottom: 6px !important; }
+  #w202607083d4e39e7b756e .spc-pay__note a { padding-top: 4px !important; padding-bottom: 4px !important; }
+}
