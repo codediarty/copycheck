@@ -246,6 +246,19 @@ def build_pricing():
     return len(code)
 
 
+
+def build_hero():
+    """2026.11.28 11:36 /pricing · /copyclean-pricing 새 첫 화면(코드 위젯). 예전 텍스트 위젯은 CSS 로 숨김(지우지 않음)"""
+    css = open(os.path.join(SRC, "hero", "hero.css"), encoding="utf-8").read()
+    out = {}
+    for name, old_id in (("pricing", "w20260708447dc6617897e"), ("copyclean", "w202607089821035f1b604")):
+        html = compact_html(open(os.path.join(SRC, "hero", name + ".html"), encoding="utf-8").read())
+        hide = "\n#" + old_id + " { display: none; }\n"
+        snippet = "<style>" + minify(importantize(css + hide)) + "</style>\n" + html + "\n"
+        open(os.path.join(DIST, "hero_" + name + "_widget.html"), "w", encoding="utf-8", newline="").write(snippet)
+        out[name] = len(snippet)
+    return out
+
 def build_pricing_tc():
     """2026.11.28 /pricing 코드 위젯(w202607083d4e39e7b756e) '의뢰자 후기' 바로 앞에 끼워 넣는 '바로 결제' 금액 칸(표시 줄 사이만 지우면 원래 위젯)"""
     html = open(os.path.join(SRC, "pricing_tc.html"), encoding="utf-8").read().strip()
@@ -452,4 +465,5 @@ def build_humanizer():
 
 if __name__ == "__main__":
     print("detector", build_detector(), "detector_more", build_detector_more(), "inquiry", build_inquiry(), "pricing", build_pricing(), "pricing_tc", build_pricing_tc(), "academic", build_academic(), "humanizer", build_humanizer())
+    print("hero", build_hero())
     print("skp", build_skp())

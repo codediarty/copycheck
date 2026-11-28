@@ -24,15 +24,7 @@
 }
 @media (prefers-reduced-motion: reduce) { .spc-pay .spc-pay__amt { transition: none; } }
 
-/* 2026.11.28 10:14 대표 '높은 가격 순으로': 위 요금 플랜(w202607087bc977b377b35) 8칸을 PREMIUM 350만 원부터 보이게. 플랜 글 · 단추는 그대로, 보이는 순서만 */
-#w202607087bc977b377b35 .skk-pricing > .skk-price-card:nth-child(1) { order: 8; }
-#w202607087bc977b377b35 .skk-pricing > .skk-price-card:nth-child(2) { order: 7; }
-#w202607087bc977b377b35 .skk-pricing > .skk-price-card:nth-child(3) { order: 6; }
-#w202607087bc977b377b35 .skk-pricing > .skk-price-card:nth-child(4) { order: 5; }
-#w202607087bc977b377b35 .skk-pricing > .skk-price-card:nth-child(5) { order: 4; }
-#w202607087bc977b377b35 .skk-pricing > .skk-price-card:nth-child(6) { order: 3; }
-#w202607087bc977b377b35 .skk-pricing > .skk-price-card:nth-child(7) { order: 2; }
-#w202607087bc977b377b35 .skk-pricing > .skk-price-card:nth-child(8) { order: 1; }
+/* 2026.11.28 10:14 에 요금 플랜(w202607087bc977b377b35) 8칸을 높은 가격부터 보이게 했다가, 11:33 대표 '여기 금액은 반대로 낮은 것부터'로 순서 규칙을 뺌(원래 LIGHT 10만 → PREMIUM 350만) */
 /* 플랜 칸 아무 곳이나 누르면 '플랜 시작하기'와 같은 곳으로 */
 #w202607087bc977b377b35 .skk-price-card { position: relative; cursor: pointer; }
 #w202607087bc977b377b35 .skk-price-card .skk-price-btn { position: static; }
