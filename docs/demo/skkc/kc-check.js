@@ -4,11 +4,24 @@
    - 무료 결과: AI 작성률 · 판정 · AI 패턴 문장 수 · 판정 근거는 보여 주고, 문장은 가장 뚜렷한 2개만 열고 나머지는 블라인드
    - 다음 단계: 결제 대신 채널톡 상담(검사 결과 · 문서 종류 · 마감 · 목표가 첫 메시지에 자동으로 들어감) → 크레딧 견적 → /copyclean-pricing
    - 파일은 이 브라우저 안에서 글만 꺼냄(AMTextIn, 카피체크와 같은 textin.js). 서버에는 검사할 글만 가고 저장하지 않음
-   설정: window.KC_CFG = { api, demo, chatUrl, pricing, report, humanizer } */
+   설정: window.KC_CFG = { api, demo, chatUrl, pricing, report, humanizer } 또는 쪽 안의 <div hidden data-kc-cfg="{…}">(아임웹: 글 칸 스크립트를 쪽 끝으로 옮기므로 설정은 속성으로)
+         root · textin 이 있으면 body data-root 를 넣고 textin.js 를 그 주소에서 불러옴(카피체크 쪽 글 꺼내기 도구를 그대로 씀) */
 (function () {
   'use strict';
   var CFG = window.KC_CFG || {};
   var API = CFG.api || '';
+  function readCfg() {   /* 2026.11.28 배포판: 아임웹 쪽은 설정을 속성에서 읽음 */
+    if (!window.KC_CFG) {
+      var el = document.querySelector('[data-kc-cfg]');
+      if (el) { try { CFG = JSON.parse(el.getAttribute('data-kc-cfg')) || {}; } catch (e) { CFG = {}; } }
+    }
+    API = CFG.api || '';
+    var b = document.body;
+    if (CFG.root && b && !b.getAttribute('data-root')) b.setAttribute('data-root', CFG.root);
+    if (CFG.textin && !window.AMTextIn && !document.querySelector('script[src*="textin.js"]')) {
+      var s = document.createElement('script'); s.src = CFG.textin; s.async = true; document.head.appendChild(s);
+    }
+  }
   var CHUNK = 6000, PAR = 4, MAXC = 200000, SHOW = 2;
   var J = { HI: 85, MID: 65, SHORT: 60, UNFIT_RATE: 40, RISK_RATE: 20, UNFIT_SEG: 50,
     B: { unfit: ['부적합', '부적합 · 개선 필요'], risk: ['고위험', '고위험 · 수정 권고'], safe: ['안전', '안전 · AI 패턴 적음'], short: ['판단 보류', '판단 보류 · 글이 짧음'] } };
@@ -299,6 +312,18 @@
     if (a && typeof window.ChannelIO === 'function' && !e.ctrlKey && !e.metaKey && !e.shiftKey) { e.preventDefault(); openChat('link'); }
   });
 
+  /* 글 꺼내기 도구(textin.js)가 늦게 올 수 있어 잠깐 기다림(배포판은 kc-check.js 가 불러옴) */
+  function textIn() {
+    return new Promise(function (ok, no) {
+      var t0 = Date.now();
+      (function wait() {
+        if (window.AMTextIn && typeof window.AMTextIn.read === 'function') ok(window.AMTextIn);
+        else if (Date.now() - t0 > 9000) no(new Error('파일을 여는 도구를 불러오지 못했어요. 글을 복사해 붙여 넣어 주세요.'));
+        else setTimeout(wait, 150);
+      })();
+    });
+  }
+
   /* ---------- 검사 칸 ---------- */
   function init(tool) {
     var ta = $('[data-kc-ta]', tool), go = $('[data-kc-go]', tool), cnt = $('[data-kc-count]', tool), inp = $('[data-kc-in]', tool), pick = $('[data-kc-pick]', tool);
@@ -321,9 +346,8 @@
     function takeFile(f) {
       if (!f || busy) return;
       err('');
-      if (!window.AMTextIn) { err('파일을 여는 도구를 불러오지 못했어요. 글을 복사해 붙여 넣어 주세요.'); return; }
       busyEl.hidden = false; $('span', busyEl).textContent = '“' + String(f.name || '파일').slice(0, 30) + '”에서 글을 꺼내는 중';
-      window.AMTextIn.read(f).then(function (r) {
+      textIn().then(function (T) { return T.read(f); }).then(function (r) {
         busyEl.hidden = true;
         var t = r.text || '', cut = 0;
         if (t.length > MAXC) { var k = t.lastIndexOf('\n\n', MAXC); cut = k > MAXC * 0.6 ? k : MAXC; }
@@ -416,6 +440,6 @@
     });
     count();
   }
-  function boot() { $$('[data-kc-tool]').forEach(init); }
+  function boot() { readCfg(); $$('[data-kc-tool]').forEach(init); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();

@@ -128,6 +128,59 @@ def drop_rules(css, names):
     return "".join(out)
 
 
+def prune_unused(css, used, js_text=""):
+    """2026.11.28 카피클린 새 판: 쪽에 없는 class 만 쓰는 선택자를 뺌(위젯 크기 줄이기).
+    선택자 안 class 가 모두 쪽 HTML 에 있거나 · 스크립트 글에 나오거나 · is- 로 시작하면 남김. :not() · :is() · :where() · :has() 안은 따지지 않음"""
+    out, i, n = [], 0, len(css)
+    def block_end(j):
+        d = 0
+        while j < n:
+            if css[j] == "{":
+                d += 1
+            elif css[j] == "}":
+                d -= 1
+                if d == 0:
+                    return j
+            j += 1
+        return n - 1
+    def ok(sel):
+        s = re.sub(r":(?:not|is|where|has)\([^()]*\)", "", sel)
+        for c in re.findall(r"\.([A-Za-z_][\w-]*)", s):
+            if c in used or c.startswith("is-") or ("'" + c in js_text or " " + c in js_text or '"' + c in js_text):
+                continue
+            return False
+        return True
+    while i < n:
+        j = css.find("{", i)
+        if j < 0:
+            out.append(css[i:])
+            break
+        sel = css[i:j]
+        k = block_end(j)
+        body = css[j + 1:k]
+        s2 = sel.strip()
+        if s2.startswith("@media") or s2.startswith("@supports"):
+            inner = prune_unused(body, used, js_text)
+            if inner.strip():
+                out.append(sel + "{" + inner + "}")
+        elif s2.startswith("@"):
+            out.append(css[i:k + 1])
+        else:
+            parts = [x.strip() for x in s2.split(",")]
+            keep = [x for x in parts if ok(x)]
+            if keep:
+                out.append(",".join(keep) + "{" + body + "}")
+        i = k + 1
+    return "".join(out)
+
+
+def html_classes(h):
+    used = set()
+    for m in re.findall(r'class="([^"]*)"', h):
+        used.update(m.split())
+    return used
+
+
 def minify(css):
     css = re.sub(r"\s+", " ", css)
     css = re.sub(r"\s*([{};])\s*", r"\1", css)
@@ -548,8 +601,74 @@ def build_kc_demo():
     return {"det": len(det_page), "hum": len(hum_page), "js": len(js), "ver": ver, "det_links": n_det}
 
 
+# ── 2026.11.28 12:54 대표 '응 그렇게 잘 배포해줘': 카피클린 /ai-detector · /ai-humanizer 실제 쪽(아임웹 코드 위젯) ──
+# 서버: AIMarker 서버에 KC서버.gs 1.0.0(skkc.co.kr · www.skkc.co.kr 는 무료 검사만 허용)을 더하고 '카피클린 무료 검사' 배포를 따로 만듦(버전 63).
+#       AIMarker · 형제 사이트 여섯 배포는 버전 56 그대로. KO-1126 묶음 25개가 지금 배포(56)와 새 배포(63)에서 한 글자도 같음(13:07~13:16)
+# 쪽: 우리 코드 위젯 두 개의 내용을 새 판으로 바꿈(예전 코드는 backup/ 에 그대로). 아임웹 기본 칸은 지우지 않고 CSS 로 숨김
+KC_API = "https://script.google.com/macros/s/AKfycbyxjGaM4T0uijCQtR6RHHfxTvkzdex1aYvqaq3pRy_Xlc2NvPojXdsgoAmrw-3GkURYnw/exec"
+KC_CDN = "https://copycheck.skkc.co.kr/"   # kc-check.js · textin.js · 글 꺼내기 도구(pdf.js 등)를 두는 곳(GitHub Pages, CORS 허용)
+# /ai-detector 에서 숨기는 아임웹 칸(지우지 않음): 첫 섹션의 여백 4 · 그림 지도 1, 아래 섹션 5(소개 · 그림 · 4단계 · 아래 칸 · 자주 묻는 질문)
+KC_DET_HIDE = ("#w20260708e7e68f743ba69", "#w202607084db2c0069012f", "#w202607084bce09761819d", "#w20260708dfda217c71dd4", "#w20260708f65ac2c3bf849",
+               "#s20260708fe0ddbaafbfaa", "#s20260708678cf93bb3858", "#s20260708f9953ca307aa5", "#s202607082cb706dd1f142", "#s20260708718612b8f8ed5")
+
+
+def build_kc_prod():
+    import hashlib
+    import html as H
+    rd = lambda *p: open(os.path.join(SRC, *p), encoding="utf-8").read()
+    repo = os.path.dirname(os.path.dirname(HERE))
+    js = rd("kc", "kc-check.js")
+    open(os.path.join(repo, "docs", "assets", "kc-check.js"), "w", encoding="utf-8", newline="").write(js)
+    open(os.path.join(repo, "docs", "demo", "skkc", "kc-check.js"), "w", encoding="utf-8", newline="").write(js)
+    ver = hashlib.sha256(js.encode("utf-8")).hexdigest()[:8]
+    tver = hashlib.sha256(open(os.path.join(repo, "docs", "assets", "textin.js"), "rb").read()).hexdigest()[:8]
+    dcss = rd("detector.css")
+    base = drop_rules(importantize(dcss[:dcss.index("/* 2026.11.26 아래 차별점 칸")] + "\n" + rd("humanizer.css")), DET_ONLY)
+    raw_css = base + "\n" + importantize(rd("kc", "kc.css") + "\n" + rd("kc", "page.css"))
+    tool = compact_html(rd("kc", "tool.html"))
+    pricing, report = "/copyclean-pricing#ccpPay", "/shop_view/?idx=6"
+    cfg = json.dumps({"api": KC_API, "demo": False, "chatUrl": "https://skcdesk.channel.io/home", "pricing": pricing, "report": report,
+                      "humanizer": "/ai-humanizer", "root": KC_CDN, "textin": KC_CDN + "assets/textin.js?v=" + tver}, ensure_ascii=False)
+    cfg_el = '<div hidden data-kc-cfg="%s"></div>' % H.escape(cfg, quote=True)
+    script = '<script src="%sassets/kc-check.js?v=%s"></script>' % (KC_CDN, ver)
+    faq = "".join('<details class="kcp-q"%s><summary><i>Q</i>%s</summary><div class="kcp-a">%s</div></details>' % (" open" if i == 0 else "", _kc_esc(q), _kc_esc(a)) for i, (q, a) in enumerate(KC_FAQ))
+    ld = json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in KC_FAQ]}, ensure_ascii=False)
+    hide = ",".join(KC_DET_HIDE) + "{display:none !important}"
+
+    det = rd("kc", "detector.html").replace("{{TOOL}}", tool).replace("{{HUMANIZER}}", "/ai-humanizer").replace("{{REPORT}}", report).replace("{{FAQ}}", faq)
+    assert "{{" not in det
+    det_html = compact_html(det)
+    det_css = minify(prune_unused(raw_css, html_classes(det_html), js + det_html))   # 쪽에 없는 class 규칙은 뺌
+    det_code = '%s\n<style>\n%s\n%s\n</style>\n%s%s<script type="application/ld+json">%s</script>%s' % (FONT_LINK, det_css, hide, cfg_el, det_html, ld, script)
+    open(os.path.join(DIST, "kc_ai-detector_widget.html"), "w", encoding="utf-8").write(det_code)
+
+    hum = rd("humanizer.html")
+    reps = [
+        ('<span class="ccd-mflow__s"><b>1</b>문서 보내기</span>', '<span class="ccd-mflow__s"><b>1</b>무료 AI 작성률 검사</span>'),
+        ('<a class="ccd-cta" href="https://skcdesk.channel.io/home" target="_blank" rel="noopener"><span class="ccd-cta__text">AI 작성률 개선 의뢰하기</span>',
+         '<a class="ccd-cta" href="#kcCheck"><span class="ccd-cta__text">무료로 AI 작성률 검사하기</span>'),
+        ('<a class="ccd-link" href="#cchCase">개선 사례 보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="m6 13 6 6 6-6"/></svg></a>',
+         '<a class="ccd-link" href="https://skcdesk.channel.io/home" target="_blank" rel="noopener" data-kc-chat="hero">바로 견적 상담받기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>'),
+        ('<section class="cch-sec cch-who">', rd("kc", "humanizer_check.html").replace("{{TOOL}}", tool) + '\n<section class="cch-sec cch-who">'),
+        ('<section class="cch-sec cch-how">', rd("kc", "humanizer_pay.html").replace("{{PRICING}}", pricing) + '\n<section class="cch-sec cch-how">'),
+    ]
+    for a, b in reps:
+        assert hum.count(a) == 1, a[:60]
+        hum = hum.replace(a, b)
+    assert "{{" not in hum
+    hum_html = compact_html(hum)
+    hum_css = minify(prune_unused(raw_css, html_classes(hum_html), js + hum_html))
+    hum_code = "%s\n<style>\n%s\n</style>\n%s%s%s" % (FONT_LINK, hum_css, cfg_el, hum_html, script)
+    open(os.path.join(DIST, "kc_ai-humanizer_widget.html"), "w", encoding="utf-8").write(hum_code)
+    open(os.path.join(DIST, "preview_kc_detector.html"), "w", encoding="utf-8").write(page_preview("kc ai-detector preview", det_code))
+    open(os.path.join(DIST, "preview_kc_humanizer.html"), "w", encoding="utf-8").write(page_preview("kc ai-humanizer preview", hum_code))
+    sha = lambda s: hashlib.sha256(s.encode("utf-8")).hexdigest()[:16]
+    return {"det": len(det_code), "det_sha": sha(det_code), "hum": len(hum_code), "hum_sha": sha(hum_code), "js_ver": ver, "textin_ver": tver}
+
+
 if __name__ == "__main__":
     print("detector", build_detector(), "detector_more", build_detector_more(), "inquiry", build_inquiry(), "pricing", build_pricing(), "pricing_tc", build_pricing_tc(), "academic", build_academic(), "humanizer", build_humanizer())
     print("hero", build_hero())
     print("skp", build_skp())
     print("kc_demo", build_kc_demo())
+    print("kc_prod", build_kc_prod())
