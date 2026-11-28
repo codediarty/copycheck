@@ -38,19 +38,27 @@
 #w202607087bc977b377b35 .skk-price-card .skk-price-btn { position: static; }
 #w202607087bc977b377b35 .skk-price-card .skk-price-btn::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
 
-/* 2026.11.28 10:44 대표 '오른쪽에 안전결제 · 에스크로, 결과물 받기 전에는 전문가에게 가지 않고 성균관컨설팅이 보관, 축약해서 상자로'
-   10:59 대표 '모든 작업물은 내부 품질 검수 기준을 충족한 후 최종 전달됩니다. 이것도 같이' : 상자 안 두 줄 */
-.spc-pay .spc-pay__top { display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; gap: 12px 24px; }
-.spc-pay .spc-pay__top .spc-eyebrow { flex-shrink: 0; }
-.spc-pay .spc-pay__safe { flex: 0 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 7px; max-width: 800px; margin: 0; padding: 11px 18px 11px 11px; border-radius: 14px; background: #eef4ff; border: 1px solid #d6e3fb; }
-.spc-pay .spc-pay__safe-row { display: flex; align-items: center; gap: 10px; margin: 0; padding: 0; }
-.spc-pay .spc-pay__safe-ic { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 8px; background: #fff; box-shadow: 0 4px 10px -8px rgba(23,93,246,.8); }
-.spc-pay .spc-pay__safe-ic svg { width: 16px; height: 16px; fill: none; stroke: #175df6; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.spc-pay .spc-pay__safe-tx { font-size: 12.5px; font-weight: 600; line-height: 1.5; color: #475569; word-break: keep-all; }
-.spc-pay .spc-pay__safe-tx b { margin-right: 8px; font-size: 13.5px; font-weight: 800; color: #0f2a6b; letter-spacing: -0.01em; }
-@media (max-width: 768px) {
-  .spc-pay .spc-pay__top { flex-direction: column; align-items: flex-start; }
-  .spc-pay .spc-pay__safe { width: 100%; max-width: none; gap: 9px; }
-  .spc-pay .spc-pay__safe-row { align-items: flex-start; }
-  .spc-pay .spc-pay__safe-tx b { display: block; margin: 0 0 1px; }
+/* 2026.11.28 10:44 · 10:59 대표: 에스크로 안전결제 · 품질 검수 후 전달 안내. 11:17 '조잡하지 않게 잘 어울리게'
+   머리 왼쪽(제목 · 설명)과 오른쪽(흰 카드, 두 항목 나란히)으로 나눔. 카드 모양은 아래 크레딧 칸과 같은 흰 바탕 · 옅은 테두리 */
+.spc-pay .spc-pay__head { display: flex; align-items: center; justify-content: space-between; gap: 18px 40px; }
+.spc-pay .spc-pay__intro { flex: 1 1 auto; min-width: 0; }
+.spc-pay .spc-pay__intro .spc-desc { text-wrap: balance; word-break: keep-all; }
+.spc-pay .spc-pay__assure { flex: 0 1 700px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding: 16px 0; border-radius: 16px; background: #fff; border: 1px solid #e5e7eb; box-shadow: 0 16px 32px -26px rgba(15,23,42,.45); }
+.spc-pay .spc-pay__as { display: flex; align-items: flex-start; gap: 12px; padding: 2px 18px; }
+.spc-pay .spc-pay__as + .spc-pay__as { border-left: 1px solid #eef1f5; }
+.spc-pay .spc-pay__as-ic { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 11px; background: #eef4ff; }
+.spc-pay .spc-pay__as-ic svg { width: 18px; height: 18px; fill: none; stroke: #175df6; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+.spc-pay .spc-pay__as-tx { min-width: 0; }
+.spc-pay .spc-pay__as-tx b { display: block; font-size: 14.5px; font-weight: 800; line-height: 1.4; letter-spacing: -0.01em; color: #111827; }
+.spc-pay .spc-pay__as-tx p { margin: 3px 0 0; padding: 0; font-size: 13px; font-weight: 500; line-height: 1.6; color: #6b7280; word-break: keep-all; }
+.spc-pay .spc-pay__grid { margin-top: 22px; }
+@media (max-width: 1024px) {
+  .spc-pay .spc-pay__head { flex-direction: column; align-items: stretch; }
+  .spc-pay .spc-pay__assure { flex: none; }
+}
+@media (max-width: 640px) {
+  .spc-pay .spc-pay__assure { grid-template-columns: 1fr; padding: 4px 16px; }
+  .spc-pay .spc-pay__as { padding: 13px 0; }
+  .spc-pay .spc-pay__as + .spc-pay__as { border-left: 0; border-top: 1px solid #eef1f5; }
+  .spc-pay .spc-pay__as-tx b { font-size: 14px; }
 }

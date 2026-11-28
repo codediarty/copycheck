@@ -74,19 +74,22 @@
 .skk-price-card .ccp-jump { position: relative; z-index: 2; }
 @media (max-width: 768px) { .skk-pricing { max-width: 460px; } }
 
-/* 2026.11.28 10:44 대표 '오른쪽에 안전결제 · 에스크로 … 축약해서 상자로': 'AI 유사도 개선 결제' 줄 오른쪽
-   10:59 대표 '모든 작업물은 내부 품질 검수 기준을 충족한 후 최종 전달됩니다. 이것도 같이' : 상자 안 두 줄 */
-.ccp .ccp-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; gap: 12px 24px; }
-.ccp .ccp-top .ccp-eb { flex-shrink: 0; }
-.ccp .ccp-safe { flex: 0 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 7px; max-width: 800px; padding: 11px 18px 11px 11px; border-radius: 14px; background: #eaf1ff; border: 1px solid #d6e3fb; }
-.ccp .ccp-safe__row { display: flex; align-items: center; gap: 10px; }
-.ccp .ccp-safe__ic { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 8px; background: #fff; box-shadow: 0 4px 10px -8px rgba(23,93,246,.8); }
-.ccp .ccp-safe__ic svg { width: 16px; height: 16px; fill: none; stroke: #175df6; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.ccp .ccp-safe__tx { font-size: 12.5px; font-weight: 600; line-height: 1.5; color: #475569; }
-.ccp .ccp-safe__tx b { margin-right: 8px; font-size: 13.5px; font-weight: 800; color: #0f2a6b; letter-spacing: -0.01em; }
+/* 2026.11.28 10:44 · 10:59 대표: 에스크로 안전결제 · 품질 검수 후 전달 안내. 11:17 '조잡하지 않게 잘 어울리게'
+   머리 왼쪽(제목 · 설명)과 오른쪽(흰 카드, 두 항목 위아래)으로 나누고, '채팅 상담 먼저 하기'는 아래 단계 줄 오른쪽으로 */
+.ccp .ccp-head { align-items: center; gap: 24px 40px; }
+.ccp .ccp-assure { flex: 0 1 400px; min-width: 0; padding: 4px 20px; border-radius: 16px; background: #fff; border: 1px solid #d6e3fb; box-shadow: 0 16px 32px -26px rgba(23,93,246,.55); }
+.ccp .ccp-as { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; }
+.ccp .ccp-as + .ccp-as { border-top: 1px solid #edf1f7; }
+.ccp .ccp-as-ic { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 11px; background: #ebf2ff; }
+.ccp .ccp-as-ic svg { width: 18px; height: 18px; stroke: #175df6; stroke-width: 2.1; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ccp .ccp-as-tx b { display: block; font-size: 14.5px; font-weight: 800; line-height: 1.4; letter-spacing: -0.01em; color: #0f172a; }
+.ccp .ccp-as-tx p { margin-top: 3px; font-size: 13px; font-weight: 500; line-height: 1.6; color: #64748b; }
+.ccp .ccp-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px 24px; margin-top: 22px; padding-top: 18px; border-top: 1px solid #e2e8f0; }
+.ccp .ccp-foot .ccp-steps { margin-top: 0; padding-top: 0; border-top: 0; }
 @media (max-width: 768px) {
-  .ccp .ccp-top { flex-direction: column; align-items: flex-start; }
-  .ccp .ccp-safe { width: 100%; max-width: none; gap: 9px; }
-  .ccp .ccp-safe__row { align-items: flex-start; }
-  .ccp .ccp-safe__tx b { display: block; margin: 0 0 1px; }
+  .ccp .ccp-head { align-items: stretch; }
+  .ccp .ccp-assure { flex: none; width: 100%; padding: 2px 16px; }
+  .ccp .ccp-as { padding: 13px 0; }
+  .ccp .ccp-as-tx b { font-size: 14px; }
+  .ccp .ccp-foot { flex-direction: column; align-items: stretch; }
 }
