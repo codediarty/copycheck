@@ -296,6 +296,28 @@
     } catch (e) { ok = false; }
     if (!ok) { copyText(msg); window.open(CFG.chatUrl || 'https://skcdesk.channel.io/home', '_blank', 'noopener'); toast('검사 결과를 복사했어요. 상담 창에 붙여 넣어 주세요.'); }
   }
+  /* 부드럽게 움직이고, 탭이 뒤에 있어 전혀 움직이지 않았으면 그 자리로 바로 옮김 */
+  function smoothTo(y) {
+    y = Math.max(0, Math.round(y));
+    var y0 = window.pageYOffset;
+    try { window.scrollTo({ top: y, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, y); }
+    setTimeout(function () { if (Math.abs(window.pageYOffset - y0) < 2 && Math.abs(y - y0) > 2) window.scrollTo(0, y); }, 1000);
+  }
+  /* 위에 고정된 머리(아임웹 sgkHeader) 높이만큼 띄워서 멈춤. 없으면 기본값 */
+  function hdGap(def) {
+    var hd = document.getElementById('sgkHeader');
+    if (hd) { var r = hd.getBoundingClientRect(); if (r.height && r.top <= 1 && r.bottom > 0) return Math.round(r.bottom) + 16; }
+    return def;
+  }
+  /* 검사 칸으로 부드럽게 올라가 글 칸에 바로 입력. 아임웹 쪽의 # 링크 처리보다 먼저(잡기 단계) 받아 두 번 움직이지 않게 */
+  window.addEventListener('click', function (e) {
+    var top = e.target.closest && e.target.closest('a[href="#kcCheck"]');
+    if (!top || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    var tl = document.getElementById('kcCheck'); if (!tl) return;
+    e.preventDefault(); e.stopPropagation(); if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+    smoothTo(tl.getBoundingClientRect().top + window.pageYOffset - hdGap(110));
+    setTimeout(function () { var x = $('[data-kc-ta]', tl); if (x && !x.closest('[hidden]')) { try { x.focus({ preventScroll: true }); } catch (er) { x.focus(); } } }, 650);
+  }, true);
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-kc-chat]');
     if (b) { e.preventDefault(); openChat(b.getAttribute('data-kc-chat')); return; }
@@ -306,8 +328,6 @@
       $$('[data-kc-q="' + key + '"]').forEach(function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-v') === ST.q[key] ? 'true' : 'false'); });
       return;
     }
-    var top = e.target.closest && e.target.closest('a[href="#kcCheck"]');   /* 검사 칸으로 부드럽게 올라가 글 칸에 바로 입력 */
-    if (top) { var tl = document.getElementById('kcCheck'); if (tl) { e.preventDefault(); var y = tl.getBoundingClientRect().top + window.pageYOffset - 110; window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' }); setTimeout(function () { var x = $('[data-kc-ta]', tl); if (x && !x.closest('[hidden]')) { try { x.focus({ preventScroll: true }); } catch (er) { x.focus(); } } }, 650); } return; }
     var a = e.target.closest && e.target.closest('a[href*="channel.io"]');   /* 쪽 안의 다른 상담 단추도 같은 상담 창으로(검사 결과가 있으면 함께) */
     if (a && typeof window.ChannelIO === 'function' && !e.ctrlKey && !e.metaKey && !e.shiftKey) { e.preventDefault(); openChat('link'); }
   });
@@ -376,8 +396,7 @@
       count(); setTimeout(function () { try { ta.focus(); } catch (e) { /* 그대로 */ } }, 60);
     }
     function scrollTo(el, center) {
-      var y = el.getBoundingClientRect().top + window.pageYOffset - (center ? 120 : 76);
-      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      smoothTo(el.getBoundingClientRect().top + window.pageYOffset - (center ? Math.max(120, hdGap(0) + 24) : hdGap(76)));
     }
 
     /* 진행 화면 */
