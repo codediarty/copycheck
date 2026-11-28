@@ -463,7 +463,93 @@ def build_humanizer():
     return len(code)
 
 
+# ── 2026.11.28 카피클린 무료 검사(AIMarker 엔진) 데모 두 쪽 ──
+# 대표: '아직 배포해서 적용시키지는 말고 데모로 내가 먼저 테스트 · 지금의 사이트 상태는 유지한 채 개선된 버전의 사이트 2개 페이지를 만들어서 보여줘'
+# 데모는 copycheck.skkc.co.kr/demo/skkc/ (검색 제외). 카피체크 주소는 서버가 이미 허용하는 곳이라 서버를 바꾸지 않고 실제 엔진으로 검사됨
+KC_DEMO_API = "https://script.google.com/macros/s/AKfycbz3qUbNNd_21wHvi6EGHAz1_lrRJ7LAzzIYlIeg4U0bm8m-ioqHLPJV1UzatPmpOfkOFg/exec"
+KC_CHAT_KEY = "c35b386f-d5db-4309-9a8b-18dd319b323d"   # skkc.co.kr 쪽에 이미 공개돼 있는 채널톡 플러그인 키
+KC_FAQ = [
+    ("무료 검사는 정말 무료인가요?", "네. 회원가입이나 결제 정보 없이 바로 검사해요. 결과에서 AI 작성률 · 판정 · AI 패턴 문장 수를 확인할 수 있어요."),
+    ("올린 글이나 파일이 저장되나요?", "파일은 이 브라우저 안에서 글만 꺼내고, 검사할 글만 서버로 보내요. 검사에 쓴 글은 저장하지 않아요."),
+    ("블라인드된 문장은 어떻게 확인하나요?", "어떤 문장을 어떻게 고칠지는 전문가 상담에서 개선 범위와 함께 안내해 드려요. 문장별 위치가 모두 담긴 상세 내역서(PDF)가 필요하면 상세 결과서(5,500원)로 받을 수 있어요."),
+    ("카피킬러 · GPT킬러 같은 다른 검사기와 결과가 같나요?", "검사기마다 학습한 자료와 기준이 달라 수치가 다를 수 있어요. 카피클린 무료 검사는 놓치는 AI 글을 줄이도록 엄격한 기준으로 재므로, 제출처가 쓰는 검사기 기준으로도 함께 확인하는 것이 좋아요."),
+    ("AI 작성률이 높게 나오면 어떻게 하나요?", "결과 아래 '무료 견적 받기'를 누르면 검사 결과가 채널톡 상담 창에 함께 들어가요. 분량 · 마감 · 목표를 보고 크레딧으로 견적을 안내해 드리고, 확인하신 뒤에 진행해요."),
+    ("개선 비용은 어떻게 정해지나요?", "문서 분량, AI 작성률이 높게 나온 구간, 희망 마감일에 따라 달라져요. 상담에서 크레딧(1 크레딧 = 1만 원)으로 안내하고, 같은 크레딧을 바로 결제 쪽에서 결제해요."),
+    ("결제는 안전한가요?", "에스크로 안전결제로, 결과물을 받기 전까지 결제금은 전문가가 아닌 성균관컨설팅이 안전하게 보관해요. 모든 작업물은 내부 품질 검수 기준을 충족한 후 최종 전달돼요."),
+    ("AI로 작성된 문서도 개선이 가능한가요?", "가능합니다. 생성형 언어모델 특유의 문장 구조와 표현 패턴을 분석한 뒤, 의미와 논리는 그대로 유지하면서 AI 사용 흔적이 드러나기 쉬운 구조를 자연스러운 문장 흐름으로 개선합니다."),
+    ("AI 사용 규정이 있는 과제에도 맡겨도 되나요?", "카피클린은 이미 쓴 글의 표현을 다듬는 서비스이며 대필이나 AI 자동 생성은 하지 않아요. 제출처(학교 · 기관)의 생성형 AI 사용 규정을 먼저 확인해 주세요. 결과 수치는 문서와 검사 도구에 따라 달라 특정 수치를 보장하지 않아요."),
+    ("의뢰 문서는 어떻게 관리되나요?", "모든 자료는 컨설팅 목적에 한해 제한적으로 접근되며, 작업 완료 후에는 내부 보안 규정에 따라 즉시 폐기됩니다."),
+]
+KC_CHAT_BOOT = ("(function(){var w=window;if(w.ChannelIO){return;}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;"
+                "function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement('script');s.type='text/javascript';s.async=true;"
+                "s.src='https://cdn.channel.io/plugin/ch-plugin-web.js';var x=document.getElementsByTagName('script')[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}"
+                "if(document.readyState==='complete'){l();}else{w.addEventListener('DOMContentLoaded',l);w.addEventListener('load',l);}})();"
+                "ChannelIO('boot',{\"pluginKey\":\"%s\",\"language\":\"ko\"});") % KC_CHAT_KEY
+
+
+def _kc_esc(s):
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+
+def build_kc_demo():
+    """2026.11.28 데모 두 쪽: docs/demo/skkc/ai-detector/ · ai-humanizer/ + kc-check.js (실제 사이트 · 서버는 그대로)"""
+    import hashlib
+    rd = lambda *p: open(os.path.join(SRC, *p), encoding="utf-8").read()
+    docs = os.path.join(os.path.dirname(os.path.dirname(HERE)), "docs", "demo", "skkc")
+    os.makedirs(os.path.join(docs, "ai-detector"), exist_ok=True)
+    os.makedirs(os.path.join(docs, "ai-humanizer"), exist_ok=True)
+    js = rd("kc", "kc-check.js")
+    open(os.path.join(docs, "kc-check.js"), "w", encoding="utf-8", newline="").write(js)
+    ver = hashlib.sha256(js.encode("utf-8")).hexdigest()[:8]
+    dcss = rd("detector.css")
+    base = drop_rules(importantize(dcss[:dcss.index("/* 2026.11.26 아래 차별점 칸")] + "\n" + rd("humanizer.css")), DET_ONLY)
+    page_css = minify(base + "\n" + importantize(rd("kc", "kc.css") + "\n" + rd("kc", "page.css")))
+    shell_css = minify(rd("kc", "shell.css"))
+    tool = compact_html(rd("kc", "tool.html"))
+    report = "https://www.skkc.co.kr/shop_view/?idx=6"
+    pricing = "https://www.skkc.co.kr/copyclean-pricing#ccpPay"
+    cfg = json.dumps({"api": KC_DEMO_API, "demo": True, "chatUrl": "https://skcdesk.channel.io/home", "pricing": pricing, "report": report, "humanizer": "../ai-humanizer/"}, ensure_ascii=False)
+    faq = "".join('<details class="kcp-q"%s><summary><i>Q</i>%s</summary><div class="kcp-a">%s</div></details>' % (" open" if i == 0 else "", _kc_esc(q), _kc_esc(a)) for i, (q, a) in enumerate(KC_FAQ))
+    ld = json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in KC_FAQ]}, ensure_ascii=False)
+    shell = rd("kc", "shell.html")
+
+    def page(title, body, cur, tail=""):
+        h = shell
+        for k, v in (("{{TITLE}}", title), ("{{SHELL_CSS}}", shell_css), ("{{PAGE_CSS}}", page_css), ("{{BODY}}", body), ("{{CFG}}", cfg), ("{{V}}", ver),
+                     ("{{CHAT}}", KC_CHAT_BOOT), ("{{TAIL}}", tail), ("{{CUR_DET}}", ' aria-current="page"' if cur == "det" else ""), ("{{CUR_HUM}}", ' aria-current="page"' if cur == "hum" else "")):
+            h = h.replace(k, v)
+        return h
+
+    det = rd("kc", "detector.html").replace("{{TOOL}}", tool).replace("{{HUMANIZER}}", "../ai-humanizer/").replace("{{REPORT}}", report).replace("{{FAQ}}", faq)
+    det_page = page("[데모] AI 작성률 무료 검사 · AI 사용 여부 확인 | 카피클린 · 성균관컨설팅", compact_html(det), "det",
+                    '<script type="application/ld+json">%s</script>' % ld)
+    open(os.path.join(docs, "ai-detector", "index.html"), "w", encoding="utf-8", newline="").write(det_page)
+
+    hum = rd("humanizer.html")
+    reps = [
+        ('<span class="ccd-mflow__s"><b>1</b>문서 보내기</span>', '<span class="ccd-mflow__s"><b>1</b>무료 AI 작성률 검사</span>'),
+        ('<a class="ccd-cta" href="https://skcdesk.channel.io/home" target="_blank" rel="noopener"><span class="ccd-cta__text">AI 작성률 개선 의뢰하기</span>',
+         '<a class="ccd-cta" href="#kcCheck"><span class="ccd-cta__text">무료로 AI 작성률 검사하기</span>'),
+        ('<a class="ccd-link" href="#cchCase">개선 사례 보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="m6 13 6 6 6-6"/></svg></a>',
+         '<a class="ccd-link" href="https://skcdesk.channel.io/home" target="_blank" rel="noopener" data-kc-chat="hero">바로 견적 상담받기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>'),
+        ('<section class="cch-sec cch-who">', rd("kc", "humanizer_check.html").replace("{{TOOL}}", tool) + '\n<section class="cch-sec cch-who">'),
+        ('<section class="cch-sec cch-how">', rd("kc", "humanizer_pay.html").replace("{{PRICING}}", pricing) + '\n<section class="cch-sec cch-how">'),
+    ]
+    for a, b in reps:
+        assert hum.count(a) == 1, a[:60]
+        hum = hum.replace(a, b)
+    n_det = hum.count('href="/ai-detector"')
+    hum = hum.replace('href="/ai-detector"', 'href="../ai-detector/"')
+    hum_page = page("[데모] AI 작성률 개선 · 전문 에디터 휴머나이징 | 카피클린 · 성균관컨설팅", compact_html(hum), "hum")
+    open(os.path.join(docs, "ai-humanizer", "index.html"), "w", encoding="utf-8", newline="").write(hum_page)
+    idx = ('<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1">'
+           '<title>카피클린 데모</title><meta http-equiv="refresh" content="0; url=ai-detector/"></head><body><a href="ai-detector/">/ai-detector 데모</a> · <a href="ai-humanizer/">/ai-humanizer 데모</a></body></html>')
+    open(os.path.join(docs, "index.html"), "w", encoding="utf-8", newline="").write(idx)
+    return {"det": len(det_page), "hum": len(hum_page), "js": len(js), "ver": ver, "det_links": n_det}
+
+
 if __name__ == "__main__":
     print("detector", build_detector(), "detector_more", build_detector_more(), "inquiry", build_inquiry(), "pricing", build_pricing(), "pricing_tc", build_pricing_tc(), "academic", build_academic(), "humanizer", build_humanizer())
     print("hero", build_hero())
     print("skp", build_skp())
+    print("kc_demo", build_kc_demo())

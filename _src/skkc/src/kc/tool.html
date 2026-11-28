@@ -1,0 +1,30 @@
+<!-- 카피클린 AI 작성률 무료 검사 칸(kc-check.js 가 붙음). 결과는 id="kcRes" 칸에 그려짐 -->
+<div class="kc">
+  <div class="kc-tool" id="kcCheck" data-kc-tool data-kc-res="kcRes">
+    <div class="kc-tool__bar"><span class="kc-tool__live"><i></i>AI 작성률 무료 검사</span><span class="kc-tool__tag">회원가입 없이 · 무료</span></div>
+    <div class="kc-tool__body" data-kc-body>
+      <div class="kc-in" data-kc-in>
+        <label class="kc-sr" for="kcText">검사할 글</label>
+        <textarea id="kcText" class="kc-in__ta" data-kc-ta spellcheck="false" placeholder="검사할 글을 붙여 넣거나, 파일을 이 칸에 끌어다 놓으세요.&#10;한글(HWP · HWPX) · 워드(DOCX) · PDF · 텍스트 파일을 열 수 있어요."></textarea>
+        <div class="kc-file" data-kc-file hidden></div>
+        <div class="kc-in__drop" aria-hidden="true"><svg class="kc-ico" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg>여기에 파일을 놓으세요</div>
+        <div class="kc-in__busy" data-kc-busy hidden><i class="kc-spin"></i><span>파일에서 글을 꺼내는 중</span></div>
+      </div>
+      <div class="kc-row">
+        <label class="kc-pick"><svg class="kc-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg><input type="file" data-kc-pick accept=".hwp,.hwpx,.docx,.pdf,.txt,.md,text/plain,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document">파일 올리기</label>
+        <button type="button" class="kc-sample" data-kc-sample>예시 글 넣기</button>
+        <span class="kc-count" data-kc-count>0자</span>
+      </div>
+      <button type="button" class="kc-go" data-kc-go disabled><span>무료로 AI 작성률 검사하기</span><i><svg class="kc-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></i></button>
+      <p class="kc-note"><svg class="kc-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span>글은 검사에만 쓰고 저장하지 않아요 · 파일은 이 브라우저 안에서 글만 꺼내요</span></p>
+      <div class="kc-err" data-kc-err hidden role="alert"></div>
+    </div>
+    <div class="kc-done" data-kc-done hidden></div>
+    <div class="kc-run" data-kc-run hidden aria-live="polite">
+      <div class="kc-run__ring"><svg viewBox="0 0 112 112" aria-hidden="true"><circle class="trk" cx="56" cy="56" r="48"/><circle class="val" cx="56" cy="56" r="48"/></svg><b data-kc-pct>0<small>%</small></b></div>
+      <p class="kc-run__t">AI 작성률을 분석하고 있어요</p>
+      <ol class="kc-run__steps"><li data-s="1"><i></i>글을 문장 단위로 나누는 중</li><li data-s="2"><i></i>문장마다 AI 작성 패턴 분석<small data-kc-part></small></li><li data-s="3"><i></i>AI 작성률 계산 · 판정</li></ol>
+      <p class="kc-run__note">글 길이에 따라 몇 초에서 1분쯤 걸려요. 창을 닫지 마세요.</p>
+    </div>
+  </div>
+</div>

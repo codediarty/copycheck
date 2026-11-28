@@ -1,0 +1,32 @@
+/* 데모 쪽 틀: 아임웹 skkc.co.kr 머리글 · 바닥글 흉내(데모 전용, 실제 사이트에는 넣지 않음) */
+html { scroll-behavior: auto; }
+body { margin: 0; background: #fff; color: #0f172a; font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.dm-ribbon { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px 16px; padding: 9px 16px; background: #0f172a; color: #e2e8f0; font-size: 13px; font-weight: 600; line-height: 1.4; text-align: center; }
+.dm-ribbon b { color: #7ee2b2; font-weight: 800; }
+.dm-ribbon nav { display: flex; gap: 6px; }
+.dm-ribbon a { padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.08); color: #fff; text-decoration: none; font-weight: 700; }
+.dm-ribbon a[aria-current="page"] { background: #10a366; }
+.dm-hd { position: sticky; top: 0; z-index: 800; display: flex; align-items: center; gap: 28px; height: 84px; padding: 0 40px; background: rgba(255,255,255,0.97); border-bottom: 1px solid #eef1f5; }
+.dm-logo { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; text-decoration: none; }
+.dm-logo img { display: block; height: 36px; width: auto; }
+.dm-rise { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px; border: 1.5px solid #1a5cf5; color: #1a5cf5; font-size: 11.5px; font-weight: 800; line-height: 1.3; white-space: nowrap; }
+.dm-rise svg { width: 13px; height: 13px; stroke: #1a5cf5; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.dm-nav { display: flex; align-items: center; gap: 34px; margin: 0 auto; }
+.dm-nav a { display: inline-flex; align-items: center; gap: 5px; color: #1f2937; font-size: 15px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.dm-nav a::after { content: ""; width: 6px; height: 6px; margin-top: -3px; border-right: 1.6px solid #64748b; border-bottom: 1.6px solid #64748b; transform: rotate(45deg); }
+.dm-nav a.is-on { color: #0b7a4b; font-weight: 800; }
+.dm-my { padding: 11px 20px; border-radius: 999px; background: #1a5cf5; color: #fff; font-size: 14px; font-weight: 800; text-decoration: none; white-space: nowrap; }
+.dm-burger { display: none; width: 30px; height: 22px; margin-left: auto; background: linear-gradient(#0f172a, #0f172a) 0 0/100% 2.5px no-repeat, linear-gradient(#0f172a, #0f172a) 0 50%/100% 2.5px no-repeat, linear-gradient(#0f172a, #0f172a) 0 100%/100% 2.5px no-repeat; }
+.dm-ft { padding: 40px 40px 48px; background: #f7f8fa; border-top: 1px solid #eceff3; color: #6b7280; font-size: 13px; line-height: 1.9; }
+.dm-ft__in { max-width: 1200px; margin: 0 auto; }
+.dm-ft__logo { display: block; height: 30px; width: auto; margin-bottom: 16px; opacity: 0.9; }
+.dm-ft a { color: #374151; text-decoration: none; font-weight: 700; }
+.dm-ft p { margin: 0; }
+@media (max-width: 1100px) {
+  .dm-hd { height: 70px; padding: 0 18px; }
+  .dm-logo img { height: 30px; }
+  .dm-rise { display: none; }
+  .dm-nav, .dm-my { display: none; }
+  .dm-burger { display: block; }
+  .dm-ft { padding: 32px 18px 96px; }
+}

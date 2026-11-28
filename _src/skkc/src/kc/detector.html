@@ -1,0 +1,149 @@
+<!-- 2026.11.28 /ai-detector 새 판(데모): 대표 '무료 검사 → 블라인드 → 결제 전환, 우리 메인은 AI 작성률 개선, 여기서는 상담해서 견적'
+     첫 화면(검사 칸) → 결과(블라인드 · 상담 칸) → 다음 순서 → 결과 읽는 법 → 높게 나왔다면 전문가 → 믿을 수 있는 까닭 → 상세 결과서(5,500원) → 자주 묻는 질문 → 마지막 권유 -->
+<div class="ccd">
+  <section class="ccd-hero kcp-hero" aria-labelledby="kcpTitle">
+    <div class="ccd-deco" aria-hidden="true"><span class="ccd-grid"></span><span class="ccd-ring"></span><span class="ccd-ring ccd-ring--2"></span></div>
+    <div class="ccd-inner">
+      <div class="ccd-copy">
+        <div class="ccd-chips">
+          <span class="ccd-chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg>AI 작성률 무료 검사</span>
+          <span class="ccd-chip"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m9 9 2 2 4-4"/><path d="M8.5 14.5 7 22l5-2.5L17 22l-1.5-7.5"/></svg>한국AI윤리위원회 인증</span>
+        </div>
+        <h1 id="kcpTitle" class="ccd-title">제출 전, 내 문서의<br><em>AI 작성률</em>을 무료로 확인하세요</h1>
+        <p class="ccd-desc">회원가입 없이 바로 검사해요. 문장마다 AI 작성 패턴을 분석해 <b>AI 작성률과 판정</b>을 보여 드리고, 높게 나왔다면 전문 에디터가 뜻은 그대로 두고 개선해 드려요.</p>
+        <ol class="kcp-steps" aria-label="진행 순서">
+          <li><b>1</b><span>무료 검사<small>지금 바로</small></span></li>
+          <li><b>2</b><span>결과 확인<small>AI 작성률 · 판정</small></span></li>
+          <li><b>3</b><span>전문가 견적<small>채널톡 상담</small></span></li>
+        </ol>
+        <ul class="ccd-trust">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>회원가입 없이 무료</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>HWP · DOCX · PDF · TXT</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>검사한 글은 저장하지 않음</li>
+        </ul>
+      </div>
+      <div class="kcp-tool">{{TOOL}}</div>
+    </div>
+  </section>
+</div>
+
+<div class="kc kc-resx" id="kcRes" hidden aria-live="polite"></div>
+
+<div class="cch">
+  <!-- 다음 순서 -->
+  <section class="cch-sec kcp-next">
+    <div class="cch-inner">
+      <div class="cch-head">
+        <span class="cch-eb">HOW IT WORKS</span>
+        <h2 class="cch-h2">무료 검사 다음은<br><em>이렇게 진행돼요</em></h2>
+        <p class="cch-sub">검사 결과가 상담 창에 그대로 들어가, 따로 설명하지 않아도 바로 견적을 받을 수 있어요.</p>
+      </div>
+      <ol class="kcp-flow">
+        <li><span class="kcp-flow__n">STEP 01</span><span class="kcp-flow__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg></span><b>무료 AI 작성률 검사</b><p>회원가입 없이 지금 바로. AI 작성률 · 판정 · AI 패턴 문장 수를 확인해요.</p></li>
+        <li><span class="kcp-flow__n">STEP 02</span><span class="kcp-flow__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8"/><path d="M8 13h5"/></svg></span><b>채널톡 상담 · 크레딧 견적</b><p>분량 · 마감 · 목표를 보고 크레딧(1 크레딧 = 1만 원)으로 견적을 안내해요.</p></li>
+        <li><span class="kcp-flow__n">STEP 03</span><span class="kcp-flow__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><b>에스크로 안전결제</b><p>결과물을 받기 전까지 결제금은 전문가가 아닌 성균관컨설팅이 안전하게 보관해요.</p></li>
+        <li class="is-key"><span class="kcp-flow__n">STEP 04</span><span class="kcp-flow__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><b>전문가 개선 · 재검사 후 전달</b><p>전문 에디터가 AI 패턴 문장을 중심으로 개선하고, 품질 검수와 AI 작성률 재검사를 거쳐 전달해요.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 결과 읽는 법 -->
+  <section class="cch-sec kcp-read">
+    <div class="cch-inner kcp-read__grid">
+      <div>
+        <span class="cch-eb">HOW TO READ</span>
+        <h2 class="cch-h2">결과는<br><em>이렇게 읽어요</em></h2>
+        <p class="cch-sub">AI 작성률은 문장마다 판별 모델이 매긴 AI 점수를 그 문장의 글자 수만큼 반영한 추정값이에요. 판정은 정해진 기준으로 정하고, 같은 글은 언제나 같은 값이 나와요.</p>
+        <p class="kcp-read__note">놓치는 AI 글을 줄이도록 엄격하게 재기 때문에 사람이 쓴 글도 높게 나올 수 있어요. 결과만으로 글쓴이를 단정하지 마시고, 제출처가 쓰는 검사기 기준도 함께 확인하세요.</p>
+      </div>
+      <div class="kcp-bands">
+        <div class="kcp-band is-s"><span class="kcp-band__pill">안전</span><b>0~19%</b><p>AI 작성 패턴이 적은 편이에요. 제출처 기준이 엄격하다면 남은 문장만 살펴보세요.</p></div>
+        <div class="kcp-band is-r"><span class="kcp-band__pill">고위험</span><b>20~39%</b><p>일부 구간에 AI 작성 패턴이 몰려 있어요. 표시된 문장을 중심으로 다듬는 것이 좋아요.</p></div>
+        <div class="kcp-band is-u"><span class="kcp-band__pill">부적합</span><b>40~100%</b><p>AI 작성 패턴이 많은 편이에요. AI 검출 구간이 절반 이상이거나 AI 대화창 흔적이 있어도 부적합이에요.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 높게 나왔다면 -->
+  <section class="cch-sec cch-case kcp-pro">
+    <div class="cch-inner">
+      <div class="cch-head">
+        <span class="cch-eb">EXPERT HUMANIZING</span>
+        <h2 class="cch-h2">AI 작성률이 높게 나왔다면,<br><em>전문 에디터에게 맡기세요</em></h2>
+        <p class="cch-sub">기존 문서의 내용은 유지하고, AI 작성률이 높게 분석된 문장을 중심으로 개선합니다.</p>
+      </div>
+      <div class="cch-compare">
+        <div class="cch-cmp cch-cmp--before"><small>개선 전 분석 리포트</small><b>64<i>%</i></b><span>AI 작성률 · 부적합</span><div class="cch-bar"><i></i></div></div>
+        <div class="cch-cmp__mid"><span>개선 후</span><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></i></div>
+        <div class="cch-cmp cch-cmp--after"><small>개선 후 분석 리포트</small><b>14<i>%</i></b><span>AI 작성률 · 안전</span><div class="cch-bar"><i></i></div></div>
+      </div>
+      <p class="kcp-pro__src">* 동일 문서를 다시 분석한 실제 사례이며, 개선 후 수치는 원문 상태에 따라 달라집니다.</p>
+      <div class="kcp-vals">
+        <div class="kcp-val"><span class="kcp-val__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M8 11h6"/></svg></span><b>걸린 문장 중심으로</b><p>AI 작성률이 높게 나온 문장부터 집중해서 다듬어요. 카피킬러 · GPT킬러 결과확인서가 있다면 함께 보내 주세요.</p></div>
+        <div class="kcp-val"><span class="kcp-val__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><b>뜻은 그대로</b><p>원문의 의미 · 논지 · 데이터와 인용 · 각주 · 전공 용어를 지키면서 문장만 바꿔요.</p></div>
+        <div class="kcp-val"><span class="kcp-val__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span><b>재검사 결과와 함께</b><p>개선 뒤 AI 작성률을 다시 검사하고, 내부 품질 검수를 거쳐 희망 일정에 맞춰 전달해요.</p></div>
+      </div>
+      <div class="kcp-pro__cta">
+        <button type="button" class="cch-btn cch-btn--lg" data-kc-chat="pro"><span>무료 견적 상담받기</span><span class="cch-btn__arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></button>
+        <a class="kcp-more" href="{{HUMANIZER}}">전문가 AI 작성률 개선 자세히 보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 믿을 수 있는 까닭 -->
+  <section class="kcp-trust" aria-label="카피클린을 믿을 수 있는 까닭">
+    <div class="cch-inner kcp-trust__in">
+      <div class="kcp-tr"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span><b>성균관대학교<br>RISE 사업단 지원</b></div>
+      <div class="kcp-tr"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m9 9 2 2 4-4"/><path d="M8.5 14.5 7 22l5-2.5L17 22l-1.5-7.5"/></svg></span><b>한국AI윤리위원회<br>인증</b></div>
+      <div class="kcp-tr"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><b>에스크로<br>안전결제</b></div>
+      <div class="kcp-tr"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg></span><b>작업 후<br>문서 즉시 폐기</b></div>
+    </div>
+  </section>
+
+  <!-- 상세 결과서 -->
+  <section class="cch-sec kcp-rpt">
+    <div class="cch-inner kcp-rpt__in">
+      <div class="kcp-rpt__copy">
+        <span class="cch-eb">DETAILED REPORT</span>
+        <h2 class="cch-h2">문장별 위치까지<br><em>결과서로</em> 받고 싶다면</h2>
+        <p class="cch-sub">무료 검사는 AI 작성률과 판정까지 보여 드려요. 문장별 위치와 상세 내역이 담긴 결과서가 필요하면 상세 결과서를 받아 보세요.</p>
+      </div>
+      <div class="kcp-rpt__card">
+        <div class="kcp-rpt__price"><small>카피클린 상세 결과서</small><b>5,500<span>원</span></b><em>문서 1건 · 단건 결제</em></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>AI 유사도 수치와 AI 사용 가능성 분석</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>문장별 상세 내역서(PDF)</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>결과서를 메일로 전달</li>
+        </ul>
+        <a class="kcp-rpt__go" href="{{REPORT}}">상세 결과서 받기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 자주 묻는 질문 -->
+  <section class="cch-sec kcp-faq">
+    <div class="cch-inner kcp-faq__in">
+      <div class="cch-head">
+        <span class="cch-eb">FAQ</span>
+        <h2 class="cch-h2">자주 묻는 질문</h2>
+      </div>
+      <div class="kcp-qa">
+        {{FAQ}}
+      </div>
+    </div>
+  </section>
+
+  <!-- 마지막 권유 -->
+  <section class="kcp-final">
+    <div class="cch-inner kcp-final__in">
+      <span class="kcp-final__eb">COPYCLEAN · AI 작성률 검사 및 개선</span>
+      <h2>AI 작성률이 걱정된다면,<br>지금 무료로 확인하세요</h2>
+      <p>검사는 무료이고, 높게 나오면 전문 에디터가 직접 개선해 드려요.</p>
+      <div class="kcp-final__row">
+        <a class="cch-btn cch-btn--white cch-btn--lg" href="#kcCheck" data-kc-top><span>무료로 검사하기</span><span class="cch-btn__arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg></span></a>
+        <button type="button" class="kcp-final__chat" data-kc-chat="final"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>바로 견적 상담</button>
+      </div>
+      <p class="kcp-final__org">성균관대학교 RISE 사업단 지원 · 한국AI윤리위원회 인증</p>
+    </div>
+  </section>
+</div>

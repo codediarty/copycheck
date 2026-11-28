@@ -1,0 +1,160 @@
+/* 2026.11.28 /ai-detector 새 판(kcp-) · /ai-humanizer 무료 검사 칸(kch-) 쪽 모양. 바탕 규칙은 detector.css(.ccd) · humanizer.css(.cch) */
+
+/* 첫 화면: 오른쪽 검사 칸 */
+.ccd .kcp-hero { padding-top: 72px; padding-bottom: 88px; }
+.ccd .kcp-hero .ccd-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
+.ccd .kcp-tool { position: relative; animation: ccdIn 0.8s ease-out 0.2s both; }
+.ccd .kcp-tool::before { content: ""; position: absolute; z-index: 0; top: 26px; right: -14px; bottom: -14px; left: 26px; border-radius: 28px; background: #e8f3ed; border: 1px solid #d6ebe0; transform: rotate(2.2deg); }
+.ccd .kcp-tool > .kc { position: relative; z-index: 1; }
+.ccd .kcp-steps { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 26px; }
+.ccd .kcp-steps li { display: flex; align-items: center; gap: 10px; padding: 9px 14px 9px 9px; border-radius: 14px; background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px -16px rgba(15,23,42,0.3); }
+.ccd .kcp-steps li b { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: #ecf8f2; color: #0b7a4b; font-size: 13px; font-weight: 800; }
+.ccd .kcp-steps li:last-child b { background: #0b7a4b; color: #fff; }
+.ccd .kcp-steps li span { display: flex; flex-direction: column; font-size: 14px; font-weight: 750; color: #0f172a; line-height: 1.25; }
+.ccd .kcp-steps li small { font-size: 11.5px; font-weight: 600; color: #64748b; }
+
+/* 다음 순서 */
+.cch .kcp-next { background: #fff; padding-top: 104px; padding-bottom: 104px; }
+.cch .kcp-flow { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.cch .kcp-flow::before { content: ""; position: absolute; top: 74px; left: 12%; right: 12%; height: 2px; background: repeating-linear-gradient(90deg, #cfe9db 0 8px, rgba(0,0,0,0) 8px 14px); }
+.cch .kcp-flow li { position: relative; display: flex; flex-direction: column; align-items: flex-start; padding: 26px 22px 24px; border-radius: 22px; background: #f8fafc; border: 1px solid #e8edf2; }
+.cch .kcp-flow__n { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; color: #94a3b8; }
+.cch .kcp-flow__ic { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; margin: 14px 0 16px; border-radius: 16px; background: #fff; border: 1px solid #d9efe4; box-shadow: 0 10px 22px -14px rgba(11,122,75,0.5); }
+.cch .kcp-flow__ic svg { width: 24px; height: 24px; stroke: #0b7a4b; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.cch .kcp-flow b { font-size: 17.5px; font-weight: 800; letter-spacing: -0.025em; color: #0f172a; line-height: 1.35; }
+.cch .kcp-flow p { margin-top: 8px; font-size: 14.5px; font-weight: 500; line-height: 1.7; color: #64748b; }
+.cch .kcp-flow li.is-key { background: linear-gradient(160deg, #0b6b43, #0a5a39); border-color: transparent; box-shadow: 0 26px 50px -30px rgba(8,70,44,0.7); }
+.cch .kcp-flow li.is-key .kcp-flow__n { color: #7ee2b2; }
+.cch .kcp-flow li.is-key .kcp-flow__ic { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.18); box-shadow: none; }
+.cch .kcp-flow li.is-key .kcp-flow__ic svg { stroke: #fff; }
+.cch .kcp-flow li.is-key b { color: #fff; }
+.cch .kcp-flow li.is-key p { color: rgba(255,255,255,0.78); }
+
+/* 결과 읽는 법 */
+.cch .kcp-read { background: linear-gradient(180deg, #f5f7fa 0%, #fafbfc 100%); }
+.cch .kcp-read__grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 64px; align-items: center; }
+.cch .kcp-read__note { margin-top: 18px; padding: 14px 16px; border-radius: 14px; background: #fff; border: 1px solid #e2e8f0; font-size: 14px; font-weight: 550; line-height: 1.7; color: #475569; }
+.cch .kcp-bands { display: flex; flex-direction: column; gap: 12px; }
+.cch .kcp-band { display: grid; grid-template-columns: 92px 120px minmax(0, 1fr); align-items: center; gap: 16px; padding: 20px 22px; border-radius: 20px; background: #fff; border: 1px solid #e8edf2; box-shadow: 0 16px 34px -28px rgba(15,23,42,0.35); }
+.cch .kcp-band.is-s { --kb: #10a366; --kt: #e7f7ef; }
+.cch .kcp-band.is-r { --kb: #f08c00; --kt: #fff3e0; }
+.cch .kcp-band.is-u { --kb: #e5484d; --kt: #fdecec; }
+.cch .kcp-band__pill { justify-self: start; padding: 7px 14px; border-radius: 999px; background: var(--kt); color: var(--kb); font-size: 14px; font-weight: 800; }
+.cch .kcp-band b { font-size: 26px; font-weight: 800; letter-spacing: -0.04em; color: var(--kb); }
+.cch .kcp-band p { font-size: 14.5px; font-weight: 550; line-height: 1.65; color: #475569; }
+
+/* 높게 나왔다면 */
+.cch .kcp-pro__src { margin: -8px auto 0; max-width: 980px; text-align: center; font-size: 13px; font-weight: 500; color: #94a3b8; }
+.cch .kcp-vals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 1040px; margin: 40px auto 0; }
+.cch .kcp-val { padding: 26px 24px; border-radius: 22px; background: #fff; border: 1px solid #e8edf2; box-shadow: 0 20px 40px -32px rgba(15,23,42,0.35); }
+.cch .kcp-val__ic { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 15px; background: #ecf8f2; margin-bottom: 16px; }
+.cch .kcp-val__ic svg { width: 23px; height: 23px; stroke: #0b7a4b; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.cch .kcp-val b { display: block; font-size: 18px; font-weight: 800; letter-spacing: -0.025em; color: #0f172a; }
+.cch .kcp-val p { margin-top: 8px; font-size: 14.5px; font-weight: 500; line-height: 1.7; color: #64748b; }
+.cch .kcp-pro__cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px 28px; margin-top: 40px; }
+.cch .kcp-more, .cch .kcp-more:link, .cch .kcp-more:visited { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 3px; border-bottom: 1px solid #cbd5e1; font-size: 15.5px; font-weight: 750; color: #0f172a; }
+.cch .kcp-more:hover { border-bottom-color: #0f172a; }
+.cch .kcp-more svg { width: 16px; height: 16px; stroke: #0f172a; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+/* 믿을 수 있는 까닭 */
+.cch .kcp-trust { padding: 0 40px; background: #fff; }
+.cch .kcp-trust__in { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; padding: 28px 8px; border-top: 1px solid #eef2f6; border-bottom: 1px solid #eef2f6; }
+.cch .kcp-tr { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 12px; }
+.cch .kcp-tr + .kcp-tr { border-left: 1px solid #eef2f6; }
+.cch .kcp-tr span { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #f1f7f4; flex-shrink: 0; }
+.cch .kcp-tr span svg { width: 21px; height: 21px; stroke: #0b7a4b; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.cch .kcp-tr b { font-size: 14.5px; font-weight: 750; color: #0f172a; line-height: 1.4; }
+
+/* 상세 결과서 */
+.cch .kcp-rpt { background: #fff; padding-top: 96px; padding-bottom: 96px; }
+.cch .kcp-rpt__in { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: 56px; align-items: center; max-width: 1040px; }
+.cch .kcp-rpt__card { padding: 28px 28px 26px; border-radius: 24px; background: #fff; border: 1px solid #e3e8ee; box-shadow: 0 30px 60px -40px rgba(15,23,42,0.4); }
+.cch .kcp-rpt__price small { display: block; font-size: 13px; font-weight: 700; color: #64748b; }
+.cch .kcp-rpt__price b { display: inline-block; margin-top: 4px; font-size: 38px; font-weight: 800; letter-spacing: -0.04em; color: #0f172a; line-height: 1.1; }
+.cch .kcp-rpt__price b span { font-size: 18px; margin-left: 2px; }
+.cch .kcp-rpt__price em { display: inline-block; margin-left: 10px; font-size: 13px; font-weight: 700; color: #94a3b8; }
+.cch .kcp-rpt__card ul { display: flex; flex-direction: column; gap: 10px; margin: 20px 0 22px; padding-top: 18px; border-top: 1px solid #eef2f6; }
+.cch .kcp-rpt__card li { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: #334155; }
+.cch .kcp-rpt__card li svg { width: 18px; height: 18px; stroke: #0e9a62; stroke-width: 2.6; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.cch .kcp-rpt__go, .cch .kcp-rpt__go:link, .cch .kcp-rpt__go:visited { display: flex; align-items: center; justify-content: center; gap: 8px; height: 52px; border-radius: 14px; background: #fff; border: 1.5px solid #0f172a; color: #0f172a; font-size: 16px; font-weight: 800; }
+.cch .kcp-rpt__go:hover { background: #0f172a; color: #fff; }
+.cch .kcp-rpt__go svg { width: 17px; height: 17px; stroke: currentColor; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+/* 자주 묻는 질문 */
+.cch .kcp-faq { background: #f7f9fb; }
+.cch .kcp-faq__in { max-width: 900px; }
+.cch .kcp-qa { display: flex; flex-direction: column; gap: 10px; }
+.cch .kcp-q { border-radius: 18px; background: #fff; border: 1px solid #e5eaf0; overflow: hidden; }
+.cch .kcp-q summary { display: flex; align-items: center; gap: 14px; padding: 20px 22px; cursor: pointer; list-style: none; font-size: 16.5px; font-weight: 750; color: #0f172a; letter-spacing: -0.02em; line-height: 1.45; }
+.cch .kcp-q summary::-webkit-details-marker { display: none; }
+.cch .kcp-q summary::after { content: ""; flex-shrink: 0; width: 9px; height: 9px; margin-left: auto; border-right: 2px solid #94a3b8; border-bottom: 2px solid #94a3b8; transform: rotate(45deg); transition: transform 0.2s; }
+.cch .kcp-q[open] summary::after { transform: rotate(225deg); }
+.cch .kcp-q summary i { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 9px; background: #ecf8f2; color: #0b7a4b; font-size: 13.5px; font-weight: 800; flex-shrink: 0; }
+.cch .kcp-a { padding: 0 22px 22px 64px; font-size: 15px; font-weight: 500; line-height: 1.8; color: #475569; }
+
+/* 마지막 권유 */
+.cch .kcp-final { position: relative; padding: 96px 40px; overflow: hidden; text-align: center;
+  background: radial-gradient(700px 360px at 50% 0%, rgba(52,211,153,0.22), rgba(52,211,153,0) 70%), linear-gradient(160deg, #0b6b43 0%, #0a5a39 50%, #0b3b2a 100%); }
+.cch .kcp-final__in { display: flex; flex-direction: column; align-items: center; }
+.cch .kcp-final__eb { padding: 6px 13px; border-radius: 999px; background: rgba(255,255,255,0.12); color: #b8f0d3; font-size: 13px; font-weight: 800; letter-spacing: 0.04em; }
+.cch .kcp-final h2 { margin-top: 18px; font-size: clamp(28px, 1.6vw + 18px, 44px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.3; color: #fff; }
+.cch .kcp-final > div > p, .cch .kcp-final__in > p { margin-top: 14px; font-size: 16.5px; font-weight: 500; color: rgba(255,255,255,0.8); }
+.cch .kcp-final__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 22px; margin-top: 32px; }
+.cch .kcp-final__chat { display: inline-flex; align-items: center; gap: 8px; padding: 14px 4px; color: #fff; font-size: 16.5px; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.45); cursor: pointer; background: none; }
+.cch .kcp-final__chat svg { width: 19px; height: 19px; stroke: #fff; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.cch .kcp-final__org { margin-top: 26px; font-size: 13.5px; font-weight: 600; color: rgba(255,255,255,0.6); }
+
+/* /ai-humanizer 안 무료 검사 칸 */
+.cch .kch-check { background: linear-gradient(180deg, #ffffff 0%, #f4f8f6 100%); padding-top: 96px; padding-bottom: 96px; }
+.cch .kch-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 64px; align-items: center; }
+.cch .kch-list { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+.cch .kch-list li { display: flex; align-items: flex-start; gap: 12px; }
+.cch .kch-list li span { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 12px; background: #ecf8f2; flex-shrink: 0; }
+.cch .kch-list li span svg { width: 19px; height: 19px; stroke: #0b7a4b; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.cch .kch-list li b { display: block; font-size: 16px; font-weight: 800; color: #0f172a; letter-spacing: -0.02em; }
+.cch .kch-list li small { display: block; margin-top: 2px; font-size: 14px; font-weight: 500; color: #64748b; line-height: 1.6; }
+.cch .kch-tool { position: relative; }
+.cch .kch-pay { padding: 56px 40px 8px; background: #fff; }
+.cch .kch-pay__in { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center; max-width: 1200px; margin: 0 auto; padding: 26px 30px; border-radius: 24px;
+  background: linear-gradient(120deg, #f2faf6, #ffffff); border: 1px solid #d6ebe0; }
+.cch .kch-pay__in b { display: block; font-size: 19px; font-weight: 800; letter-spacing: -0.03em; color: #0f172a; }
+.cch .kch-pay__in p { margin-top: 6px; font-size: 14.5px; font-weight: 500; line-height: 1.7; color: #475569; }
+.cch .kch-pay__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.cch .kch-pay__chips span { display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px; background: #fff; border: 1px solid #d6ebe0; font-size: 13px; font-weight: 750; color: #0b7a4b; }
+.cch .kch-pay__chips svg { width: 14px; height: 14px; stroke: #0b7a4b; stroke-width: 2.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.cch .kch-pay__go, .cch .kch-pay__go:link, .cch .kch-pay__go:visited { display: inline-flex; align-items: center; gap: 8px; padding: 14px 20px; border-radius: 14px; background: #0f172a; color: #fff; font-size: 15px; font-weight: 800; white-space: nowrap; }
+.cch .kch-pay__go:hover { background: #1e293b; color: #fff; }
+.cch .kch-pay__go svg { width: 16px; height: 16px; stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (max-width: 1024px) {
+  .ccd .kcp-hero .ccd-inner { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .ccd .kcp-tool { max-width: 640px; width: 100%; }
+  .cch .kcp-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cch .kcp-flow::before { display: none; }
+  .cch .kcp-read__grid, .cch .kch-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .cch .kcp-rpt__in { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .cch .kcp-trust__in { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 14px; }
+  .cch .kcp-tr:nth-child(3) { border-left: 0; }
+}
+@media (max-width: 640px) {
+  .ccd .kcp-hero { padding: 40px 16px 56px; }
+  .ccd .kcp-tool::before { display: none; }
+  .ccd .kcp-hero .ccd-inner { gap: 26px; }
+  .ccd .kcp-hero .ccd-desc { margin-bottom: 0; }
+  .ccd .kcp-steps, .ccd .kcp-hero .ccd-trust { display: none; }
+  .cch .kcp-next, .cch .kcp-rpt, .cch .kch-check { padding: 64px 16px; }
+  .cch .kcp-flow { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .cch .kcp-flow li { padding: 20px 18px; }
+  .cch .kcp-band { grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; padding: 16px; }
+  .cch .kcp-band p { grid-column: 1 / -1; }
+  .cch .kcp-vals { grid-template-columns: minmax(0, 1fr); }
+  .cch .kcp-trust { padding: 0 16px; }
+  .cch .kcp-tr { justify-content: flex-start; gap: 10px; }
+  .cch .kcp-tr span { width: 38px; height: 38px; }
+  .cch .kcp-tr b { font-size: 13.5px; }
+  .cch .kcp-q summary { padding: 17px 16px; font-size: 15.5px; gap: 10px; }
+  .cch .kcp-a { padding: 0 16px 18px 54px; font-size: 14.5px; }
+  .cch .kcp-final { padding: 72px 18px; }
+  .cch .kch-pay { padding: 40px 16px 8px; }
+  .cch .kch-pay__in { grid-template-columns: minmax(0, 1fr); padding: 22px 18px; }
+}
