@@ -37,3 +37,12 @@
 #w202607087bc977b377b35 .skk-price-card { position: relative; cursor: pointer; }
 #w202607087bc977b377b35 .skk-price-card .skk-price-btn { position: static; }
 #w202607087bc977b377b35 .skk-price-card .skk-price-btn::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+
+/* 2026.11.28 10:44 대표 '오른쪽에 안전결제 · 에스크로, 결과물 받기 전에는 전문가에게 가지 않고 성균관컨설팅이 보관, 축약해서 상자로' */
+.spc-pay .spc-pay__top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 20px; }
+.spc-pay .spc-pay__safe { display: inline-flex; align-items: center; gap: 11px; max-width: 660px; padding: 10px 16px 10px 10px; border-radius: 14px; background: #eef4ff; border: 1px solid #d6e3fb; }
+.spc-pay .spc-pay__safe-ic { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 11px; background: #fff; box-shadow: 0 6px 14px -10px rgba(23,93,246,.7); }
+.spc-pay .spc-pay__safe-ic svg { width: 19px; height: 19px; fill: none; stroke: #175df6; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.spc-pay .spc-pay__safe-tx { font-size: 12.5px; font-weight: 600; line-height: 1.5; color: #475569; word-break: keep-all; text-wrap: balance; }
+.spc-pay .spc-pay__safe-tx b { display: block; margin-bottom: 1px; font-size: 14px; font-weight: 800; color: #0f2a6b; letter-spacing: -0.01em; }
+@media (max-width: 768px) { .spc-pay .spc-pay__safe { max-width: none; width: 100%; } }

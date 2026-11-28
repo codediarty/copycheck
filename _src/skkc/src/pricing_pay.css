@@ -73,3 +73,12 @@
 .skk-price-card .skk-price-btn::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
 .skk-price-card .ccp-jump { position: relative; z-index: 2; }
 @media (max-width: 768px) { .skk-pricing { max-width: 460px; } }
+
+/* 2026.11.28 10:44 대표 '오른쪽에 안전결제 · 에스크로 … 축약해서 상자로': 'AI 유사도 개선 결제' 줄 오른쪽 */
+.ccp .ccp-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 20px; }
+.ccp .ccp-safe { display: inline-flex; align-items: center; gap: 11px; max-width: 660px; padding: 10px 16px 10px 10px; border-radius: 14px; background: #eaf1ff; border: 1px solid #d6e3fb; }
+.ccp .ccp-safe__ic { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 11px; background: #fff; box-shadow: 0 6px 14px -10px rgba(23,93,246,.7); }
+.ccp .ccp-safe__ic svg { width: 19px; height: 19px; fill: none; stroke: #175df6; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ccp .ccp-safe__tx { font-size: 12.5px; font-weight: 600; line-height: 1.5; color: #475569; text-wrap: balance; }
+.ccp .ccp-safe__tx b { display: block; margin-bottom: 1px; font-size: 14px; font-weight: 800; color: #0f2a6b; letter-spacing: -0.01em; }
+@media (max-width: 768px) { .ccp .ccp-safe { max-width: none; width: 100%; } }
