@@ -64,3 +64,12 @@
 .ccp-jump, .ccp-jump:link, .ccp-jump:visited { display: block; margin-top: 12px; text-align: center; font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-size: 13.5px; font-weight: 700; color: #175df6; text-decoration: none; }
 .ccp-jump:hover { color: #0f4fd6; text-decoration: underline; }
+
+/* 2026.11.28 10:15 대표 '박스 약간만 줄이고, 박스 자체를 누르면 들어가게(문서 검사하기 · 개선 요청하기 안 눌러도)' */
+.skk-pricing { max-width: 920px; }
+.skk-price-card { position: relative; cursor: pointer; }
+.skk-price-card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -22px rgba(15, 23, 42, 0.35); }
+.skk-price-card .skk-price-btn { position: static; }
+.skk-price-card .skk-price-btn::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.skk-price-card .ccp-jump { position: relative; z-index: 2; }
+@media (max-width: 768px) { .skk-pricing { max-width: 460px; } }

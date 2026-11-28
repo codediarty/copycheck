@@ -237,13 +237,26 @@ def build_pricing():
     block = compact_html(open(os.path.join(SRC, "pricing_pay.html"), encoding="utf-8").read())
     btn = '      개선 요청하기\n    </a>'
     assert old.count(btn) == 1
-    code = old.replace(btn, btn + '\n    <a href="#ccpPay" class="ccp-jump">상담 후 안내받은 금액 결제하기 ↓</a>', 1)
+    code = old.replace(btn, btn + '\n    <a href="#ccpPay" class="ccp-jump">상담 후 안내받은 크레딧 결제하기 ↓</a>', 1)
     mark = '<!-- ===== 상세내역서 구성 ===== -->'
     assert code.count(mark) == 1
     code = code.replace(mark, "%s\n<style>\n%s\n</style>\n%s\n\n  %s" % (FONT_LINK, css, block, mark), 1)
     open(os.path.join(DIST, "copyclean-pricing_widget.html"), "w", encoding="utf-8").write(code)
     open(os.path.join(DIST, "preview_pricing.html"), "w", encoding="utf-8").write(page_preview("pricing preview", code))
     return len(code)
+
+
+def build_pricing_tc():
+    """2026.11.28 /pricing 코드 위젯(w202607083d4e39e7b756e) '의뢰자 후기' 바로 앞에 끼워 넣는 '바로 결제' 금액 칸(표시 줄 사이만 지우면 원래 위젯)"""
+    html = open(os.path.join(SRC, "pricing_tc.html"), encoding="utf-8").read().strip()
+    css = open(os.path.join(SRC, "pricing_tc.css"), encoding="utf-8").read()
+    js = re.sub(r"/\*.*?\*/", "", open(os.path.join(SRC, "pricing_tc.js"), encoding="utf-8").read(), flags=re.S).strip()
+    assert "//" not in js
+    snippet = ("<!-- 2026.11.28 바로 결제 금액 칸 시작(지우면 원래 위젯, 원래 SHA-256 앞 16자 e672a3d450b6c31e) -->\r\n"
+               "<style>" + minify(importantize(css)) + "</style>\r\n" + html + "\r\n" + ("<script>" + js + "</script>\r\n" if js else "") +
+               "<!-- 2026.11.28 바로 결제 금액 칸 끝 -->\r\n\r\n  ")
+    open(os.path.join(DIST, "pricing_tc_snippet.html"), "w", encoding="utf-8", newline="").write(snippet)
+    return len(snippet)
 
 
 def build_academic():
@@ -438,5 +451,5 @@ def build_humanizer():
 
 
 if __name__ == "__main__":
-    print("detector", build_detector(), "detector_more", build_detector_more(), "inquiry", build_inquiry(), "pricing", build_pricing(), "academic", build_academic(), "humanizer", build_humanizer())
+    print("detector", build_detector(), "detector_more", build_detector_more(), "inquiry", build_inquiry(), "pricing", build_pricing(), "pricing_tc", build_pricing_tc(), "academic", build_academic(), "humanizer", build_humanizer())
     print("skp", build_skp())
