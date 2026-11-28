@@ -328,7 +328,38 @@ SKP_PAGES = {
     # 2026.11.27 22:45 '여기도 좀 잘 바꿔봐'. 둘째 칸(s2026070870b8543218885)은 지우지 않고 thesis-consulting.css 에서 폼 · 자주 묻는 질문만 남겨 모양을 바꿈
     "thesis-consulting": {"first": "s20260708a3c65e18cbed6", "first_w": ["w2026070830cf2f3f95856", "w202607086a8723a2ab49e", "w2026070864246139d0abc"],
                           "hide_s": []},
+    # 2026.11.28 08:49 '여기도 개선'. 둘째 칸은 지우지 않고 예전 글 · 여백 위젯만 숨김, 쪽 CSS 코드 위젯 두 개는 그대로, 상담 신청 폼은 모양만(consult_form.css)
+    "gov-rnd": {"first": "s20260708b570b07a8b534", "first_w": ["w202607080dd5b7573d901", "w20260708630992ef50338", "w202607081bbec5dfdef5c"],
+                "hide_s": [], "extra": ["consult"],
+                "sec2": {"id": "s20260708a17ff96bf1fde", "form": "w202607083ca2b609b5032",
+                         "hide_w": ["w202607085e289b551bacc", "w202607086e15707e2a42a", "w20260708b6facb4556487", "w202607084f0813f75e38c",
+                                    "w20260708b9212987e64c7", "w202607087dca341b2daff", "w202607081dab6d09535b6"]}},
+    "industry-cooperation": {"first": "s2026070852a296be74d6e", "first_w": ["w202607082bad1e2ca90a4", "w20260708bdfaeb9587159", "w202607085a01229af5684"],
+                             "hide_s": [], "extra": ["consult"],
+                             "sec2": {"id": "s20260708ca695d0dfc5be", "form": "w20260708cc269b2b182d6",
+                                      "hide_w": ["w202607084b824e852afb6", "w20260708d5ee1e689b087", "w20260708a95bbfbcc7556", "w20260708463afa4f94d74",
+                                                 "w20260708bec2e94a8b964", "w202607089823e6019838f", "w20260708536b8c6361ac9"]}},
 }
+
+
+def skp_sec2_css(sec):
+    """둘째 아임웹 칸: 예전 위젯 숨김 + 상담 신청 폼 모양(consult_form.css 의 #SEC2 · #FORM 을 실제 ID 로)"""
+    css = open(os.path.join(SRC, "skp", "consult_form.css"), encoding="utf-8").read()
+    css = css.replace("#SEC2", "#" + sec["id"]).replace("#FORM", "#" + sec["form"])
+    return css + "%s { display: none; }\n" % ", ".join("#" + w for w in sec["hide_w"])
+
+
+def skp_faq_ld(html):
+    """쪽 안의 자주 묻는 질문(details.skp-faq__q)을 그대로 FAQPage 구조화 데이터로. 화면 글과 같게 유지"""
+    import html as _h
+    items = []
+    for m in re.finditer(r'<details class="skp-faq__q"[^>]*>\s*<summary><span>Q</span>(.*?)</summary>\s*<div class="skp-faq__a">(.*?)</div>\s*</details>', html, re.S):
+        q = _h.unescape(re.sub(r"<[^>]+>", "", m.group(1))).strip()
+        a = _h.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", m.group(2)))).strip()
+        items.append({"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}})
+    assert items, "자주 묻는 질문이 없음"
+    data = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": items}
+    return '<script type="application/ld+json">%s</script>' % json.dumps(data, ensure_ascii=False, separators=(",", ":"))
 
 
 def skp_icons(html):
@@ -364,12 +395,23 @@ def build_skp():
     sizes = {}
     for page, cfg in SKP_PAGES.items():
         css = base + "\n" + skp_host_css(cfg)
+        for ex in cfg.get("extra", []):
+            css += "\n" + open(os.path.join(d, ex + ".css"), encoding="utf-8").read()
+        if cfg.get("sec2"):
+            css += "\n" + skp_sec2_css(cfg["sec2"])
         pc = os.path.join(d, page + ".css")
         if os.path.exists(pc):
             css += "\n" + open(pc, encoding="utf-8").read()
         css = minify(importantize(css))
-        html = compact_html(skp_icons(open(os.path.join(d, page + ".html"), encoding="utf-8").read()))
+        raw = open(os.path.join(d, page + ".html"), encoding="utf-8").read()
+        if "{{faqld}}" in raw:
+            raw = raw.replace("{{faqld}}", skp_faq_ld(raw))
+        html = compact_html(skp_icons(raw))
         js = bjs
+        for ex in cfg.get("extra", []):
+            pe = os.path.join(d, ex + ".js")
+            if os.path.exists(pe):
+                js += "\n" + open(pe, encoding="utf-8").read()
         pj = os.path.join(d, page + ".js")
         if os.path.exists(pj):
             js += "\n" + open(pj, encoding="utf-8").read()

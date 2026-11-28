@@ -1,0 +1,30 @@
+/* /gov-rnd 전용(2026.11.28): 첫 화면 오른쪽 '연구계획서 구조 점검' 그림 */
+.skp .skp-plan { padding-bottom: 24px; }
+.skp .skp-plan__list { display: grid; gap: 10px; }
+.skp .skp-plan__list li { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 13px 16px; border-radius: 16px;
+  background: var(--tint); border: 1px solid var(--line); animation: skp-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0.5s) both; }
+.skp .skp-plan__ck { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: #fff; border: 2px solid var(--line);
+  font-size: 13px; font-weight: 800; color: #94a3b8; }
+.skp .skp-plan__ck .skp-ico { width: 15px; height: 15px; stroke-width: 3; }
+.skp .skp-plan__list .is-done .skp-plan__ck { background: var(--acc); border-color: var(--acc); color: #fff; }
+.skp .skp-plan__list .is-now { background: #fff; border-color: var(--acc-t2); box-shadow: 0 16px 30px -22px rgba(23, 93, 246, 0.55); }
+.skp .skp-plan__list .is-now .skp-plan__ck { border-color: var(--acc); color: var(--acc); animation: skp-ping 3s ease-out 2s infinite; }
+.skp .skp-plan__list b { display: block; font-size: 15px; font-weight: 800; color: var(--ink); line-height: 1.35; }
+.skp .skp-plan__list small { display: block; margin-top: 2px; font-size: 12.5px; font-weight: 600; color: var(--mute); line-height: 1.4; }
+.skp .skp-plan__list em { font-size: 12px; font-weight: 800; color: #94a3b8; white-space: nowrap; }
+.skp .skp-plan__list .is-done em, .skp .skp-plan__list .is-now em { color: var(--acc); }
+/* 위 떠 있는 표: 칸 위 테두리 바깥에 걸쳐 줄 끝 '점검 완료' 글을 가리지 않게 */
+.skp-grw .skp-float--tr { top: -40px; right: 34px; }
+.skp-grw .skp-float--under { left: -34px; bottom: -42px; }
+@media (prefers-reduced-motion: reduce) {
+  .skp .skp-plan__list li, .skp .skp-plan__list .is-now .skp-plan__ck { animation: none; }
+}
+@media (max-width: 1024px) {
+  .skp-grw .skp-float--under { left: 14px; }
+}
+@media (max-width: 768px) {
+  .skp .skp-plan__list li { grid-template-columns: 30px minmax(0, 1fr) auto; gap: 12px; padding: 12px 13px; }
+  .skp .skp-plan__ck { width: 30px; height: 30px; }
+  .skp .skp-plan__list b { font-size: 14.5px; }
+  .skp .skp-plan__list em { font-size: 11.5px; }
+}
