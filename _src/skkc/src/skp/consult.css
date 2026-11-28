@@ -140,3 +140,7 @@
   .skp .skp-cform__pts li { height: 36px; padding: 0 13px; font-size: 13px; }
   .skp .skp-cform__pts .skp-ico { width: 15px; height: 15px; }
 }
+/* 첫 화면 제목: 폭 375 안팎 휴대폰에서 두 줄로 들어가게 조금 작게(글자 폭을 재 보니 32px 에서 2~4px 넘침) */
+@media (max-width: 400px) {
+  .skp-grw .skp-h1, .skp-icw .skp-h1 { font-size: 29px; }
+}
