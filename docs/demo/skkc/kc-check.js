@@ -230,6 +230,11 @@
         (function tick(now) { var k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3); if (num) num.textContent = Math.round(M.rate * e); if (k < 1) requestAnimationFrame(tick); })(t0);
       });
     });
+    setTimeout(function () {   /* 탭이 뒤에 있어 그림 갱신이 멈춘 경우에도 마지막 값은 꼭 보이게 */
+      if (num) num.textContent = M.rate;
+      if (arc) arc.style.setProperty('--kcd', (L * M.rate / 100).toFixed(1) + ' ' + L.toFixed(1));
+      if (mark) mark.style.left = Math.max(1.5, Math.min(98.5, M.rate)) + '%';
+    }, 1600);
     var dock = $('[data-kc-dock]', box), cta = $('.kc-cta__go', box), raf = 0;   /* 휴대폰: 결과를 보는 동안 상담 단추가 화면에 없으면 아래 고정 줄 */
     function dockPaint() {
       raf = 0; if (!dock || box.hidden) return;

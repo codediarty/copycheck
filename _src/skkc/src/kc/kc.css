@@ -245,7 +245,7 @@
 .kc .kc-cta__links a .kc-ico { width: 15px; height: 15px; }
 
 /* 휴대폰 아래 고정 줄 */
-.kc .kc-dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 900; display: none; align-items: center; gap: 10px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+.kc .kc-dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 900; display: none; align-items: center; gap: 10px; padding: 10px 86px calc(10px + env(safe-area-inset-bottom)) 14px;
   background: rgba(255,255,255,0.96); border-top: 1px solid #e2e8f0; box-shadow: 0 -10px 30px -18px rgba(15,23,42,0.35); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 .kc .kc-dock__v { display: flex; flex-direction: column; line-height: 1.2; }
 .kc .kc-dock__v b { font-size: 20px; font-weight: 800; letter-spacing: -0.03em; color: var(--kcb, #0f172a); }
