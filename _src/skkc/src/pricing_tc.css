@@ -1,0 +1,32 @@
+.spc-pay .spc-pay__tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0 14px; padding: 5px; border-radius: 14px; background: #eef3fb; }
+.spc-pay .spc-pay__tab { flex: 1 1 0; min-width: 0; height: 40px; margin: 0; padding: 0 10px; border: 0; border-radius: 10px; background: transparent; font-family: inherit; font-size: 14px; font-weight: 800; line-height: 1; color: #4b5563; cursor: pointer; white-space: nowrap; transition: background .2s, color .2s, box-shadow .2s; }
+.spc-pay .spc-pay__tab small { font-size: 12px; font-weight: 700; }
+.spc-pay .spc-pay__tab:hover { color: #175df6; }
+.spc-pay .spc-pay__tab.is-on { background: #fff; color: #175df6; box-shadow: 0 4px 12px -6px rgba(15,23,42,.35); }
+.spc-pay .spc-pay__grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.spc-pay .spc-pay__grid + .spc-pay__grid { margin-top: 16px; }
+.spc-pay .spc-pay__gl { grid-column: 1 / -1; margin: 0; font-size: 13px; font-weight: 800; color: #6b7280; }
+.spc-pay.is-js .spc-pay__grid { display: none; }
+.spc-pay.is-js .spc-pay__grid.is-on { display: grid; margin-top: 0; animation: spcPayIn .3s ease both; }
+.spc-pay.is-js .spc-pay__gl { display: none; }
+@keyframes spcPayIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.spc-pay .spc-pay__amt, .spc-pay .spc-pay__amt:link, .spc-pay .spc-pay__amt:visited { position: relative; display: flex; flex-direction: column; gap: 2px; padding: 16px 16px 14px; border-radius: 14px; background: #fff; border: 1px solid #e5e7eb; color: #111827; text-decoration: none; transition: transform .2s, border-color .2s, box-shadow .2s, background .2s; }
+.spc-pay .spc-pay__amt b { font-size: 24px; font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: #111827; }
+.spc-pay .spc-pay__amt b small { margin-left: 2px; font-size: 14px; font-weight: 700; color: #374151; }
+.spc-pay .spc-pay__amt span { font-size: 12.5px; font-weight: 600; color: #6b7280; }
+.spc-pay .spc-pay__amt i { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; font-style: normal; font-size: 12.5px; font-weight: 800; color: #175df6; }
+.spc-pay .spc-pay__amt i svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s; }
+.spc-pay .spc-pay__amt:hover { transform: translateY(-2px); border-color: #175df6; background: #f5f8ff; box-shadow: 0 14px 26px -18px rgba(23,93,246,.55); }
+.spc-pay .spc-pay__amt:hover i svg { transform: translateX(3px); }
+.spc-pay .spc-pay__note { display: flex; align-items: flex-start; gap: 8px; margin: 14px 0 0; font-size: 13.5px; line-height: 1.65; color: #6b7280; }
+.spc-pay .spc-pay__note svg { flex-shrink: 0; width: 16px; height: 16px; margin-top: 3px; fill: none; stroke: #9ca3af; stroke-width: 2; stroke-linecap: round; }
+.spc-pay .spc-pay__note a, .spc-pay .spc-pay__note a:link, .spc-pay .spc-pay__note a:visited { color: #175df6; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+@media (max-width: 1024px) { .spc-pay .spc-pay__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 768px) {
+  .spc-pay .spc-pay__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .spc-pay .spc-pay__tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .spc-pay .spc-pay__tab { height: 38px; font-size: 13.5px; }
+  .spc-pay .spc-pay__amt, .spc-pay .spc-pay__amt:link, .spc-pay .spc-pay__amt:visited { padding: 14px 14px 12px; }
+  .spc-pay .spc-pay__amt b { font-size: 21px; }
+}
+@media (prefers-reduced-motion: reduce) { .spc-pay .spc-pay__amt { transition: none; } .spc-pay.is-js .spc-pay__grid.is-on { animation: none; } }
