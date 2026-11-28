@@ -106,12 +106,13 @@ await sleep(400);
 ins = live();
 const imgs = deep(sr, e => e.tagName === 'IMG' && e.closest('.image-item'));
 const fi = fileItem();
+const txt = h => { const d = document.createElement('div'); d.innerHTML = h; return d.textContent; };
 const ok = {
   name: nameEl.value === NAME,
   img: imgs.length === 1 && /cdn/.test(imgs[0].getAttribute('src') || ''),
   file: fi.length === 1 && (!FILE || /전문가컨설팅-결제-안내/.test(fi[0].textContent)),
   sum: ins[0].html.get().indexOf('전문가 컨설팅 상품') > 0 && ins[0].html.get().indexOf('논문') < 0,
-  det: ins[ins.length - 1].html.get().indexOf('전문가 컨설팅 결제 · ' + N + ' 크레딧') > 0 && ins[ins.length - 1].html.get().indexOf('논문') < 0 && ins[ins.length - 1].html.get().indexOf(won) < 0,
+  det: txt(ins[ins.length - 1].html.get()).indexOf('전문가 컨설팅 결제 · ' + N + ' 크레딧') >= 0 && txt(ins[ins.length - 1].html.get()).indexOf('에스크로 안전결제') >= 0 && ins[ins.length - 1].html.get().indexOf('논문') < 0 && ins[ins.length - 1].html.get().indexOf(won) < 0,
   seo: !!(st && sd && st.value === SEO_T && sd.value === SEO_D),
   price: priceEl.value.replace(/[^0-9]/g, '') === String(A)
 };
